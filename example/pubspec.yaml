@@ -1,0 +1,11 @@
+name: spinkit_example
+description: An example project for the flutter spinkit.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_spinkit:
+    path: ../
+
+flutter:
+  uses-material-design: true
