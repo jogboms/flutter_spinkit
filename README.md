@@ -4,7 +4,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ## Roadmap
 
-- [ ] RotatingPlane
+- [x] RotatingPlane
 - [ ] DoubleBounce
 - [ ] Wave
 - [ ] WanderingCubes
