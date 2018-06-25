@@ -8,11 +8,11 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 - [ ] DoubleBounce
 - [ ] Wave
 - [ ] WanderingCubes
-- [ ] Pulse
+- [x] Pulse
 - [ ] ChasingDots
 - [ ] ThreeBounce
 - [ ] Circle
 - [ ] CubeGrid
 - [ ] FadingCircle
 - [ ] FoldingCube
-- [ ] RotatingCircle
+- [x] RotatingCircle
