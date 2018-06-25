@@ -4,17 +4,15 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ## Roadmap
 
-- [ ] CircleFlip
-- [ ] Bounce
+- [ ] RotatingPlane
+- [ ] DoubleBounce
 - [ ] Wave
 - [ ] WanderingCubes
 - [ ] Pulse
 - [ ] ChasingDots
 - [ ] ThreeBounce
 - [ ] Circle
-- [ ] 9CubeGrid
-- [ ] WordPress
+- [ ] CubeGrid
 - [ ] FadingCircle
-- [ ] FadingCircleAlt
-- [ ] Arc
-- [ ] ArcAlt
+- [ ] FoldingCube
+- [ ] RotatingCircle
