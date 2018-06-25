@@ -1,4 +1,4 @@
-name: spinkit_example
+name: example
 description: An example project for the flutter spinkit.
 
 dependencies:
@@ -6,6 +6,10 @@ dependencies:
     sdk: flutter
   flutter_spinkit:
     path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 
 flutter:
   uses-material-design: true
