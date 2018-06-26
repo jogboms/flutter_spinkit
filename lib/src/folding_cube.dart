@@ -16,7 +16,7 @@ class SpinKitFoldingCube extends StatefulWidget {
   _SpinKitFoldingCubeState createState() => new _SpinKitFoldingCubeState();
 }
 
-class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTickerProviderStateMixin {
+class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProviderStateMixin {
   AnimationController _opacityCtrl;
   Animation<double> _opacity, _opacity1, _opacity2, _opacity3;
   AnimationController _rotateCtrl;
