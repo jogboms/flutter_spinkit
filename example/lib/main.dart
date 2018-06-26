@@ -27,29 +27,31 @@ class SpinKitGrid extends StatelessWidget {
     return new Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Text("Flutter SpinKit", style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w100)),
+        const SizedBox(height: 64.0),
         new Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SpinKitRotatingCircle(color: Colors.red),
-            SpinKitChasingDots(color: Colors.red),
-            SpinKitDoubleBounce(color: Colors.red),
+            SpinKitRotatingCircle(color: Colors.white),
+            SpinKitChasingDots(color: Colors.white),
+            SpinKitDoubleBounce(color: Colors.white),
           ],
         ),
         const SizedBox(height: 64.0),
         new Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SpinKitRotatingPlain(color: Colors.red),
-            SpinKitPulse(color: Colors.red),
-            SpinKitWave(color: Colors.red),
+            SpinKitRotatingPlain(color: Colors.white),
+            SpinKitPulse(color: Colors.white),
+            SpinKitWave(color: Colors.white),
           ],
         ),
         const SizedBox(height: 64.0),
         new Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SpinKitThreeBounce(color: Colors.red),
-            SpinKitWanderingCubes(color: Colors.red),
+            SpinKitThreeBounce(color: Colors.white),
+            SpinKitWanderingCubes(color: Colors.white),
             // SpinKitFoldingCube(color: Colors.red),
           ],
         ),
