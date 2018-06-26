@@ -7,7 +7,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 - [x] RotatingPlane
 - [x] DoubleBounce
 - [ ] Wave
-- [ ] WanderingCubes
+- [x] WanderingCubes
 - [x] Pulse
 - [x] ChasingDots
 - [ ] ThreeBounce
