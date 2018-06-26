@@ -9,7 +9,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 - [ ] Wave
 - [ ] WanderingCubes
 - [x] Pulse
-- [ ] ChasingDots
+- [x] ChasingDots
 - [ ] ThreeBounce
 - [ ] Circle
 - [ ] CubeGrid
