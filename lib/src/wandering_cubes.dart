@@ -19,35 +19,35 @@ class SpinKitWanderingCubes extends StatefulWidget {
 class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with TickerProviderStateMixin {
   AnimationController _scaleCtrl, _rotateCtrl, _translateCtrl;
   Animation<double> _scale1, _scale2, _scale3, _scale4, _rotate;
-  Animation<double> _translate11, _translate12, _translate13, _translate14;
+  Animation<double> _translate1, _translate2, _translate3, _translate4;
   final _duration = const Duration(milliseconds: 1800);
   double _offset;
 
   initTranslateAnim() {
     _translateCtrl = new AnimationController(vsync: this, duration: _duration);
 
-    _translate11 = Tween(begin: 0.0, end: _offset).animate(
+    _translate1 = Tween(begin: 0.0, end: _offset).animate(
       new CurvedAnimation(
         parent: _translateCtrl,
         curve: Interval(0.0, 0.25, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => {}));
 
-    _translate12 = Tween(begin: 0.0, end: _offset).animate(
+    _translate2 = Tween(begin: 0.0, end: _offset).animate(
       new CurvedAnimation(
         parent: _translateCtrl,
         curve: Interval(0.25, 0.5, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => {}));
 
-    _translate13 = Tween(begin: 0.0, end: -_offset).animate(
+    _translate3 = Tween(begin: 0.0, end: -_offset).animate(
       new CurvedAnimation(
         parent: _translateCtrl,
         curve: Interval(0.5, 0.75, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => {}));
 
-    _translate14 = Tween(begin: 0.0, end: -_offset).animate(
+    _translate4 = Tween(begin: 0.0, end: -_offset).animate(
       new CurvedAnimation(
         parent: _translateCtrl,
         curve: Interval(0.75, 1.0, curve: Curves.easeInOut),
@@ -110,6 +110,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
 
   @override
   void dispose() {
+    _translateCtrl.dispose();
     _scaleCtrl.dispose();
     _rotateCtrl.dispose();
     super.dispose();
@@ -137,16 +138,16 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
     Matrix4 _tTranslate;
     if (offset == true) {
       _tTranslate = new Matrix4.identity()
-        ..translate(_translate13.value, 0.0)
-        ..translate(0.0, _translate12.value)
-        ..translate(0.0, _translate14.value)
-        ..translate(_translate11.value, 0.0);
+        ..translate(_translate3.value, 0.0)
+        ..translate(0.0, _translate2.value)
+        ..translate(0.0, _translate4.value)
+        ..translate(_translate1.value, 0.0);
     } else {
       _tTranslate = new Matrix4.identity()
-        ..translate(0.0, _translate13.value)
-        ..translate(-_translate12.value, 0.0)
-        ..translate(-_translate14.value, 0.0)
-        ..translate(0.0, _translate11.value);
+        ..translate(0.0, _translate3.value)
+        ..translate(-_translate2.value, 0.0)
+        ..translate(-_translate4.value, 0.0)
+        ..translate(0.0, _translate1.value);
     }
 
     return Positioned(
