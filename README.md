@@ -105,7 +105,7 @@ SizedBox(
       <br />
       Circle
       <br />
-      ✅
+      <i>⏳</i>
     </td>
   </tr>
   <tr>
@@ -121,7 +121,7 @@ SizedBox(
       <br />
       FadingCircle
       <br />
-      <i>⏳</i>
+      ✅
     </td>
     <td align="center">
       <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/FoldingCube.gif" width="100px">

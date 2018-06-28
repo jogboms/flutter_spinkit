@@ -8,5 +8,5 @@ export 'src/rotating_circle.dart';
 export 'src/rotating_plain.dart';
 export 'src/three_bounce.dart';
 export 'src/wave.dart';
-export 'src/circle.dart';
+export 'src/fading_circle.dart';
 export 'src/wandering_cubes.dart';

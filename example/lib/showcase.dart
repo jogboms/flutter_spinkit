@@ -37,7 +37,7 @@ class ShowCase extends StatelessWidget {
             children: [
               SpinKitThreeBounce(color: Colors.white),
               SpinKitWanderingCubes(color: Colors.white),
-              SpinKitCircle(color: Colors.white),
+              SpinKitFadingCircle(color: Colors.white),
             ],
           ),
           const SizedBox(height: 64.0),

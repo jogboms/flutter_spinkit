@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
-class SpinKitCircle extends StatefulWidget {
+class SpinKitFadingCircle extends StatefulWidget {
   final Color color;
   final double width;
   final double height;
 
-  SpinKitCircle({
+  SpinKitFadingCircle({
     Key key,
     @required this.color,
     this.width = 50.0,
@@ -14,10 +14,10 @@ class SpinKitCircle extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SpinKitCircleState createState() => new _SpinKitCircleState();
+  _SpinKitFadingCircleState createState() => new _SpinKitFadingCircleState();
 }
 
-class _SpinKitCircleState extends State<SpinKitCircle> with SingleTickerProviderStateMixin {
+class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
