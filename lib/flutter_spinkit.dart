@@ -12,3 +12,4 @@ export 'src/wave.dart';
 export 'src/circle.dart';
 export 'src/fading_circle.dart';
 export 'src/wandering_cubes.dart';
+export 'src/cube_grid.dart';

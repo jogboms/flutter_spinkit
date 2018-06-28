@@ -61,7 +61,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
             child: new Container(
               height: widget.height,
               width: widget.width,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withOpacity(.6)),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
             ),
           ),
           new Transform.scale(
@@ -69,7 +69,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
             child: new Container(
               height: widget.height,
               width: widget.width,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withOpacity(.6)),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
             ),
           ),
         ],

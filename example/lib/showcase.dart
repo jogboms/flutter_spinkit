@@ -50,6 +50,12 @@ class ShowCase extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 64.0),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SpinKitCubeGrid(color: Colors.white,)
+            ],
+          ),
         ],
       ),
     );
