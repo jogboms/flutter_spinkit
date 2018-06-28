@@ -22,8 +22,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 More info soon, but, so far.
 
 ```dart
-final width = 60.0;
-final height = 60.0;
+final width = 50.0;
+final height = 50.0;
 final color = Colors.white;
 
 // SpinKitChasingDots
@@ -31,6 +31,7 @@ final color = Colors.white;
 // SpinKitRotatingPlain
 // SpinKitPulse
 // SpinKitWave
+// SpinKitCircle
 // SpinKitThreeBounce
 // SpinKitWanderingCubes
 
@@ -104,7 +105,7 @@ SizedBox(
       <br />
       Circle
       <br />
-      <i>⏳</i>
+      ✅
     </td>
   </tr>
   <tr>
@@ -139,7 +140,7 @@ SizedBox(
   </tr>
 </table>
 
-> GIF gotten images from [Android Spinkit](https://github.com/ybq/Android-SpinKit).
+> GIF images gotten from [Android Spinkit](https://github.com/ybq/Android-SpinKit).
 
 ## 🔥 Flutter Story So far...
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class WorkSpace extends StatelessWidget {
   @override
@@ -15,8 +16,8 @@ class SpinKitPulse extends StatefulWidget {
   SpinKitPulse({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.width = 100.0,
+    this.height = 100.0,
   }) : super(key: key);
 
   @override
@@ -48,18 +49,49 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Opacity(
-        opacity: 1.0 - _animation.value,
-        child: new Transform.scale(
-          scale: _animation.value,
-          child: new Container(
-            height: widget.height,
-            width: widget.width,
-            decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color),
+      child: SizedBox.fromSize(
+        size: Size.square(widget.height),
+        child: Stack(
+          children: [
+            _circle(1),
+            _circle(2),
+            _circle(3),
+            _circle(4),
+            _circle(5),
+            _circle(6),
+            _circle(7),
+            _circle(8),
+            _circle(9),
+            _circle(10),
+            _circle(11),
+            _circle(12),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _circle(int i) {
+    final _size = widget.width * 0.15;
+    final Matrix4 _tRotate = Matrix4.rotationZ(30.0 * (i - 1) * 0.0174533);
+
+    return Positioned.fill(
+      left: widget.width * .5,
+      top: widget.width * .5,
+      child: Transform(
+        transform: _tRotate,
+        child: Align(
+          alignment: Alignment.center,
+          child: Container(
+            width: _size,
+            height: _size,
+            decoration: BoxDecoration(
+              color: widget.color,
+              shape: BoxShape.circle,
+            ),
           ),
         ),
       ),
     );
   }
 }
-
