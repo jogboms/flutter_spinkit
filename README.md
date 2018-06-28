@@ -35,6 +35,7 @@ final color = Colors.white;
 // SpinKitFadingCircle
 // SpinKitThreeBounce
 // SpinKitWanderingCubes
+// SpinKitFadingFour
 
 SizedBox(
   height: 64.0,
@@ -135,6 +136,15 @@ SizedBox(
       <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingCircle.gif" width="100px">
       <br />
       RotatingCircle
+      <br />
+      ✅
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./screenshots/FadingFour.gif" width="100px">
+      <br />
+      FadingFour
       <br />
       ✅
     </td>
