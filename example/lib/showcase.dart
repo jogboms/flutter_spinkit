@@ -28,7 +28,7 @@ class ShowCase extends StatelessWidget {
             children: [
               SpinKitRotatingPlain(color: Colors.white),
               SpinKitPulse(color: Colors.white),
-              SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
+              SpinKitWave(color: Colors.white, type: SpinKitWaveType.center),
             ],
           ),
           const SizedBox(height: 64.0),
@@ -45,10 +45,17 @@ class ShowCase extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SpinKitCircle(color: Colors.white),
-              SpinKitCubeGrid(height:51.0,width: 51.0,color: Colors.white),
+              SpinKitFadingFour(color: Colors.white),
+              SpinKitFadingFour(color: Colors.white, shape: BoxShape.rectangle),
             ],
           ),
           const SizedBox(height: 64.0),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SpinKitCubeGrid(color: Colors.white,)
+            ],
+          ),
         ],
       ),
     );
