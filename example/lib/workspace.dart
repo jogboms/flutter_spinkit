@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_64.dart' show Vector3;
+import 'package:flutter_spinkit/src/utils.dart';
 
 class WorkSpace extends StatelessWidget {
   @override
@@ -16,8 +16,8 @@ class SpinKitPulse extends StatefulWidget {
   SpinKitPulse({
     Key key,
     @required this.color,
-    this.width = 100.0,
-    this.height = 100.0,
+    this.width = 50.0,
+    this.height = 50.0,
   }) : super(key: key);
 
   @override
@@ -26,18 +26,11 @@ class SpinKitPulse extends StatefulWidget {
 
 class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  Animation<double> _animation;
 
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
-      ..addListener(
-        () => setState(() => {}),
-      );
-
-    _controller.repeat();
+    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200))..repeat();
   }
 
   @override
@@ -53,41 +46,43 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
         size: Size.square(widget.height),
         child: Stack(
           children: [
-            _circle(1),
-            _circle(2),
-            _circle(3),
-            _circle(4),
-            _circle(5),
-            _circle(6),
-            _circle(7),
-            _circle(8),
-            _circle(9),
-            _circle(10),
-            _circle(11),
-            _circle(12),
+            _circle(1, .0),
+            _circle(2, -1.1),
+            _circle(3, -1.0),
+            _circle(4, -0.9),
+            _circle(5, -0.8),
+            _circle(6, -0.7),
+            _circle(7, -0.6),
+            _circle(8, -0.5),
+            _circle(9, -0.4),
+            _circle(10, -0.3),
+            _circle(11, -0.2),
+            _circle(12, -0.1),
           ],
         ),
       ),
     );
   }
 
-  Widget _circle(int i) {
-    final _size = widget.width * 0.15;
-    final Matrix4 _tRotate = Matrix4.rotationZ(30.0 * (i - 1) * 0.0174533);
+  Widget _circle(int i, [double delay]) {
+    final _size = widget.width * 0.15, _position = widget.width * .5;
 
     return Positioned.fill(
-      left: widget.width * .5,
-      top: widget.width * .5,
+      left: _position,
+      top: _position,
       child: Transform(
-        transform: _tRotate,
+        transform: Matrix4.rotationZ(30.0 * (i - 1) * 0.0174533),
         child: Align(
           alignment: Alignment.center,
-          child: Container(
-            width: _size,
-            height: _size,
-            decoration: BoxDecoration(
-              color: widget.color,
-              shape: BoxShape.circle,
+          child: FadeTransition(
+            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
+            child: Container(
+              width: _size,
+              height: _size,
+              decoration: BoxDecoration(
+                color: widget.color,
+                shape: BoxShape.circle,
+              ),
             ),
           ),
         ),

@@ -32,6 +32,7 @@ final color = Colors.white;
 // SpinKitPulse
 // SpinKitWave
 // SpinKitCircle
+// SpinKitFadingCircle
 // SpinKitThreeBounce
 // SpinKitWanderingCubes
 
@@ -105,7 +106,7 @@ SizedBox(
       <br />
       Circle
       <br />
-      <i>⏳</i>
+      ✅
     </td>
   </tr>
   <tr>
