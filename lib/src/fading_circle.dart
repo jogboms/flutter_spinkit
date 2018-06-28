@@ -63,12 +63,12 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
     return Positioned.fill(
       left: _position,
       top: _position,
-      child: FadeTransition(
-        opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
-        child: Transform(
-          transform: Matrix4.rotationZ(30.0 * (i - 1) * 0.0174533),
-          child: Align(
-            alignment: Alignment.center,
+      child: Transform(
+        transform: Matrix4.rotationZ(30.0 * (i - 1) * 0.0174533),
+        child: Align(
+          alignment: Alignment.center,
+          child: FadeTransition(
+            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
             child: Container(
               width: _size,
               height: _size,
