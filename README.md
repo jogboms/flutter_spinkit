@@ -141,11 +141,9 @@ SizedBox(
   </tr>
 </table>
 
+> Still unstable for now. Roadmap still has some unchecked items and a bit of clean up still very much neccessary. By the way, any helping hand whatsoever is still appreciated as well. 😊
+
 > GIF images gotten from [Android Spinkit](https://github.com/ybq/Android-SpinKit).
-
-## 🔥 Flutter Story So far...
-
-<img src="./screenshots/demo.gif" width="250px">
 
 ## 🐛 Bugs/Requests
 
@@ -159,8 +157,6 @@ For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).
 
 For help on editing plugin code, view the [documentation](https://flutter.io/platform-plugins/#edit-code).
-
-> Still unstable for now. Roadmap still has some unchecked items and a bit of clean up still very much neccessary. By the way, any helping hand whatsoever is still appreciated as well. 😊
 
 ## ⭐️ License
 
