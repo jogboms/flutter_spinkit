@@ -6,6 +6,7 @@ export 'src/folding_cube.dart';
 export 'src/pulse.dart';
 export 'src/rotating_circle.dart';
 export 'src/rotating_plain.dart';
+export 'src/fading_four.dart';
 export 'src/three_bounce.dart';
 export 'src/wave.dart';
 export 'src/circle.dart';
