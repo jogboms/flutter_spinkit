@@ -1,30 +1,25 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
-class WorkSpace extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new SpinKitPulse(height: 100.0, width: 100.0, color: Colors.white,);
-  }
-}
-
-class SpinKitPulse extends StatefulWidget {
+class SpinKitFadingFour extends StatefulWidget {
   final Color color;
+  final BoxShape shape;
   final double width;
   final double height;
 
-  SpinKitPulse({
+  SpinKitFadingFour({
     Key key,
     @required this.color,
+    this.shape = BoxShape.circle,
     this.width = 50.0,
     this.height = 50.0,
   }) : super(key: key);
 
   @override
-  _SpinKitPulseState createState() => new _SpinKitPulseState();
+  _SpinKitFadingFourState createState() => new _SpinKitFadingFourState();
 }
 
-class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderStateMixin {
+class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
@@ -73,7 +68,7 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
               height: _size,
               decoration: BoxDecoration(
                 color: widget.color,
-                shape: BoxShape.circle,
+                shape: widget.shape,
               ),
             ),
           ),

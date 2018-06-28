@@ -45,6 +45,8 @@ class ShowCase extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SpinKitCircle(color: Colors.white),
+              SpinKitFadingFour(color: Colors.white),
+              SpinKitFadingFour(color: Colors.white, shape: BoxShape.rectangle),
             ],
           ),
           const SizedBox(height: 64.0),
