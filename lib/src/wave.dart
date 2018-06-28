@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
+enum SpinKitWaveType { start, end, center }
+
 class SpinKitWave extends StatefulWidget {
   final Color color;
   final double width;
   final double height;
+  final SpinKitWaveType type;
 
   SpinKitWave({
     Key key,
     @required this.color,
+    this.type = SpinKitWaveType.start,
     this.width = 50.0,
     this.height = 50.0,
   }) : super(key: key);
@@ -38,18 +42,38 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _bars;
+    if (widget.type == SpinKitWaveType.start) {
+      _bars = [
+        _bar(-1.2),
+        _bar(-1.1),
+        _bar(-1.0),
+        _bar(-.9),
+        _bar(-.8),
+      ];
+    } else if (widget.type == SpinKitWaveType.end) {
+      _bars = [
+        _bar(-.8),
+        _bar(-.9),
+        _bar(-1.0),
+        _bar(-1.1),
+        _bar(-1.2),
+      ];
+    } else if (widget.type == SpinKitWaveType.center) {
+      _bars = [
+        _bar(-0.75),
+        _bar(-0.95),
+        _bar(-1.2),
+        _bar(-0.95),
+        _bar(-0.75),
+      ];
+    }
     return Center(
       child: SizedBox.fromSize(
         size: Size(widget.width * 1.25, widget.height),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            _bar(-1.2),
-            _bar(-1.1),
-            _bar(-1.0),
-            _bar(-.9),
-            _bar(-.8),
-          ],
+          children: _bars.toList(),
         ),
       ),
     );
