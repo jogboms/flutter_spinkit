@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
@@ -117,7 +117,10 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
           angle: 45.0 * 0.0174533,
           child: Stack(
             children: <Widget>[
-              _cube(),
+              _cube(1),
+              _cube(2),
+              _cube(3),
+              _cube(4),
               // _cube(true),
             ],
           ),
@@ -126,30 +129,40 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
     );
   }
 
-  Widget _cube([bool offset = false]) {
-    final _size = widget.width * 0.5;
-    final Matrix4 _tRotate = new Matrix4.identity()
-      ..rotateX(_rotate2.value * 0.0174533)
-      ..rotateY(_rotate3.value * 0.0174533)
-      ..rotateX(_rotate1.value * 0.0174533);
+  Widget _cube(int i) {
+    final _size = widget.width * 0.5, _position = widget.width * .5;
+    // final Matrix4 _tRotate = new Matrix4.identity()
+    //   ..rotateX(_rotate2.value * 0.0174533)
+    //   ..rotateY(_rotate3.value * 0.0174533)
+    //   ..rotateX(_rotate1.value * 0.0174533);
 
-    print(_opacity.value.abs());
-    return Positioned(
-      top: 0.0,
-      left: 0.0,
-      child: Opacity(
-        opacity: _opacity.value.abs(),
-        // opacity: 1.0,
-        // opacity: _opacity1.value,
-        child: new Transform(
-          transform: _tRotate,
-          alignment: FractionalOffset.center,
-          child: new Container(
-            height: _size,
-            width: _size,
-            decoration: BoxDecoration(
-              color: widget.color,
+    return Positioned.fill(
+      // top: 0.0,
+      // left: 0.0,
+      top: _position,
+      left: _position,
+      child: Transform.scale(
+        scale: 1.1,
+        child: Transform(
+          transform: Matrix4.rotationZ(90.0 * (i - 1) * 0.0174533),
+          child: Align(
+            alignment: Alignment.center,
+            // child: Opacity(
+            //   opacity: _opacity.value.abs(),
+            // opacity: 1.0,
+            // opacity: _opacity1.value,
+            // child: new Transform(
+            //   transform: _tRotate,
+            //   alignment: FractionalOffset.center,
+            child: new Container(
+              height: _size,
+              width: _size,
+              decoration: BoxDecoration(
+                color: widget.color,
+              ),
             ),
+            // ),
+            // ),
           ),
         ),
       ),
