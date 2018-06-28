@@ -22,8 +22,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 More info soon, but, so far.
 
 ```dart
-final width = 60.0;
-final height = 60.0;
+final width = 50.0;
+final height = 50.0;
 final color = Colors.white;
 
 // SpinKitChasingDots
@@ -31,8 +31,11 @@ final color = Colors.white;
 // SpinKitRotatingPlain
 // SpinKitPulse
 // SpinKitWave
+// SpinKitCircle
+// SpinKitFadingCircle
 // SpinKitThreeBounce
 // SpinKitWanderingCubes
+// SpinKitFadingFour
 
 SizedBox(
   height: 64.0,
@@ -104,7 +107,7 @@ SizedBox(
       <br />
       Circle
       <br />
-      <i>⏳</i>
+      ✅
     </td>
   </tr>
   <tr>
@@ -120,7 +123,7 @@ SizedBox(
       <br />
       FadingCircle
       <br />
-      <i>⏳</i>
+      ✅
     </td>
     <td align="center">
       <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/FoldingCube.gif" width="100px">
@@ -137,13 +140,20 @@ SizedBox(
       ✅
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <img src="./screenshots/FadingFour.gif" width="100px">
+      <br />
+      FadingFour
+      <br />
+      ✅
+    </td>
+  </tr>
 </table>
 
-> GIF gotten images from [Android Spinkit](https://github.com/ybq/Android-SpinKit).
+> Still unstable for now. Roadmap still has some unchecked items and a bit of clean up still very much neccessary. By the way, any helping hand whatsoever is still appreciated as well. 😊
 
-## 🔥 Flutter Story So far...
-
-<img src="./screenshots/demo.gif" width="250px">
+> GIF images gotten from [Android Spinkit](https://github.com/ybq/Android-SpinKit).
 
 ## 🐛 Bugs/Requests
 
@@ -157,8 +167,6 @@ For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).
 
 For help on editing plugin code, view the [documentation](https://flutter.io/platform-plugins/#edit-code).
-
-> Still unstable for now. Roadmap still has some unchecked items and a bit of clean up still very much neccessary. By the way, any helping hand whatsoever is still appreciated as well. 😊
 
 ## ⭐️ License
 
