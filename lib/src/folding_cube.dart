@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'dart:math' as math show sin, pi;
 
 class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
@@ -18,54 +19,13 @@ class SpinKitFoldingCube extends StatefulWidget {
 
 class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProviderStateMixin {
   AnimationController _opacityCtrl;
-  Animation<double> _opacity, _opacity1, _opacity2, _opacity3;
+  Animation<double> _opacity;
   AnimationController _rotateCtrl;
   Animation<double> _rotate1, _rotate2, _rotate3;
   final _duration = const Duration(milliseconds: 2400);
 
   initOpacityAnim() {
-    _opacityCtrl = new AnimationController(vsync: this, duration: _duration);
-
-    _opacity = Tween(begin: 0.0, end: 0.0).chain(Tween(begin: 0.9, end: 1.0)).animate(
-          new CurvedAnimation(
-            parent: _opacityCtrl,
-            curve: Interval(0.25, 0.75, curve: Curves.linear),
-          ),
-        )
-          //
-          ..addListener(() => setState(() => {}));
-    // ..addListener(() => setState(() => {}))
-    // ..addStatusListener((status) {
-    //   if (status == AnimationStatus.completed) {
-    //     _opacityCtrl.reverse();
-    //   } else if (status == AnimationStatus.dismissed) {
-    //     _opacityCtrl.forward();
-    //   }
-    // });
-
-    // _opacity1 = Tween(begin: 0.0, end: 0.0).animate(
-    //   new CurvedAnimation(
-    //     parent: _opacityCtrl,
-    //     curve: Interval(0.0, 0.1, curve: Curves.easeInOut),
-    //   ),
-    // )..addListener(() => setState(() => {}));
-
-    // _opacity2 = Tween(begin: 0.0, end: 1.0).animate(
-    //   new CurvedAnimation(
-    //     parent: _opacityCtrl,
-    //     curve: Interval(0.25, 0.75, curve: Curves.easeInOut),
-    //   ),
-    // )..addListener(() => setState(() => {}));
-
-    // _opacity3 = Tween(begin: 0.0, end: 0.0).animate(
-    //   new CurvedAnimation(
-    //     parent: _opacityCtrl,
-    //     curve: Interval(0.9, 1.0, curve: Curves.easeInOut),
-    //   ),
-    // )..addListener(() => setState(() => {}));
-
-    // _opacityCtrl.repeat();
-    _opacityCtrl.forward();
+    _opacityCtrl = new AnimationController(vsync: this, duration: _duration)..repeat();
   }
 
   initRotateAnim() {
@@ -136,6 +96,18 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
     //   ..rotateY(_rotate3.value * 0.0174533)
     //   ..rotateX(_rotate1.value * 0.0174533);
 
+    _opacity = MyTween(begin: 0.0, end: 1.0, delay: 0.1 * (i - 1) * 3.0).animate(
+      // _opacityCtrl,
+      new CurvedAnimation(
+        parent: _opacityCtrl,
+        curve: Interval(0.0, 1.0, curve: Curves.linear),
+      ),
+    )
+      //
+      ..addListener(() => setState(() => {}));
+
+    // print(_opacity.value);
+
     return Positioned.fill(
       // top: 0.0,
       // left: 0.0,
@@ -154,11 +126,14 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
             // child: new Transform(
             //   transform: _tRotate,
             //   alignment: FractionalOffset.center,
-            child: new Container(
-              height: _size,
-              width: _size,
-              decoration: BoxDecoration(
-                color: widget.color,
+            child: FadeTransition(
+              opacity: _opacity,
+              child: new Container(
+                height: _size,
+                width: _size,
+                decoration: BoxDecoration(
+                  color: widget.color,
+                ),
               ),
             ),
             // ),
@@ -168,4 +143,16 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
       ),
     );
   }
+}
+
+class MyTween extends Tween<double> {
+  final double delay;
+
+  MyTween({double begin, double end, this.delay}) : super(begin: begin, end: end);
+
+  @override
+  double lerp(double t) => (math.sin((t - delay) * 2 * math.pi) + 1) / 2;
+
+  // @override
+  // double evaluate(Animation<double> animation) => lerp(animation.value);
 }
