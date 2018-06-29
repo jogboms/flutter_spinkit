@@ -68,6 +68,7 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
           _controller.forward();
         }
       });
+
     _controller.forward();
   }
 
