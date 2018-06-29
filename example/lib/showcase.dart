@@ -13,7 +13,6 @@ class ShowCase extends StatelessWidget {
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 64.0),
           new Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -22,16 +21,16 @@ class ShowCase extends StatelessWidget {
               SpinKitDoubleBounce(color: Colors.white),
             ],
           ),
-          const SizedBox(height: 64.0),
+          const SizedBox(height: 48.0),
           new Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SpinKitRotatingPlain(color: Colors.white),
               SpinKitPulse(color: Colors.white),
-              SpinKitWave(color: Colors.white, type: SpinKitWaveType.center),
+              SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
             ],
           ),
-          const SizedBox(height: 64.0),
+          const SizedBox(height: 48.0),
           new Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -40,7 +39,7 @@ class ShowCase extends StatelessWidget {
               SpinKitFadingCircle(color: Colors.white),
             ],
           ),
-          const SizedBox(height: 64.0),
+          const SizedBox(height: 48.0),
           new Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -49,11 +48,12 @@ class ShowCase extends StatelessWidget {
               SpinKitFadingFour(color: Colors.white, shape: BoxShape.rectangle),
             ],
           ),
-          const SizedBox(height: 64.0),
+          const SizedBox(height: 48.0),
           new Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SpinKitCubeGrid(color: Colors.white,)
+              SpinKitFadingCube(color: Colors.white),
+              SpinKitCubeGrid(height: 51.0, width: 51.0, color: Colors.white),
             ],
           ),
         ],

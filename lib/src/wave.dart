@@ -73,7 +73,7 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
         size: Size(widget.width * 1.25, widget.height),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: _bars.toList(),
+          children: _bars,
         ),
       ),
     );

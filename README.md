@@ -79,6 +79,27 @@ SizedBox(
       <br />
       ✅
     </td>
+    <td align="center">
+      <img src="./screenshots/FadingFour.gif" width="100px">
+      <br />
+      FadingFour
+      <br />
+      ✅
+    </td>
+    <td align="center">
+      <img src="./screenshots/FadingCube.gif" width="100px">
+      <br />
+      FadingCube
+      <br />
+      ✅
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingCircle.gif" width="100px">
+      <br />
+      RotatingCircle
+      <br />
+      ✅
+    </td>
   </tr>
   <tr>
     <td align="center">
@@ -109,8 +130,6 @@ SizedBox(
       <br />
       ✅
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/CubeGrid.gif" width="100px">
       <br />
@@ -131,22 +150,6 @@ SizedBox(
       FoldingCube
       <br />
       <i>⏳</i>
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingCircle.gif" width="100px">
-      <br />
-      RotatingCircle
-      <br />
-      ✅
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="./screenshots/FadingFour.gif" width="100px">
-      <br />
-      FadingFour
-      <br />
-      ✅
     </td>
   </tr>
 </table>
