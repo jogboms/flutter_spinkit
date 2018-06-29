@@ -54,6 +54,7 @@ class ShowCase extends StatelessWidget {
             children: [
               SpinKitFadingCube(color: Colors.white),
               SpinKitCubeGrid(height: 51.0, width: 51.0, color: Colors.white),
+              SpinKitPumpingHeart(color: Colors.white, size: 60.0,),
             ],
           ),
         ],
