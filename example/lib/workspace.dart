@@ -8,7 +8,7 @@ class WorkSpace extends StatelessWidget {
       color: Colors.green,
       width: 300.0,
       height: 300.0,
-      child: new SpinKitFoldingCube(
+      child: new SpinKitFadingCube(
         height: 100.0,
         width: 100.0,
         color: Colors.white,
