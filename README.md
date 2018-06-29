@@ -134,6 +134,57 @@ SpinKitRotatingCircle(
       <i>⏳</i>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <img src="./screenshots/dual-ring.gif" width="100px">
+      <br />
+      DualRing
+      <br />
+      <i>⏳</i>
+    </td>
+    <td align="center">
+      <img src="./screenshots/grid.gif" width="100px">
+      <br />
+      FadingGrid
+      <br />
+      <i>⏳</i>
+    </td>
+    <td align="center">
+      <img src="./screenshots/heart.gif" width="100px">
+      <br />
+      PumpingHeart
+      <br />
+      <i>⏳</i>
+    </td>
+    <td align="center">
+      <img src="./screenshots/hour-glass.gif" width="100px">
+      <br />
+      HourGlass
+      <br />
+      <i>⏳</i>
+    </td>
+    <td align="center">
+      <img src="./screenshots/ring.gif" width="100px">
+      <br />
+      Ring
+      <br />
+      <i>⏳</i>
+    </td>
+    <td align="center">
+      <img src="./screenshots/ripple.gif" width="100px">
+      <br />
+      Ripple
+      <br />
+      <i>⏳</i>
+    </td>
+    <td align="center">
+      <img src="./screenshots/spinning-circle.gif" width="100px">
+      <br />
+      SpinningCircle
+      <br />
+      <i>⏳</i>
+    </td>
+  </tr>
 </table>
 
 > Still unstable for now. Roadmap still has some unchecked items and a bit of clean up still very much neccessary. By the way, any helping hand whatsoever is still appreciated as well. 😊
