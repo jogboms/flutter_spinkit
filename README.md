@@ -73,13 +73,6 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       ✅
     </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingCircle.gif" width="100px">
-      <br />
-      RotatingCircle
-      <br />
-      ✅
-    </td>
   </tr>
   <tr>
     <td align="center">
@@ -121,6 +114,15 @@ For more info, please, refer to the `showcase.dart` in the example.
       <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/FadingCircle.gif" width="100px">
       <br />
       FadingCircle
+      <br />
+      ✅
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingCircle.gif" width="100px">
+      <br />
+      RotatingCircle
       <br />
       ✅
     </td>
