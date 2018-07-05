@@ -1,6 +1,7 @@
-import 'package:example/showcase.dart';
-import 'package:example/workspace.dart';
 import 'package:flutter/material.dart';
+
+import './showcase.dart';
+import './workspace.dart';
 
 void main() => runApp(new App());
 
