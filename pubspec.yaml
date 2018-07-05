@@ -7,9 +7,14 @@ authors:
 - Jeremiah Ogbomo <jeremiahogbomo@gmail.com>
 - Ayush Agarwal <aagarwal9782@gmail.com>
 
-dependencies:
-    flutter: ">=0.0.20 <0.1.0"
+environment:
+  sdk: ">=2.0.0-dev.28.0 <3.0.0"
+  flutter: ">=0.1.4 <2.0.0"
 
+dependencies:
+  flutter:
+    sdk: flutter
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter
