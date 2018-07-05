@@ -22,3 +22,4 @@ dev_dependencies:
 flutter:
   assets:
     - lib/assets/hourglass.png
+    - lib/assets/dual-ring.png
