@@ -18,3 +18,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter:
+  assets:
+    - lib/assets/hourglass.png
