@@ -133,8 +133,6 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       ✅
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <img src="./screenshots/dual-ring.gif" width="100px">
       <br />
@@ -163,6 +161,8 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       <i>⏳</i>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <img src="./screenshots/ring.gif" width="100px">
       <br />
