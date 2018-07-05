@@ -131,7 +131,7 @@ SpinKitRotatingCircle(
       <br />
       FoldingCube
       <br />
-      <i>⏳</i>
+      ✅
     </td>
   </tr>
 </table>

@@ -53,7 +53,8 @@ class ShowCase extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SpinKitFadingCube(color: Colors.white),
-              SpinKitCubeGrid(height: 51.0, width: 51.0, color: Colors.white),
+              SpinKitCubeGrid(color: Colors.white),
+              SpinKitFoldingCube(color: Colors.white),
             ],
           ),
         ],
