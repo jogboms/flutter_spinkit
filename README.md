@@ -6,9 +6,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ```yaml
 dependencies:
-  flutter_spinkit:
-      git:
-        url: git://github.com/jogboms/flutter_spinkit
+    flutter_spinkit: "^1.0.0"
 ```
 
 ### ⚡️ Import
