@@ -17,8 +17,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 ## 🎮 How To Use
 
-More info soon, but, so far.
-
 ```dart
 SpinKitRotatingCircle(
   color: Colors.white,
@@ -26,6 +24,8 @@ SpinKitRotatingCircle(
   height: 50.0,
 );
 ```
+
+For more info, please, refer to the `showcase.dart` in the example.
 
 ## 🚀 Roadmap
 
@@ -134,9 +134,7 @@ SpinKitRotatingCircle(
   </tr>
 </table>
 
-> Still unstable for now. Roadmap still has some unchecked items and a bit of clean up still very much neccessary. By the way, any helping hand whatsoever is still appreciated as well. 😊
-
-> GIF images gotten from [Android Spinkit](https://github.com/ybq/Android-SpinKit).
+> Some GIF images gotten from [Android Spinkit](https://github.com/ybq/Android-SpinKit).
 
 ## 🐛 Bugs/Requests
 
