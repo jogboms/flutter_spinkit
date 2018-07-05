@@ -22,28 +22,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 More info soon, but, so far.
 
 ```dart
-final width = 50.0;
-final height = 50.0;
-final color = Colors.white;
-
-// SpinKitChasingDots
-// SpinKitDoubleBounce
-// SpinKitRotatingPlain
-// SpinKitPulse
-// SpinKitWave
-// SpinKitCircle
-// SpinKitFadingCircle
-// SpinKitThreeBounce
-// SpinKitWanderingCubes
-// SpinKitFadingFour
-
-SizedBox(
-  height: 64.0,
-  child: SpinKitRotatingCircle(
-    color: color,
-    width: width,
-    height: height,
-  ),
+SpinKitRotatingCircle(
+  color: Colors.white,
+  width: 50.0,
+  height: 50.0,
 );
 ```
 
@@ -135,7 +117,7 @@ SizedBox(
       <br />
       CubeGrid
       <br />
-      <i>⏳</i>
+      ✅
     </td>
     <td align="center">
       <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/FadingCircle.gif" width="100px">
