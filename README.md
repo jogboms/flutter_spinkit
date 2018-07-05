@@ -134,6 +134,13 @@ For more info, please, refer to the `showcase.dart` in the example.
       ✅
     </td>
     <td align="center">
+      <img src="./screenshots/heart.gif" width="100px">
+      <br />
+      PumpingHeart
+      <br />
+      ✅
+    </td>
+    <td align="center">
       <img src="./screenshots/dual-ring.gif" width="100px">
       <br />
       DualRing
@@ -144,13 +151,6 @@ For more info, please, refer to the `showcase.dart` in the example.
       <img src="./screenshots/grid.gif" width="100px">
       <br />
       FadingGrid
-      <br />
-      <i>⏳</i>
-    </td>
-    <td align="center">
-      <img src="./screenshots/heart.gif" width="100px">
-      <br />
-      PumpingHeart
       <br />
       <i>⏳</i>
     </td>
