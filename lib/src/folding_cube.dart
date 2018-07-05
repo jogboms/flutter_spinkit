@@ -1,7 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'dart:math' as math show sin, pi;
-
-import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
@@ -19,22 +16,59 @@ class SpinKitFoldingCube extends StatefulWidget {
   _SpinKitFoldingCubeState createState() => new _SpinKitFoldingCubeState();
 }
 
-class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProviderStateMixin {
-  AnimationController _opacityCtrl;
+class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTickerProviderStateMixin {
   AnimationController _rotateCtrl;
-  Animation<double> _rotate1, _rotate2, _rotate3;
+  Animation<double> _rotate1, _rotate2, _rotate3, _rotate4;
   final _duration = const Duration(milliseconds: 2400);
 
   @override
   initState() {
     super.initState();
-    _opacityCtrl = new AnimationController(vsync: this, duration: _duration)..repeat();
-    _rotateCtrl = new AnimationController(vsync: this, duration: _duration)..repeat();
+    _rotateCtrl = new AnimationController(vsync: this, duration: _duration);
+
+    _rotateCtrl
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _rotateCtrl.reverse();
+        }
+        if (status == AnimationStatus.dismissed) {
+          _rotateCtrl.forward();
+        }
+      });
+
+    _rotate1 = Tween(begin: 0.0, end: 180.0).animate(
+      new CurvedAnimation(
+        parent: _rotateCtrl,
+        curve: Interval(0.0, 0.25, curve: Curves.easeIn),
+      ),
+    )..addListener(() => setState(() => {}));
+
+    _rotate2 = Tween(begin: 0.0, end: 180.0).animate(
+      new CurvedAnimation(
+        parent: _rotateCtrl,
+        curve: Interval(0.25, 0.5, curve: Curves.easeIn),
+      ),
+    )..addListener(() => setState(() => {}));
+
+    _rotate3 = Tween(begin: 0.0, end: 180.0).animate(
+      new CurvedAnimation(
+        parent: _rotateCtrl,
+        curve: Interval(0.5, 0.75, curve: Curves.easeIn),
+      ),
+    )..addListener(() => setState(() => {}));
+
+    _rotate4 = Tween(begin: 0.0, end: 180.0).animate(
+      new CurvedAnimation(
+        parent: _rotateCtrl,
+        curve: Interval(0.75, 1.0, curve: Curves.easeIn),
+      ),
+    )..addListener(() => setState(() => {}));
+
+    _rotateCtrl.forward();
   }
 
   @override
   void dispose() {
-    _opacityCtrl.dispose();
     _rotateCtrl.dispose();
     super.dispose();
   }
@@ -49,10 +83,10 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
             angle: -45.0 * 0.0174533,
             child: Stack(
               children: <Widget>[
-                _cube(1),
-                _cube(2),
-                _cube(3),
-                _cube(4),
+                _cube(1, animation: _rotate2),
+                _cube(2, animation: _rotate3),
+                _cube(3, animation: _rotate4),
+                _cube(4, animation: _rotate1),
               ],
             ),
           ),
@@ -61,48 +95,27 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
     );
   }
 
-  Widget _cube(int i) {
+  Widget _cube(int i, {Animation<double> animation}) {
     final _size = widget.width * 0.5, _position = widget.width * .5;
 
-    _rotate1 = AngleDelayTween(begin: 0.0, end: -180.0, delay: .3 * (i - 1)).animate(
-      new CurvedAnimation(
-        parent: _rotateCtrl,
-        curve: Interval(0.0, 0.75, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() => {}));
-
-    _rotate3 = AngleDelayTween(begin: 0.0, end: 180.0, delay: .3 * (i - 1)).animate(
-      new CurvedAnimation(
-        parent: _rotateCtrl,
-        curve: Interval(0.9, 1.0, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() => {}));
-
-    final Matrix4 _tRotate = new Matrix4.identity()
-      // ..setEntry(0, 1, .005)
-      ..rotateY(_rotate3.value * 0.0174533)
-      ..rotateX(_rotate1.value * 0.0174533);
+    final Matrix4 _tRotate = new Matrix4.identity()..rotateY(animation.value * 0.0174533);
 
     return Positioned.fill(
       top: _position,
       left: _position,
-      child: Transform.scale(
-        scale: 1.1,
-        origin: Offset(-_size * .5, -_size * .5),
-        child: Transform(
-          transform: Matrix4.rotationZ(90.0 * (i - 1) * 0.0174533),
-          child: Align(
-            alignment: Alignment.center,
-            child: new Transform(
-              transform: _tRotate,
-              alignment: FractionalOffset.center,
-              child: FadeTransition(
-                opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * (i - 1)).animate(_opacityCtrl),
-                child: new Container(
-                  height: _size,
-                  width: _size,
-                  decoration: BoxDecoration(color: widget.color),
-                ),
+      child: Transform(
+        transform: Matrix4.rotationZ(90.0 * (i - 1) * 0.0174533),
+        child: Align(
+          alignment: Alignment.center,
+          child: new Transform(
+            transform: _tRotate,
+            alignment: Alignment.centerLeft,
+            child: new Opacity(
+              opacity: 1.0 - (animation.value / 180.0),
+              child: new Container(
+                height: _size,
+                width: _size,
+                decoration: BoxDecoration(color: widget.color),
               ),
             ),
           ),
