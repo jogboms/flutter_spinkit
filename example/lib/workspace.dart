@@ -8,9 +8,9 @@ class WorkSpace extends StatelessWidget {
       color: Colors.green,
       width: 300.0,
       height: 300.0,
-      child: new SpinKitFadingGrid(
-        height: 150.0,
-        width: 150.0,
+      child: new SpinKitRing(
+        size: 100.0,
+        lineWidth: 14.0,
         color: Colors.white,
       ),
     );
