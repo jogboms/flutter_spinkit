@@ -15,3 +15,4 @@ export 'src/fading_circle.dart';
 export 'src/wandering_cubes.dart';
 export 'src/cube_grid.dart';
 export 'src/pumping_heart.dart';
+export 'src/ring.dart';
