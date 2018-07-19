@@ -19,3 +19,4 @@ export 'src/spinning_circle.dart';
 export 'src/hourglass.dart';
 export 'src/dual_ring.dart';
 export 'src/ripple.dart';
+export 'src/fading_grid.dart';
