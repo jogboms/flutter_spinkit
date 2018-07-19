@@ -16,7 +16,8 @@ class SpinKitRotatingPlain extends StatefulWidget {
   _SpinKitRotatingPlainState createState() => new _SpinKitRotatingPlainState();
 }
 
-class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain> with SingleTickerProviderStateMixin {
+class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
   Animation<double> _animation2;
@@ -24,7 +25,8 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain> with Single
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _controller,

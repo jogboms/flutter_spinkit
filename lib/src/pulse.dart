@@ -16,14 +16,16 @@ class SpinKitPulse extends StatefulWidget {
   _SpinKitPulseState createState() => new _SpinKitPulseState();
 }
 
-class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderStateMixin {
+class _SpinKitPulseState extends State<SpinKitPulse>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
 
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller =
+        new AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
       ..addListener(
         () => setState(() => {}),
@@ -48,7 +50,8 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
           child: new Container(
             height: widget.height,
             width: widget.width,
-            decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color),
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: widget.color),
           ),
         ),
       ),

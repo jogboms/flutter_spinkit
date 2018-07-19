@@ -16,7 +16,8 @@ class SpinKitDoubleBounce extends StatefulWidget {
   _SpinKitDoubleBounceState createState() => new _SpinKitDoubleBounceState();
 }
 
-class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTickerProviderStateMixin {
+class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
 
@@ -31,7 +32,8 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 2000));
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 2000));
 
     _animation1 = Tween(begin: -1.0, end: 1.0).animate(
       new CurvedAnimation(
@@ -61,7 +63,8 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
             child: new Container(
               height: widget.height,
               width: widget.width,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
             ),
           ),
           new Transform.scale(
@@ -69,7 +72,8 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
             child: new Container(
               height: widget.height,
               width: widget.width,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
             ),
           ),
         ],

@@ -19,13 +19,16 @@ class SpinKitFadingFour extends StatefulWidget {
   _SpinKitFadingFourState createState() => new _SpinKitFadingFourState();
 }
 
-class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTickerProviderStateMixin {
+class _SpinKitFadingFourState extends State<SpinKitFadingFour>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200))..repeat();
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200))
+      ..repeat();
   }
 
   @override
@@ -62,7 +65,8 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
         child: Align(
           alignment: Alignment.center,
           child: FadeTransition(
-            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
+            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+                .animate(_controller),
             child: Container(
               width: _size,
               height: _size,

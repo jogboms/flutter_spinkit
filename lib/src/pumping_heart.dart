@@ -19,14 +19,17 @@ class SpinKitPumpingHeart extends StatefulWidget {
   _SpinKitPumpingHeartState createState() => new _SpinKitPumpingHeartState();
 }
 
-class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTickerProviderStateMixin {
+class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _anim1;
 
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 2400))..repeat();
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 2400))
+      ..repeat();
     _anim1 = Tween(begin: 1.0, end: 1.25).animate(new CurvedAnimation(
       parent: _controller,
       curve: new Interval(0.0, 1.0, curve: MyCurve()),

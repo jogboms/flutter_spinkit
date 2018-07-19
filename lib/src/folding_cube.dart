@@ -16,7 +16,8 @@ class SpinKitFoldingCube extends StatefulWidget {
   _SpinKitFoldingCubeState createState() => new _SpinKitFoldingCubeState();
 }
 
-class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTickerProviderStateMixin {
+class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
+    with SingleTickerProviderStateMixin {
   AnimationController _rotateCtrl;
   Animation<double> _rotate1, _rotate2, _rotate3, _rotate4;
   final _duration = const Duration(milliseconds: 2400);
@@ -98,7 +99,8 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
   Widget _cube(int i, {Animation<double> animation}) {
     final _size = widget.width * 0.5, _position = widget.width * .5;
 
-    final Matrix4 _tRotate = new Matrix4.identity()..rotateY(animation.value * 0.0174533);
+    final Matrix4 _tRotate = new Matrix4.identity()
+      ..rotateY(animation.value * 0.0174533);
 
     return Positioned.fill(
       top: _position,

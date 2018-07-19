@@ -18,14 +18,16 @@ class SpinKitFadingCube extends StatefulWidget {
   _SpinKitFadingCubeState createState() => new _SpinKitFadingCubeState();
 }
 
-class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with TickerProviderStateMixin {
+class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
+    with TickerProviderStateMixin {
   AnimationController _opacityCtrl;
   final _duration = const Duration(milliseconds: 2400);
 
   @override
   initState() {
     super.initState();
-    _opacityCtrl = new AnimationController(vsync: this, duration: _duration)..repeat();
+    _opacityCtrl = new AnimationController(vsync: this, duration: _duration)
+      ..repeat();
   }
 
   @override
@@ -70,7 +72,8 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with TickerProvid
           child: Align(
             alignment: Alignment.center,
             child: FadeTransition(
-              opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * (i - 1)).animate(_opacityCtrl),
+              opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * (i - 1))
+                  .animate(_opacityCtrl),
               child: new Container(
                 height: _size,
                 width: _size,

@@ -13,10 +13,12 @@ class SpinKitRotatingCircle extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SpinKitRotatingCircleState createState() => new _SpinKitRotatingCircleState();
+  _SpinKitRotatingCircleState createState() =>
+      new _SpinKitRotatingCircleState();
 }
 
-class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle> with SingleTickerProviderStateMixin {
+class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
   Animation<double> _animation2;
@@ -24,7 +26,8 @@ class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle> with Sing
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _controller,
@@ -60,7 +63,8 @@ class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle> with Sing
         child: new Container(
           height: widget.height,
           width: widget.width,
-          decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color),
+          decoration:
+              BoxDecoration(shape: BoxShape.circle, color: widget.color),
         ),
       ),
     );

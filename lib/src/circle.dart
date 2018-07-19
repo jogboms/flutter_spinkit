@@ -17,13 +17,16 @@ class SpinKitCircle extends StatefulWidget {
   _SpinKitCircleState createState() => new _SpinKitCircleState();
 }
 
-class _SpinKitCircleState extends State<SpinKitCircle> with SingleTickerProviderStateMixin {
+class _SpinKitCircleState extends State<SpinKitCircle>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200))..repeat();
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200))
+      ..repeat();
   }
 
   @override
@@ -68,7 +71,8 @@ class _SpinKitCircleState extends State<SpinKitCircle> with SingleTickerProvider
         child: Align(
           alignment: Alignment.center,
           child: ScaleTransition(
-            scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
+            scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+                .animate(_controller),
             child: Container(
               width: _size,
               height: _size,

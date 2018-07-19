@@ -13,10 +13,12 @@ class SpinKitWanderingCubes extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SpinKitWanderingCubesState createState() => new _SpinKitWanderingCubesState();
+  _SpinKitWanderingCubesState createState() =>
+      new _SpinKitWanderingCubesState();
 }
 
-class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with TickerProviderStateMixin {
+class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
+    with TickerProviderStateMixin {
   AnimationController _scaleCtrl, _rotateCtrl, _translateCtrl;
   Animation<double> _scale1, _scale2, _scale3, _scale4, _rotate;
   Animation<double> _translate1, _translate2, _translate3, _translate4;
@@ -133,7 +135,11 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
 
   Widget _cube([bool offset = false]) {
     final _size = widget.width * 0.25;
-    final Matrix4 _tScale = new Matrix4.identity()..scale(_scale2.value)..scale(_scale3.value)..scale(_scale4.value)..scale(_scale1.value);
+    final Matrix4 _tScale = new Matrix4.identity()
+      ..scale(_scale2.value)
+      ..scale(_scale3.value)
+      ..scale(_scale4.value)
+      ..scale(_scale1.value);
 
     Matrix4 _tTranslate;
     if (offset == true) {

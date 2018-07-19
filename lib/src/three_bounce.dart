@@ -17,7 +17,8 @@ class SpinKitThreeBounce extends StatefulWidget {
   _SpinKitThreeBounceState createState() => new _SpinKitThreeBounceState();
 }
 
-class _SpinKitThreeBounceState extends State<SpinKitThreeBounce> with SingleTickerProviderStateMixin {
+class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
+    with SingleTickerProviderStateMixin {
   AnimationController _scaleCtrl;
   final _duration = const Duration(milliseconds: 1400);
 
@@ -56,7 +57,8 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce> with SingleTick
   Widget _circle(double delay) {
     final _size = widget.height * 0.5;
     return new ScaleTransition(
-      scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_scaleCtrl),
+      scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+          .animate(_scaleCtrl),
       child: new Container(
         height: _size,
         width: _size,

@@ -16,7 +16,8 @@ class SpinKitChasingDots extends StatefulWidget {
   _SpinKitChasingDotsState createState() => new _SpinKitChasingDotsState();
 }
 
-class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProviderStateMixin {
+class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
+    with TickerProviderStateMixin {
   AnimationController _scaleCtrl, _rotateCtrl;
   Animation<double> _scale, _rotate;
   final _duration = const Duration(milliseconds: 2000);

@@ -21,7 +21,8 @@ class SpinKitWave extends StatefulWidget {
   _SpinKitWaveState createState() => new _SpinKitWaveState();
 }
 
-class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStateMixin {
+class _SpinKitWaveState extends State<SpinKitWave>
+    with SingleTickerProviderStateMixin {
   AnimationController _scaleCtrl;
   final _duration = const Duration(milliseconds: 1200);
 
@@ -82,7 +83,8 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
   Widget _bar(double delay) {
     final _size = widget.width * 0.2;
     return new ScaleYWidget(
-      scaleY: new DelayTween(begin: .4, end: 1.0, delay: delay).animate(_scaleCtrl),
+      scaleY:
+          new DelayTween(begin: .4, end: 1.0, delay: delay).animate(_scaleCtrl),
       child: new Container(
         height: widget.height,
         width: _size,
@@ -109,7 +111,8 @@ class ScaleYWidget extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     final double scaleValue = scaleY.value;
-    final Matrix4 transform = new Matrix4.identity()..scale(1.0, scaleValue, 1.0);
+    final Matrix4 transform = new Matrix4.identity()
+      ..scale(1.0, scaleValue, 1.0);
     return new Transform(
       transform: transform,
       alignment: alignment,

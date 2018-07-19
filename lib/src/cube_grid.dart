@@ -16,14 +16,16 @@ class SpinKitCubeGrid extends StatefulWidget {
   _SpinKitCubeGridState createState() => new _SpinKitCubeGridState();
 }
 
-class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProviderStateMixin {
+class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _anim1, _anim2, _anim3, _anim4, _anim5;
 
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200));
     _anim1 = Tween(begin: 1.0, end: 0.0).animate(
       new CurvedAnimation(
         parent: _controller,
