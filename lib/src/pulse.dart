@@ -4,7 +4,7 @@ class SpinKitPulse extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitPulse({
+  const SpinKitPulse({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -20,13 +20,13 @@ class _SpinKitPulseState extends State<SpinKitPulse>
   Animation<double> _animation;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller =
         new AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
       ..addListener(
-        () => setState(() => {}),
+        () => setState(() => <String, void>{}),
       );
 
     _controller.repeat();

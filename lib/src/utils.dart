@@ -30,8 +30,7 @@ class AngleDelayTween extends Tween<double> {
   }) : super(begin: begin, end: end);
 
   @override
-  double lerp(double t) =>
-      super.lerp((math.sin(((t - delay) * math.pi * 0.5))));
+  double lerp(double t) => super.lerp(math.sin((t - delay) * math.pi * 0.5));
 
   @override
   double evaluate(Animation<double> animation) => lerp(animation.value);

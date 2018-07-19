@@ -4,7 +4,7 @@ class SpinKitRipple extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitRipple({
+  const SpinKitRipple({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -20,7 +20,7 @@ class _SpinKitRippleState extends State<SpinKitRipple>
   Animation<double> _animation1, _animation2;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1800))
@@ -31,14 +31,14 @@ class _SpinKitRippleState extends State<SpinKitRipple>
         parent: _controller,
         curve: Interval(0.0, 0.75, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: 0.0, end: 1.0).animate(
       new CurvedAnimation(
         parent: _controller,
         curve: Interval(0.25, 1.0, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
   }
 
   @override

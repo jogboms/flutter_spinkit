@@ -6,7 +6,7 @@ class SpinKitFadingCube extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitFadingCube({
+  const SpinKitFadingCube({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -22,7 +22,7 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
   final _duration = const Duration(milliseconds: 2400);
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _opacityCtrl = new AnimationController(vsync: this, duration: _duration)
       ..repeat();

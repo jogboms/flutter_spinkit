@@ -4,7 +4,7 @@ class SpinKitDoubleBounce extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitDoubleBounce({
+  const SpinKitDoubleBounce({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -19,7 +19,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
   AnimationController _controller;
   Animation<double> _animation1;
 
-  _statusListener(status) {
+  void _statusListener(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
       _controller.reverse();
     } else if (status == AnimationStatus.dismissed) {
@@ -28,7 +28,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
   }
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 2000));
@@ -39,7 +39,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
         curve: Curves.easeInOut,
       ),
     )
-      ..addListener(() => setState(() => {}))
+      ..addListener(() => setState(() => <String, void>{}))
       ..addStatusListener(_statusListener);
 
     _controller.forward();

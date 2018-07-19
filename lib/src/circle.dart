@@ -5,7 +5,7 @@ class SpinKitCircle extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitCircle({
+  const SpinKitCircle({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -20,7 +20,7 @@ class _SpinKitCircleState extends State<SpinKitCircle>
   AnimationController _controller;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200))

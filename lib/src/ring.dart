@@ -1,12 +1,12 @@
-import 'package:flutter/widgets.dart';
 import 'dart:math';
+import 'package:flutter/widgets.dart';
 
 class SpinKitRing extends StatefulWidget {
   final Color color;
   final double size;
   final double lineWidth;
 
-  SpinKitRing({
+  const SpinKitRing({
     Key key,
     @required this.color,
     this.lineWidth = 7.0,
@@ -23,7 +23,7 @@ class _SpinKitRingState extends State<SpinKitRing>
   Animation<double> _animation1, _animation2, _animation3;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1500));
@@ -32,21 +32,21 @@ class _SpinKitRingState extends State<SpinKitRing>
         parent: _controller,
         curve: new Interval(0.0, 1.0, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: -2 / 3, end: 1 / 2).animate(
       new CurvedAnimation(
         parent: _controller,
         curve: new Interval(0.5, 1.0, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _animation3 = Tween(begin: 0.25, end: 5 / 6).animate(
       new CurvedAnimation(
         parent: _controller,
         curve: new Interval(0.0, 1.0, curve: _MyCurve()),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _controller.repeat();
   }

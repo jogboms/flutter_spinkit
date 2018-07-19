@@ -7,7 +7,7 @@ class SpinKitPumpingHeart extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitPumpingHeart({
+  const SpinKitPumpingHeart({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -23,7 +23,7 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
   Animation<double> _anim1;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 2400))

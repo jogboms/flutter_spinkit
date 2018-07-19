@@ -4,7 +4,7 @@ class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitFoldingCube({
+  const SpinKitFoldingCube({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -21,7 +21,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
   final _duration = const Duration(milliseconds: 2400);
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _rotateCtrl = new AnimationController(vsync: this, duration: _duration);
 
@@ -40,28 +40,28 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
         parent: _rotateCtrl,
         curve: Interval(0.0, 0.25, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotate2 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.25, 0.5, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotate3 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.5, 0.75, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotate4 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.75, 1.0, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotateCtrl.forward();
   }

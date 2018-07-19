@@ -8,7 +8,7 @@ class SpinKitWave extends StatefulWidget {
   final double size;
   final SpinKitWaveType type;
 
-  SpinKitWave({
+  const SpinKitWave({
     Key key,
     @required this.color,
     this.type = SpinKitWaveType.start,
@@ -25,7 +25,7 @@ class _SpinKitWaveState extends State<SpinKitWave>
   final _duration = const Duration(milliseconds: 1200);
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _scaleCtrl = new AnimationController(
       vsync: this,
@@ -96,15 +96,16 @@ class _SpinKitWaveState extends State<SpinKitWave>
 
 class ScaleYWidget extends AnimatedWidget {
   final Widget child;
-  Animation<double> get scaleY => listenable;
   final Alignment alignment;
 
-  ScaleYWidget({
+  const ScaleYWidget({
     Key key,
     @required Animation<double> scaleY,
     @required this.child,
     this.alignment = Alignment.center,
   }) : super(key: key, listenable: scaleY);
+
+  Animation<double> get scaleY => listenable;
 
   @override
   Widget build(BuildContext context) {

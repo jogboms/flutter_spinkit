@@ -1,11 +1,11 @@
-import 'package:flutter/widgets.dart';
 import 'dart:math';
+import 'package:flutter/widgets.dart';
 
 class SpinKitHourGlass extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitHourGlass({
+  const SpinKitHourGlass({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -21,7 +21,7 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
   Animation<double> _animation1;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
@@ -30,7 +30,7 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
         parent: _controller,
         curve: new Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _controller.repeat();
   }

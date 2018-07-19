@@ -6,7 +6,7 @@ class SpinKitFadingFour extends StatefulWidget {
   final BoxShape shape;
   final double size;
 
-  SpinKitFadingFour({
+  const SpinKitFadingFour({
     Key key,
     @required this.color,
     this.shape = BoxShape.circle,
@@ -22,7 +22,7 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour>
   AnimationController _controller;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200))

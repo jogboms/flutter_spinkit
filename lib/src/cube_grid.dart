@@ -4,7 +4,7 @@ class SpinKitCubeGrid extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitCubeGrid({
+  const SpinKitCubeGrid({
     Key key,
     @required this.color,
     this.size = 50.0,

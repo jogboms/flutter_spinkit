@@ -4,7 +4,7 @@ class SpinKitWanderingCubes extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitWanderingCubes({
+  const SpinKitWanderingCubes({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -23,7 +23,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
   final _duration = const Duration(milliseconds: 1800);
   double _offset;
 
-  initTranslateAnim() {
+  void initTranslateAnim() {
     _translateCtrl = new AnimationController(vsync: this, duration: _duration);
 
     _translate1 = Tween(begin: 0.0, end: _offset).animate(
@@ -31,33 +31,33 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
         parent: _translateCtrl,
         curve: Interval(0.0, 0.25, curve: Curves.easeInOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _translate2 = Tween(begin: 0.0, end: _offset).animate(
       new CurvedAnimation(
         parent: _translateCtrl,
         curve: Interval(0.25, 0.5, curve: Curves.easeInOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _translate3 = Tween(begin: 0.0, end: -_offset).animate(
       new CurvedAnimation(
         parent: _translateCtrl,
         curve: Interval(0.5, 0.75, curve: Curves.easeInOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _translate4 = Tween(begin: 0.0, end: -_offset).animate(
       new CurvedAnimation(
         parent: _translateCtrl,
         curve: Interval(0.75, 1.0, curve: Curves.easeInOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _translateCtrl.repeat();
   }
 
-  initScaleAnim() {
+  void initScaleAnim() {
     _scaleCtrl = new AnimationController(vsync: this, duration: _duration);
 
     _scale1 = Tween(begin: 1.0, end: 0.5).animate(
@@ -65,34 +65,34 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
         parent: _scaleCtrl,
         curve: Interval(0.0, 0.25, curve: Curves.easeInOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _scale2 = Tween(begin: 1.0, end: 2.0).animate(
       new CurvedAnimation(
         parent: _scaleCtrl,
         curve: Interval(0.25, 0.5, curve: Curves.easeInOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _scale3 = Tween(begin: 1.0, end: 0.5).animate(
       new CurvedAnimation(
         parent: _scaleCtrl,
         curve: Interval(0.5, 0.75, curve: Curves.easeInOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _scale4 = Tween(begin: 1.0, end: 2.0).animate(
       new CurvedAnimation(
         parent: _scaleCtrl,
         curve: Interval(0.75, 1.0, curve: Curves.easeInOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _scaleCtrl.repeat();
   }
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _offset = widget.size * 0.75;
 
@@ -103,7 +103,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
 
     _rotate = Tween(begin: 0.0, end: 360.0).animate(
       new CurvedAnimation(parent: _translateCtrl, curve: Curves.linear),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotateCtrl.repeat();
   }

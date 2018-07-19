@@ -4,7 +4,7 @@ class SpinKitChasingDots extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitChasingDots({
+  const SpinKitChasingDots({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -21,7 +21,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
   final _duration = const Duration(milliseconds: 2000);
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _scaleCtrl = new AnimationController(vsync: this, duration: _duration);
     _rotateCtrl = new AnimationController(vsync: this, duration: _duration);
@@ -29,7 +29,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
     _scale = Tween(begin: -1.0, end: 1.0).animate(
       new CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
     )
-      ..addListener(() => setState(() => {}))
+      ..addListener(() => setState(() => <String, void>{}))
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _scaleCtrl.reverse();
@@ -40,7 +40,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
 
     _rotate = Tween(begin: 0.0, end: 360.0).animate(
       new CurvedAnimation(parent: _rotateCtrl, curve: Curves.linear),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotateCtrl.repeat();
     _scaleCtrl.forward();

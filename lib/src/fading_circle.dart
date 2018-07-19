@@ -5,7 +5,7 @@ class SpinKitFadingCircle extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitFadingCircle({
+  const SpinKitFadingCircle({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -20,7 +20,7 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle>
   AnimationController _controller;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200))

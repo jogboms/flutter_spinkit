@@ -1,11 +1,11 @@
-import 'package:flutter/widgets.dart';
 import 'dart:math';
+import 'package:flutter/widgets.dart';
 
 class SpinKitSpinningCircle extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitSpinningCircle({
+  const SpinKitSpinningCircle({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -20,8 +20,9 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
+
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
@@ -30,7 +31,7 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
         parent: _controller,
         curve: new Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _controller.repeat();
   }

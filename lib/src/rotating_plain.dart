@@ -4,7 +4,7 @@ class SpinKitRotatingPlain extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitRotatingPlain({
+  const SpinKitRotatingPlain({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -21,7 +21,7 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
   Animation<double> _animation2;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
@@ -30,14 +30,14 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
         parent: _controller,
         curve: new Interval(0.0, 0.5, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _controller,
         curve: new Interval(0.5, 1.0, curve: Curves.easeOut),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _controller.repeat();
   }

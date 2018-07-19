@@ -5,7 +5,7 @@ class SpinKitThreeBounce extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitThreeBounce({
+  const SpinKitThreeBounce({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -21,7 +21,7 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
   final _duration = const Duration(milliseconds: 1400);
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _scaleCtrl = new AnimationController(
       vsync: this,
