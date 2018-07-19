@@ -3,16 +3,14 @@ import 'dart:math';
 
 class SpinKitRing extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
   final double lineWidth;
 
   SpinKitRing({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
     this.lineWidth = 7.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -34,26 +32,21 @@ class _SpinKitRingState extends State<SpinKitRing>
         parent: _controller,
         curve: new Interval(0.0, 1.0, curve: Curves.linear),
       ),
-    )
-      ..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => {}));
 
     _animation2 = Tween(begin: -2 / 3, end: 1 / 2).animate(
       new CurvedAnimation(
         parent: _controller,
         curve: new Interval(0.5, 1.0, curve: Curves.linear),
       ),
-    )
-      ..addListener(() => setState(() => {}));
-
+    )..addListener(() => setState(() => {}));
 
     _animation3 = Tween(begin: 0.25, end: 5 / 6).animate(
       new CurvedAnimation(
         parent: _controller,
         curve: new Interval(0.0, 1.0, curve: _MyCurve()),
       ),
-    )
-      ..addListener(() => setState(() => {}));
-
+    )..addListener(() => setState(() => {}));
 
     _controller.repeat();
   }
@@ -73,8 +66,8 @@ class _SpinKitRingState extends State<SpinKitRing>
         transform: transform,
         alignment: FractionalOffset.center,
         child: new Container(
-          height: widget.height,
-          width: widget.width,
+          height: widget.size,
+          width: widget.size,
           child: CustomPaint(
             foregroundPainter: RingPainter(
               paintWidth: widget.lineWidth,
@@ -90,24 +83,22 @@ class _SpinKitRingState extends State<SpinKitRing>
 }
 
 class RingPainter extends CustomPainter {
-
   final double paintWidth;
   final Paint trackPaint;
   final Color trackColor;
   final double progressPercent;
   final double startAngle;
 
-
   RingPainter({
     this.paintWidth,
     this.progressPercent,
     this.startAngle,
-    this.trackColor,})
-      : trackPaint = Paint()
-    ..color = trackColor
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = paintWidth
-    ..strokeCap = StrokeCap.square;
+    this.trackColor,
+  }) : trackPaint = Paint()
+          ..color = trackColor
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = paintWidth
+          ..strokeCap = StrokeCap.square;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -124,15 +115,13 @@ class RingPainter extends CustomPainter {
         startAngle,
         progressAngle,
         false,
-        trackPaint
-    );
+        trackPaint);
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
   }
-
 }
 
 class _MyCurve extends Curve {
@@ -140,8 +129,7 @@ class _MyCurve extends Curve {
   double transform(double t) {
     if (t <= 0.5) {
       return 2 * t;
-    }
-    else {
+    } else {
       return 2 * (1 - t);
     }
   }

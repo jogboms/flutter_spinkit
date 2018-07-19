@@ -3,27 +3,28 @@ import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingCircle extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitFadingCircle({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitFadingCircleState createState() => new _SpinKitFadingCircleState();
 }
 
-class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTickerProviderStateMixin {
+class _SpinKitFadingCircleState extends State<SpinKitFadingCircle>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200))..repeat();
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200))
+      ..repeat();
   }
 
   @override
@@ -36,7 +37,7 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Stack(
           children: [
             _circle(1, .0),
@@ -58,7 +59,7 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
   }
 
   Widget _circle(int i, [double delay]) {
-    final _size = widget.width * 0.15, _position = widget.width * .5;
+    final _size = widget.size * 0.15, _position = widget.size * .5;
 
     return Positioned.fill(
       left: _position,
@@ -68,7 +69,8 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
         child: Align(
           alignment: Alignment.center,
           child: FadeTransition(
-            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
+            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+                .animate(_controller),
             child: Container(
               width: _size,
               height: _size,

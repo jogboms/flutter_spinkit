@@ -3,27 +3,27 @@ import 'dart:math';
 
 class SpinKitHourGlass extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitHourGlass({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitHourGlassState createState() => new _SpinKitHourGlassState();
 }
 
-class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerProviderStateMixin {
+class _SpinKitHourGlassState extends State<SpinKitHourGlass>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
   @override
   initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 8.0).animate(
       new CurvedAnimation(
         parent: _controller,
@@ -49,13 +49,13 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
         transform: transform,
         alignment: FractionalOffset.center,
         child: new Container(
-          height: widget.height,
-          width: widget.width,
+          height: widget.size,
+          width: widget.size,
           child: Image.asset(
-              "packages/flutter_spinkit/assets/hourglass.png",
-              color: widget.color,
-              height: widget.height,
-              width: widget.width,
+            "packages/flutter_spinkit/assets/hourglass.png",
+            color: widget.color,
+            height: widget.size,
+            width: widget.size,
           ),
         ),
       ),

@@ -9,8 +9,7 @@ class WorkSpace extends StatelessWidget {
       width: 300.0,
       height: 300.0,
       child: new SpinKitRing(
-        height: 100.0,
-        width: 100.0,
+        size: 100.0,
         lineWidth: 14.0,
         color: Colors.white,
       ),

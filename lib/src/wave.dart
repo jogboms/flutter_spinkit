@@ -5,23 +5,22 @@ enum SpinKitWaveType { start, end, center }
 
 class SpinKitWave extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
   final SpinKitWaveType type;
 
   SpinKitWave({
     Key key,
     @required this.color,
     this.type = SpinKitWaveType.start,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitWaveState createState() => new _SpinKitWaveState();
 }
 
-class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStateMixin {
+class _SpinKitWaveState extends State<SpinKitWave>
+    with SingleTickerProviderStateMixin {
   AnimationController _scaleCtrl;
   final _duration = const Duration(milliseconds: 1200);
 
@@ -70,7 +69,7 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
     }
     return Center(
       child: SizedBox.fromSize(
-        size: Size(widget.width * 1.25, widget.height),
+        size: Size(widget.size * 1.25, widget.size),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: _bars,
@@ -80,11 +79,12 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
   }
 
   Widget _bar(double delay) {
-    final _size = widget.width * 0.2;
+    final _size = widget.size * 0.2;
     return new ScaleYWidget(
-      scaleY: new DelayTween(begin: .4, end: 1.0, delay: delay).animate(_scaleCtrl),
+      scaleY:
+          new DelayTween(begin: .4, end: 1.0, delay: delay).animate(_scaleCtrl),
       child: new Container(
-        height: widget.height,
+        height: widget.size,
         width: _size,
         decoration: new BoxDecoration(
           color: widget.color,
@@ -109,7 +109,8 @@ class ScaleYWidget extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     final double scaleValue = scaleY.value;
-    final Matrix4 transform = new Matrix4.identity()..scale(1.0, scaleValue, 1.0);
+    final Matrix4 transform = new Matrix4.identity()
+      ..scale(1.0, scaleValue, 1.0);
     return new Transform(
       transform: transform,
       alignment: alignment,

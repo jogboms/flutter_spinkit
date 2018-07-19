@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 
 class SpinKitChasingDots extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitChasingDots({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitChasingDotsState createState() => new _SpinKitChasingDotsState();
 }
 
-class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProviderStateMixin {
+class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
+    with TickerProviderStateMixin {
   AnimationController _scaleCtrl, _rotateCtrl;
   Animation<double> _scale, _rotate;
   final _duration = const Duration(milliseconds: 2000);
@@ -58,7 +57,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Transform.rotate(
           angle: _rotate.value * 0.0174533,
           child: Stack(
@@ -79,7 +78,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
   }
 
   Widget _circle(double scale) {
-    final _size = widget.width * 0.6;
+    final _size = widget.size * 0.6;
 
     return new Transform.scale(
       scale: scale,

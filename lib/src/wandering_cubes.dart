@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 
 class SpinKitWanderingCubes extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitWanderingCubes({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
-  _SpinKitWanderingCubesState createState() => new _SpinKitWanderingCubesState();
+  _SpinKitWanderingCubesState createState() =>
+      new _SpinKitWanderingCubesState();
 }
 
-class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with TickerProviderStateMixin {
+class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
+    with TickerProviderStateMixin {
   AnimationController _scaleCtrl, _rotateCtrl, _translateCtrl;
   Animation<double> _scale1, _scale2, _scale3, _scale4, _rotate;
   Animation<double> _translate1, _translate2, _translate3, _translate4;
@@ -94,7 +94,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
   @override
   initState() {
     super.initState();
-    _offset = widget.width * 0.75;
+    _offset = widget.size * 0.75;
 
     initTranslateAnim();
     initScaleAnim();
@@ -120,7 +120,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Stack(
           children: <Widget>[
             _cube(),
@@ -132,8 +132,12 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
   }
 
   Widget _cube([bool offset = false]) {
-    final _size = widget.width * 0.25;
-    final Matrix4 _tScale = new Matrix4.identity()..scale(_scale2.value)..scale(_scale3.value)..scale(_scale4.value)..scale(_scale1.value);
+    final _size = widget.size * 0.25;
+    final Matrix4 _tScale = new Matrix4.identity()
+      ..scale(_scale2.value)
+      ..scale(_scale3.value)
+      ..scale(_scale4.value)
+      ..scale(_scale1.value);
 
     Matrix4 _tTranslate;
     if (offset == true) {

@@ -4,28 +4,28 @@ import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingCube extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitFadingCube({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitFadingCubeState createState() => new _SpinKitFadingCubeState();
 }
 
-class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with TickerProviderStateMixin {
+class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
+    with TickerProviderStateMixin {
   AnimationController _opacityCtrl;
   final _duration = const Duration(milliseconds: 2400);
 
   @override
   initState() {
     super.initState();
-    _opacityCtrl = new AnimationController(vsync: this, duration: _duration)..repeat();
+    _opacityCtrl = new AnimationController(vsync: this, duration: _duration)
+      ..repeat();
   }
 
   @override
@@ -38,7 +38,7 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with TickerProvid
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Center(
           child: Transform.rotate(
             angle: -45.0 * 0.0174533,
@@ -57,7 +57,7 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with TickerProvid
   }
 
   Widget _cube(int i) {
-    final _size = widget.width * 0.5, _position = widget.width * .5;
+    final _size = widget.size * 0.5, _position = widget.size * .5;
 
     return Positioned.fill(
       top: _position,
@@ -70,7 +70,8 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with TickerProvid
           child: Align(
             alignment: Alignment.center,
             child: FadeTransition(
-              opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * (i - 1)).animate(_opacityCtrl),
+              opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * (i - 1))
+                  .animate(_opacityCtrl),
               child: new Container(
                 height: _size,
                 width: _size,
