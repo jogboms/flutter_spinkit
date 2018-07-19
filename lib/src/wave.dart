@@ -5,16 +5,14 @@ enum SpinKitWaveType { start, end, center }
 
 class SpinKitWave extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
   final SpinKitWaveType type;
 
   SpinKitWave({
     Key key,
     @required this.color,
     this.type = SpinKitWaveType.start,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -71,7 +69,7 @@ class _SpinKitWaveState extends State<SpinKitWave>
     }
     return Center(
       child: SizedBox.fromSize(
-        size: Size(widget.width * 1.25, widget.height),
+        size: Size(widget.size * 1.25, widget.size),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: _bars,
@@ -81,12 +79,12 @@ class _SpinKitWaveState extends State<SpinKitWave>
   }
 
   Widget _bar(double delay) {
-    final _size = widget.width * 0.2;
+    final _size = widget.size * 0.2;
     return new ScaleYWidget(
       scaleY:
           new DelayTween(begin: .4, end: 1.0, delay: delay).animate(_scaleCtrl),
       child: new Container(
-        height: widget.height,
+        height: widget.size,
         width: _size,
         decoration: new BoxDecoration(
           color: widget.color,

@@ -1,41 +1,34 @@
 import 'package:flutter/widgets.dart';
+import 'dart:math';
 
-class SpinKitRotatingPlain extends StatefulWidget {
+class SpinKitHourGlass extends StatefulWidget {
   final Color color;
   final double size;
 
-  SpinKitRotatingPlain({
+  SpinKitHourGlass({
     Key key,
     @required this.color,
     this.size = 50.0,
   }) : super(key: key);
 
   @override
-  _SpinKitRotatingPlainState createState() => new _SpinKitRotatingPlainState();
+  _SpinKitHourGlassState createState() => new _SpinKitHourGlassState();
 }
 
-class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
+class _SpinKitHourGlassState extends State<SpinKitHourGlass>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
-  Animation<double> _animation2;
 
   @override
   initState() {
     super.initState();
     _controller = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
-    _animation1 = Tween(begin: 0.0, end: 180.0).animate(
+    _animation1 = Tween(begin: 0.0, end: 8.0).animate(
       new CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.0, 0.5, curve: Curves.easeIn),
-      ),
-    )..addListener(() => setState(() => {}));
-
-    _animation2 = Tween(begin: 0.0, end: 180.0).animate(
-      new CurvedAnimation(
-        parent: _controller,
-        curve: new Interval(0.5, 1.0, curve: Curves.easeOut),
+        curve: new Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
     )..addListener(() => setState(() => {}));
 
@@ -51,8 +44,7 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
   @override
   Widget build(BuildContext context) {
     final Matrix4 transform = new Matrix4.identity()
-      ..rotateX((0 - _animation1.value) * 0.0174533)
-      ..rotateY((0 - _animation2.value) * 0.0174533);
+      ..rotateZ((_animation1.value) * pi);
     return Center(
       child: new Transform(
         transform: transform,
@@ -60,7 +52,12 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
         child: new Container(
           height: widget.size,
           width: widget.size,
-          decoration: BoxDecoration(color: widget.color),
+          child: Image.asset(
+            "packages/flutter_spinkit/assets/hourglass.png",
+            color: widget.color,
+            height: widget.size,
+            width: widget.size,
+          ),
         ),
       ),
     );

@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 class SpinKitWanderingCubes extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitWanderingCubes({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -96,7 +94,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
   @override
   initState() {
     super.initState();
-    _offset = widget.width * 0.75;
+    _offset = widget.size * 0.75;
 
     initTranslateAnim();
     initScaleAnim();
@@ -122,7 +120,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Stack(
           children: <Widget>[
             _cube(),
@@ -134,7 +132,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
   }
 
   Widget _cube([bool offset = false]) {
-    final _size = widget.width * 0.25;
+    final _size = widget.size * 0.25;
     final Matrix4 _tScale = new Matrix4.identity()
       ..scale(_scale2.value)
       ..scale(_scale3.value)

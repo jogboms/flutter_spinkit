@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 class SpinKitPulse extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitPulse({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -48,8 +46,8 @@ class _SpinKitPulseState extends State<SpinKitPulse>
         child: new Transform.scale(
           scale: _animation.value,
           child: new Container(
-            height: widget.height,
-            width: widget.width,
+            height: widget.size,
+            width: widget.size,
             decoration:
                 BoxDecoration(shape: BoxShape.circle, color: widget.color),
           ),

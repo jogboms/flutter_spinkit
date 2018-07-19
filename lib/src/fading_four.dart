@@ -4,15 +4,13 @@ import 'package:flutter_spinkit/src/utils.dart';
 class SpinKitFadingFour extends StatefulWidget {
   final Color color;
   final BoxShape shape;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitFadingFour({
     Key key,
     @required this.color,
     this.shape = BoxShape.circle,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -41,7 +39,7 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour>
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Stack(
           children: [
             _circle(1, .0),
@@ -55,7 +53,7 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour>
   }
 
   Widget _circle(int i, [double delay]) {
-    final _size = widget.width * 0.25, _position = widget.width * .5;
+    final _size = widget.size * 0.25, _position = widget.size * .5;
 
     return Positioned.fill(
       left: _position,

@@ -2,14 +2,12 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitFoldingCube({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -78,7 +76,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Center(
           child: Transform.rotate(
             angle: -45.0 * 0.0174533,
@@ -97,7 +95,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
   }
 
   Widget _cube(int i, {Animation<double> animation}) {
-    final _size = widget.width * 0.5, _position = widget.width * .5;
+    final _size = widget.size * 0.5, _position = widget.size * .5;
 
     final Matrix4 _tRotate = new Matrix4.identity()
       ..rotateY(animation.value * 0.0174533);

@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 class SpinKitDoubleBounce extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitDoubleBounce({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -61,8 +59,8 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
           new Transform.scale(
             scale: 1.0 - _animation1.value.abs(),
             child: new Container(
-              height: widget.height,
-              width: widget.width,
+              height: widget.size,
+              width: widget.size,
               decoration: BoxDecoration(
                   shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
             ),
@@ -70,8 +68,8 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
           new Transform.scale(
             scale: _animation1.value.abs(),
             child: new Container(
-              height: widget.height,
-              width: widget.width,
+              height: widget.size,
+              width: widget.size,
               decoration: BoxDecoration(
                   shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
             ),

@@ -5,14 +5,12 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitPumpingHeart({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -49,7 +47,7 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
       child: Icon(
         Icons.favorite,
         color: widget.color,
-        size: widget.width,
+        size: widget.size,
       ),
     );
   }

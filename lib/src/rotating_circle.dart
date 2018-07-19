@@ -2,14 +2,12 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitRotatingCircle extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   SpinKitRotatingCircle({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
@@ -61,8 +59,8 @@ class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle>
         transform: transform,
         alignment: FractionalOffset.center,
         child: new Container(
-          height: widget.height,
-          width: widget.width,
+          height: widget.size,
+          width: widget.size,
           decoration:
               BoxDecoration(shape: BoxShape.circle, color: widget.color),
         ),
