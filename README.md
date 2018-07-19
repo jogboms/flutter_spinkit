@@ -27,6 +27,14 @@ SpinKitRotatingCircle(
 );
 ```
 
+The following animations requires extra assets in your `pubspec.yaml`. `SpinKitHourGlass` & `SpinKitDualRing`.
+
+```
+assets:
+  - packages/flutter_spinkit/assets/hourglass.png
+  - packages/flutter_spinkit/assets/dual-ring.png
+```
+
 For more info, please, refer to the `showcase.dart` in the example.
 
 ## 🚀 Roadmap
@@ -147,21 +155,21 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       DualRing
       <br />
-      <i>⏳</i>
+      ✅
     </td>
     <td align="center">
       <img src="./screenshots/grid.gif" width="100px">
       <br />
       FadingGrid
       <br />
-      <i>⏳</i>
+      ✅
     </td>
     <td align="center">
       <img src="./screenshots/hour-glass.gif" width="100px">
       <br />
       HourGlass
       <br />
-      <i>⏳</i>
+      ✅
     </td>
   </tr>
   <tr>
@@ -170,21 +178,21 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       Ring
       <br />
-      <i>⏳</i>
+      ✅
     </td>
     <td align="center">
       <img src="./screenshots/ripple.gif" width="100px">
       <br />
       Ripple
       <br />
-      <i>⏳</i>
+      ✅
     </td>
     <td align="center">
       <img src="./screenshots/spinning-circle.gif" width="100px">
       <br />
       SpinningCircle
       <br />
-      <i>⏳</i>
+      ✅
     </td>
   </tr>
 </table>

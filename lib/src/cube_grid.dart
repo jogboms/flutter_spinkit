@@ -2,28 +2,28 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitCubeGrid extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
-  SpinKitCubeGrid({
+  const SpinKitCubeGrid({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitCubeGridState createState() => new _SpinKitCubeGridState();
 }
 
-class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProviderStateMixin {
+class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _anim1, _anim2, _anim3, _anim4, _anim5;
 
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200));
     _anim1 = Tween(begin: 1.0, end: 0.0).animate(
       new CurvedAnimation(
         parent: _controller,
@@ -81,8 +81,8 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return new Container(
-      height: widget.height,
-      width: widget.width,
+      height: widget.size,
+      width: widget.size,
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
@@ -123,8 +123,8 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
     return new ScaleTransition(
       scale: animation,
       child: new Container(
-        height: widget.height / 3,
-        width: widget.width / 3,
+        height: widget.size / 3,
+        width: widget.size / 3,
         color: widget.color,
       ),
     );

@@ -2,27 +2,26 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
-  SpinKitFoldingCube({
+  const SpinKitFoldingCube({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitFoldingCubeState createState() => new _SpinKitFoldingCubeState();
 }
 
-class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTickerProviderStateMixin {
+class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
+    with SingleTickerProviderStateMixin {
   AnimationController _rotateCtrl;
   Animation<double> _rotate1, _rotate2, _rotate3, _rotate4;
   final _duration = const Duration(milliseconds: 2400);
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     _rotateCtrl = new AnimationController(vsync: this, duration: _duration);
 
@@ -41,28 +40,28 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
         parent: _rotateCtrl,
         curve: Interval(0.0, 0.25, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotate2 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.25, 0.5, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotate3 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.5, 0.75, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotate4 = Tween(begin: 0.0, end: 180.0).animate(
       new CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.75, 1.0, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => {}));
+    )..addListener(() => setState(() => <String, void>{}));
 
     _rotateCtrl.forward();
   }
@@ -77,7 +76,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Center(
           child: Transform.rotate(
             angle: -45.0 * 0.0174533,
@@ -96,9 +95,10 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
   }
 
   Widget _cube(int i, {Animation<double> animation}) {
-    final _size = widget.width * 0.5, _position = widget.width * .5;
+    final _size = widget.size * 0.5, _position = widget.size * .5;
 
-    final Matrix4 _tRotate = new Matrix4.identity()..rotateY(animation.value * 0.0174533);
+    final Matrix4 _tRotate = new Matrix4.identity()
+      ..rotateY(animation.value * 0.0174533);
 
     return Positioned.fill(
       top: _position,

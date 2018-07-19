@@ -5,28 +5,29 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
-  SpinKitPumpingHeart({
+  const SpinKitPumpingHeart({
     Key key,
     @required this.color,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitPumpingHeartState createState() => new _SpinKitPumpingHeartState();
 }
 
-class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTickerProviderStateMixin {
+class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _anim1;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 2400))..repeat();
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 2400))
+      ..repeat();
     _anim1 = Tween(begin: 1.0, end: 1.25).animate(new CurvedAnimation(
       parent: _controller,
       curve: new Interval(0.0, 1.0, curve: MyCurve()),
@@ -46,7 +47,7 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTi
       child: Icon(
         Icons.favorite,
         color: widget.color,
-        size: widget.width,
+        size: widget.size,
       ),
     );
   }

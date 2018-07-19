@@ -4,28 +4,29 @@ import 'package:flutter_spinkit/src/utils.dart';
 class SpinKitFadingFour extends StatefulWidget {
   final Color color;
   final BoxShape shape;
-  final double width;
-  final double height;
+  final double size;
 
-  SpinKitFadingFour({
+  const SpinKitFadingFour({
     Key key,
     @required this.color,
     this.shape = BoxShape.circle,
-    this.width = 50.0,
-    this.height = 50.0,
+    this.size = 50.0,
   }) : super(key: key);
 
   @override
   _SpinKitFadingFourState createState() => new _SpinKitFadingFourState();
 }
 
-class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTickerProviderStateMixin {
+class _SpinKitFadingFourState extends State<SpinKitFadingFour>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200))..repeat();
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200))
+      ..repeat();
   }
 
   @override
@@ -38,7 +39,7 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.fromSize(
-        size: Size.square(widget.height),
+        size: Size.square(widget.size),
         child: Stack(
           children: [
             _circle(1, .0),
@@ -52,7 +53,7 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
   }
 
   Widget _circle(int i, [double delay]) {
-    final _size = widget.width * 0.25, _position = widget.width * .5;
+    final _size = widget.size * 0.25, _position = widget.size * .5;
 
     return Positioned.fill(
       left: _position,
@@ -62,7 +63,8 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
         child: Align(
           alignment: Alignment.center,
           child: FadeTransition(
-            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
+            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+                .animate(_controller),
             child: Container(
               width: _size,
               height: _size,

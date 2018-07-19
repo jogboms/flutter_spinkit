@@ -27,7 +27,7 @@ class App extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          MaterialPageRoute<void>(
                             builder: (BuildContext context) => ShowCase(),
                             fullscreenDialog: true,
                           ),
