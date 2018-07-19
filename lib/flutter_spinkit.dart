@@ -16,3 +16,4 @@ export 'src/wandering_cubes.dart';
 export 'src/cube_grid.dart';
 export 'src/pumping_heart.dart';
 export 'src/spinning_circle.dart';
+export 'src/hourglass.dart';
