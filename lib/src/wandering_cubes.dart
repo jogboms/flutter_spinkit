@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class SpinKitWanderingCubes extends StatefulWidget {
   final Color color;
+  final BoxShape shape;
   final double size;
 
   const SpinKitWanderingCubes({
     Key key,
     @required this.color,
+    this.shape = BoxShape.rectangle,
     this.size = 50.0,
   }) : super(key: key);
 
@@ -167,6 +169,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
               height: _size,
               width: _size,
               decoration: BoxDecoration(
+                shape: widget.shape,
                 color: widget.color,
               ),
             ),

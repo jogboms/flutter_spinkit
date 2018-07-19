@@ -3,11 +3,13 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitSpinningCircle extends StatefulWidget {
   final Color color;
+  final BoxShape shape;
   final double size;
 
   const SpinKitSpinningCircle({
     Key key,
     @required this.color,
+    this.shape = BoxShape.circle,
     this.size = 50.0,
   }) : super(key: key);
 
@@ -53,8 +55,7 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
         child: new Container(
           height: widget.size,
           width: widget.size,
-          decoration:
-              BoxDecoration(shape: BoxShape.circle, color: widget.color),
+          decoration: BoxDecoration(shape: widget.shape, color: widget.color),
         ),
       ),
     );

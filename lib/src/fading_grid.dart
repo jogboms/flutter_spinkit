@@ -3,11 +3,13 @@ import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingGrid extends StatefulWidget {
   final Color color;
+  final BoxShape shape;
   final double size;
 
   const SpinKitFadingGrid({
     Key key,
     @required this.color,
+    this.shape = BoxShape.circle,
     this.size = 50.0,
   }) : super(key: key);
 
@@ -119,7 +121,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
       child: new Container(
         height: widget.size / 4,
         width: widget.size / 4,
-        decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color),
+        decoration: BoxDecoration(shape: widget.shape, color: widget.color),
       ),
     );
   }
