@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 
 class SpinKitHourGlass extends StatefulWidget {
@@ -44,22 +44,54 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
   @override
   Widget build(BuildContext context) {
     final Matrix4 transform = new Matrix4.identity()
-      ..rotateZ((_animation1.value) * pi);
+      ..rotateZ((_animation1.value) * math.pi);
     return Center(
       child: new Transform(
         transform: transform,
         alignment: FractionalOffset.center,
-        child: new Container(
-          height: widget.size,
-          width: widget.size,
-          child: Image.asset(
-            "packages/flutter_spinkit/assets/hourglass.png",
-            color: widget.color,
+        child: CustomPaint(
+          child: new Container(
             height: widget.size,
             width: widget.size,
           ),
+          painter: _HourGlassPainter(color: widget.color),
         ),
       ),
     );
+  }
+}
+
+class _HourGlassPainter extends CustomPainter {
+  Paint p = Paint();
+  final double weight;
+
+  _HourGlassPainter({this.weight = 90.0, Color color}) {
+    p.color = color;
+    p.strokeWidth = 1.0;
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.drawArc(
+      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
+      0.0,
+      getRadian(weight),
+      true,
+      p,
+    );
+    canvas.drawArc(
+      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
+      getRadian(180.0),
+      getRadian(weight),
+      true,
+      p,
+    );
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+
+  double getRadian(double angle) {
+    return math.pi / 180 * angle;
   }
 }

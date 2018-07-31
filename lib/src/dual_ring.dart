@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 
 class SpinKitDualRing extends StatefulWidget {
@@ -44,22 +44,55 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
   @override
   Widget build(BuildContext context) {
     final Matrix4 transform = new Matrix4.identity()
-      ..rotateZ((_animation1.value) * pi * 2);
+      ..rotateZ((_animation1.value) * math.pi * 2);
     return Center(
       child: new Transform(
         transform: transform,
         alignment: FractionalOffset.center,
-        child: new Container(
-          height: widget.size,
-          width: widget.size,
-          child: Image.asset(
-            "packages/flutter_spinkit/assets/dual-ring.png",
-            color: widget.color,
+        child: CustomPaint(
+          child: new Container(
             height: widget.size,
             width: widget.size,
           ),
+          painter: _DualRingPainter(color: widget.color),
         ),
       ),
     );
+  }
+}
+
+class _DualRingPainter extends CustomPainter {
+  Paint p = Paint();
+  final double weight;
+
+  _DualRingPainter({this.weight = 90.0, Color color}) {
+    p.color = color;
+    p.strokeWidth = 10.0;
+    p.style = PaintingStyle.stroke;
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.drawArc(
+      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
+      0.0,
+      getRadian(weight),
+      false,
+      p,
+    );
+    canvas.drawArc(
+      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
+      getRadian(180.0),
+      getRadian(weight),
+      false,
+      p,
+    );
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+
+  double getRadian(double angle) {
+    return math.pi / 180 * angle;
   }
 }
