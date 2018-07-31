@@ -8,7 +8,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ```yaml
 dependencies:
-    flutter_spinkit: "^1.0.0"
+    flutter_spinkit: "^2.0.0"
 ```
 
 ### ⚡️ Import
@@ -25,14 +25,6 @@ SpinKitRotatingCircle(
   width: 50.0,
   height: 50.0,
 );
-```
-
-The following animations requires extra assets in your `pubspec.yaml`. `SpinKitHourGlass` & `SpinKitDualRing`.
-
-```
-assets:
-  - packages/flutter_spinkit/assets/hourglass.png
-  - packages/flutter_spinkit/assets/dual-ring.png
 ```
 
 For more info, please, refer to the `showcase.dart` in the example.
