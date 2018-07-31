@@ -15,14 +15,16 @@ class SpinKitDualRing extends StatefulWidget {
   _SpinKitDualRingState createState() => new _SpinKitDualRingState();
 }
 
-class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProviderStateMixin {
+class _SpinKitDualRingState extends State<SpinKitDualRing>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
 
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       new CurvedAnimation(
         parent: _controller,
@@ -41,7 +43,8 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = new Matrix4.identity()..rotateZ((_animation1.value) * math.pi * 2);
+    final Matrix4 transform = new Matrix4.identity()
+      ..rotateZ((_animation1.value) * math.pi * 2);
     return Center(
       child: new Transform(
         transform: transform,
@@ -70,8 +73,20 @@ class _DualRingPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawArc(Rect.fromPoints(Offset.zero, Offset(size.width, size.height)), 0.0, getRadian(weight), false, p);
-    canvas.drawArc(Rect.fromPoints(Offset.zero, Offset(size.width, size.height)), getRadian(180.0), getRadian(weight), false, p);
+    canvas.drawArc(
+      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
+      0.0,
+      getRadian(weight),
+      false,
+      p,
+    );
+    canvas.drawArc(
+      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
+      getRadian(180.0),
+      getRadian(weight),
+      false,
+      p,
+    );
   }
 
   @override

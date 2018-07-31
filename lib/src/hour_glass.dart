@@ -15,14 +15,16 @@ class SpinKitHourGlass extends StatefulWidget {
   _SpinKitHourGlassState createState() => new _SpinKitHourGlassState();
 }
 
-class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerProviderStateMixin {
+class _SpinKitHourGlassState extends State<SpinKitHourGlass>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
 
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 8.0).animate(
       new CurvedAnimation(
         parent: _controller,
@@ -41,7 +43,8 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = new Matrix4.identity()..rotateZ((_animation1.value) * math.pi);
+    final Matrix4 transform = new Matrix4.identity()
+      ..rotateZ((_animation1.value) * math.pi);
     return Center(
       child: new Transform(
         transform: transform,
@@ -69,8 +72,20 @@ class _HourGlassPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawArc(Rect.fromPoints(Offset.zero, Offset(size.width, size.height)), 0.0, getRadian(weight), true, p);
-    canvas.drawArc(Rect.fromPoints(Offset.zero, Offset(size.width, size.height)), getRadian(180.0), getRadian(weight), true, p);
+    canvas.drawArc(
+      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
+      0.0,
+      getRadian(weight),
+      true,
+      p,
+    );
+    canvas.drawArc(
+      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
+      getRadian(180.0),
+      getRadian(weight),
+      true,
+      p,
+    );
   }
 
   @override
