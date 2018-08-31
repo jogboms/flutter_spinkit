@@ -1,14 +1,17 @@
 import 'dart:math' as math;
 import 'dart:ui';
+
 import 'package:flutter/widgets.dart';
 
 class SpinKitPouringHourglass extends StatefulWidget {
   final double size;
   final Color color;
 
-  const SpinKitPouringHourglass(
-      {Key key, @required this.color, this.size = 50.0})
-      : assert(color != null),
+  const SpinKitPouringHourglass({
+    Key key,
+    @required this.color,
+    this.size = 50.0,
+  })  : assert(color != null),
         assert(size != null),
         super(key: key);
 
@@ -28,14 +31,19 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
   void initState() {
     super.initState();
     _controller = new AnimationController(
-        vsync: this, duration: Duration(milliseconds: 2400));
-    _pouringAnimation =
-        CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.9))
-          ..addListener(_repaint);
-    _rotationAnimation = Tween(begin: 0.0, end: 0.5).animate(CurvedAnimation(
+      vsync: this,
+      duration: Duration(milliseconds: 2400),
+    );
+    _pouringAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Interval(0.0, 0.9),
+    )..addListener(_repaint);
+    _rotationAnimation = Tween(begin: 0.0, end: 0.5).animate(
+      CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.9, 1.0, curve: Curves.fastOutSlowIn)))
-      ..addListener(_repaint);
+        curve: Interval(0.9, 1.0, curve: Curves.fastOutSlowIn),
+      ),
+    )..addListener(_repaint);
     _controller.repeat();
   }
 
@@ -75,8 +83,10 @@ class _HourGlassPaint extends CustomPainter {
 
   final Paint _powderPaint;
 
-  _HourGlassPaint({this.poured, @required Color color})
-      : _paint = Paint()
+  _HourGlassPaint({
+    this.poured,
+    @required Color color,
+  })  : _paint = Paint()
           ..style = PaintingStyle.stroke
           ..color = color,
         _powderPaint = Paint()
@@ -107,11 +117,13 @@ class _HourGlassPaint extends CustomPainter {
     final upperPart = Path()
       ..moveTo(0.0, top)
       ..addRect(
-          Rect.fromLTRB(0.0, halfHeight * poured, size.width, halfHeight));
+        Rect.fromLTRB(0.0, halfHeight * poured, size.width, halfHeight),
+      );
 
     canvas.drawPath(
-        Path.combine(PathOperation.intersect, hourglassPath, upperPart),
-        _powderPaint);
+      Path.combine(PathOperation.intersect, hourglassPath, upperPart),
+      _powderPaint,
+    );
 
     final lowerPartPath = Path()
       ..moveTo(centerX, bottom)
@@ -121,17 +133,21 @@ class _HourGlassPaint extends CustomPainter {
       ..close();
 
     final lowerPart = Path.combine(
-        PathOperation.intersect,
-        lowerPartPath,
-        Path()
-          ..addRect(Rect.fromLTRB(0.0, halfHeight, size.width, size.height)));
+      PathOperation.intersect,
+      lowerPartPath,
+      Path()
+        ..addRect(
+          Rect.fromLTRB(0.0, halfHeight, size.width, size.height),
+        ),
+    );
     canvas.drawPath(lowerPart, _powderPaint);
     canvas.drawLine(
-        Offset(centerX, halfHeight), Offset(centerX, bottom), _paint);
+      Offset(centerX, halfHeight),
+      Offset(centerX, bottom),
+      _paint,
+    );
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
