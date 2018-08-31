@@ -5,13 +5,12 @@ class WorkSpace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green,
+      color: Colors.orangeAccent,
       width: 300.0,
       height: 300.0,
-      child: new SpinKitRing(
-        size: 100.0,
-        lineWidth: 14.0,
+      child: SpinKitPouringHourglass(
         color: Colors.white,
+        size: 100.0,
       ),
     );
   }

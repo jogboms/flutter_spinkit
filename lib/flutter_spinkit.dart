@@ -21,3 +21,4 @@ export 'src/spinning_circle.dart';
 export 'src/three_bounce.dart';
 export 'src/wandering_cubes.dart';
 export 'src/wave.dart';
+export 'src/pouring_hour_glass.dart';

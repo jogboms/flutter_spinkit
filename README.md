@@ -8,7 +8,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ```yaml
 dependencies:
-    flutter_spinkit: "^2.0.0"
+  flutter_spinkit: "^2.1.0"
 ```
 
 ### ⚡️ Import
@@ -150,21 +150,28 @@ For more info, please, refer to the `showcase.dart` in the example.
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/grid.gif" width="100px">
-      <br />
-      FadingGrid
-      <br />
-      ✅
-    </td>
-    <td align="center">
       <img src="./screenshots/hour-glass.gif" width="100px">
       <br />
       HourGlass
       <br />
       ✅
     </td>
+    <td align="center">
+      <img src="./screenshots/PouringHourGlass.gif" width="100px">
+      <br />
+      PouringHourGlass
+      <br />
+      ✅
+    </td>
   </tr>
   <tr>
+    <td align="center">
+      <img src="./screenshots/grid.gif" width="100px">
+      <br />
+      FadingGrid
+      <br />
+      ✅
+    </td>
     <td align="center">
       <img src="./screenshots/ring.gif" width="100px">
       <br />

@@ -99,6 +99,13 @@ class ShowCase extends StatelessWidget {
                 SpinKitFadingCircle(color: Colors.white),
               ],
             ),
+            const SizedBox(height: 48.0),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SpinKitPouringHourglass(color: Colors.white),
+              ],
+            ),
             const SizedBox(height: 64.0),
           ],
         ),
