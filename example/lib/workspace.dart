@@ -8,10 +8,9 @@ class WorkSpace extends StatelessWidget {
       color: Colors.green,
       width: 300.0,
       height: 300.0,
-      child: new SpinKitRing(
-        size: 100.0,
-        lineWidth: 14.0,
+      child: SpinKitPouringHourglass(
         color: Colors.white,
+        size: 300.0,
       ),
     );
   }
