@@ -22,8 +22,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 ```dart
 SpinKitRotatingCircle(
   color: Colors.white,
-  width: 50.0,
-  height: 50.0,
+  size: 50.0,
 );
 ```
 
@@ -62,14 +61,14 @@ For more info, please, refer to the `showcase.dart` in the example.
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/FadingFour.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/FadingFour.gif" width="100px">
       <br />
       FadingFour
       <br />
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/FadingCube.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/FadingCube.gif" width="100px">
       <br />
       FadingCube
       <br />
@@ -136,28 +135,28 @@ For more info, please, refer to the `showcase.dart` in the example.
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/heart.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/heart.gif" width="100px">
       <br />
       PumpingHeart
       <br />
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/dual-ring.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/dual-ring.gif" width="100px">
       <br />
       DualRing
       <br />
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/hour-glass.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/hour-glass.gif" width="100px">
       <br />
       HourGlass
       <br />
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/PouringHourGlass.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/PouringHourGlass.gif" width="100px">
       <br />
       PouringHourGlass
       <br />
@@ -166,28 +165,28 @@ For more info, please, refer to the `showcase.dart` in the example.
   </tr>
   <tr>
     <td align="center">
-      <img src="./screenshots/grid.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/grid.gif" width="100px">
       <br />
       FadingGrid
       <br />
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/ring.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/ring.gif" width="100px">
       <br />
       Ring
       <br />
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/ripple.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/ripple.gif" width="100px">
       <br />
       Ripple
       <br />
       ✅
     </td>
     <td align="center">
-      <img src="./screenshots/spinning-circle.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/spinning-circle.gif" width="100px">
       <br />
       SpinningCircle
       <br />
