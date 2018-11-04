@@ -11,7 +11,7 @@ class SpinKitWave extends StatefulWidget {
 
   SpinKitWave({
     Key key,
-    @required this.color,
+    this.color,
     this.type = SpinKitWaveType.start,
     this.size = 50.0,
     this.itemBuilder,
@@ -19,6 +19,8 @@ class SpinKitWave extends StatefulWidget {
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
+        assert(type != null),
+        assert(size != null),
         super(key: key);
 
   @override

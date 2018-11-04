@@ -8,13 +8,14 @@ class SpinKitFadingCircle extends StatefulWidget {
 
   SpinKitFadingCircle({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
     this.itemBuilder,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
+        assert(size != null),
         super(key: key);
 
   @override

@@ -8,7 +8,7 @@ class SpinKitRipple extends StatefulWidget {
 
   SpinKitRipple({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
     this.borderWidth = 6.0,
     this.itemBuilder,
@@ -16,6 +16,8 @@ class SpinKitRipple extends StatefulWidget {
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
+        assert(size != null),
+        assert(borderWidth != null),
         super(key: key);
 
   @override

@@ -9,7 +9,7 @@ class SpinKitFadingFour extends StatefulWidget {
 
   SpinKitFadingFour({
     Key key,
-    @required this.color,
+    this.color,
     this.shape = BoxShape.circle,
     this.size = 50.0,
     this.itemBuilder,
@@ -17,6 +17,8 @@ class SpinKitFadingFour extends StatefulWidget {
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
+        assert(shape != null),
+        assert(size != null),
         super(key: key);
 
   @override

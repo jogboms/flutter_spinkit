@@ -12,7 +12,10 @@ class SpinKitRing extends StatefulWidget {
     @required this.color,
     this.lineWidth = 7.0,
     this.size = 50.0,
-  }) : super(key: key);
+  })  : assert(color != null),
+        assert(lineWidth != null),
+        assert(size != null),
+        super(key: key);
 
   @override
   _SpinKitRingState createState() => new _SpinKitRingState();

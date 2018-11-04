@@ -8,7 +8,7 @@ class SpinKitWanderingCubes extends StatefulWidget {
 
   SpinKitWanderingCubes({
     Key key,
-    @required this.color,
+    this.color,
     this.shape = BoxShape.rectangle,
     this.size = 50.0,
     this.itemBuilder,
@@ -16,6 +16,8 @@ class SpinKitWanderingCubes extends StatefulWidget {
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
+        assert(shape != null),
+        assert(size != null),
         super(key: key);
 
   @override
