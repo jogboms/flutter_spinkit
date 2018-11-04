@@ -18,7 +18,7 @@ class SpinKitPulse extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitPulseState createState() => new _SpinKitPulseState();
+  _SpinKitPulseState createState() => _SpinKitPulseState();
 }
 
 class _SpinKitPulseState extends State<SpinKitPulse>
@@ -30,7 +30,7 @@ class _SpinKitPulseState extends State<SpinKitPulse>
   void initState() {
     super.initState();
     _controller =
-        new AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
       ..addListener(
         () => setState(() => <String, void>{}),
@@ -50,7 +50,7 @@ class _SpinKitPulseState extends State<SpinKitPulse>
     return Center(
       child: Opacity(
         opacity: 1.0 - _animation.value,
-        child: new Transform.scale(
+        child: Transform.scale(
           scale: _animation.value,
           child: SizedBox.fromSize(
             size: Size.square(widget.size),

@@ -18,7 +18,7 @@ class SpinKitDoubleBounce extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitDoubleBounceState createState() => new _SpinKitDoubleBounceState();
+  _SpinKitDoubleBounceState createState() => _SpinKitDoubleBounceState();
 }
 
 class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
@@ -37,11 +37,11 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 2000));
 
     _animation1 = Tween(begin: -1.0, end: 1.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,
       ),
@@ -63,11 +63,11 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
     return Center(
       child: Stack(
         children: <Widget>[
-          new Transform.scale(
+          Transform.scale(
             scale: 1.0 - _animation1.value.abs(),
             child: _itemBuilder(0),
           ),
-          new Transform.scale(
+          Transform.scale(
             scale: _animation1.value.abs(),
             child: _itemBuilder(1),
           ),
@@ -81,7 +81,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
       size: Size.square(widget.size),
       child: widget.itemBuilder != null
           ? widget.itemBuilder(context, index)
-          : new DecoratedBox(
+          : DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: widget.color.withOpacity(0.6),

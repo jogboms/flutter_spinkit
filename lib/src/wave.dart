@@ -24,7 +24,7 @@ class SpinKitWave extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitWaveState createState() => new _SpinKitWaveState();
+  _SpinKitWaveState createState() => _SpinKitWaveState();
 }
 
 class _SpinKitWaveState extends State<SpinKitWave>
@@ -35,7 +35,7 @@ class _SpinKitWaveState extends State<SpinKitWave>
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = new AnimationController(
+    _scaleCtrl = AnimationController(
       vsync: this,
       duration: _duration,
     )..repeat();
@@ -88,8 +88,8 @@ class _SpinKitWaveState extends State<SpinKitWave>
 
   Widget _bar(int index, double delay) {
     final _size = widget.size * 0.2;
-    return new ScaleYWidget(
-      scaleY: new DelayTween(
+    return ScaleYWidget(
+      scaleY: DelayTween(
         begin: .4,
         end: 1.0,
         delay: delay,
@@ -128,9 +128,9 @@ class ScaleYWidget extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     final double scaleValue = scaleY.value;
-    final Matrix4 transform = new Matrix4.identity()
+    final Matrix4 transform = Matrix4.identity()
       ..scale(1.0, scaleValue, 1.0);
-    return new Transform(
+    return Transform(
       transform: transform,
       alignment: alignment,
       child: child,

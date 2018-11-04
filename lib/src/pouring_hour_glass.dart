@@ -17,7 +17,7 @@ class SpinKitPouringHourglass extends StatefulWidget {
 
   @override
   _SpinKitPouringHourglassState createState() =>
-      new _SpinKitPouringHourglassState();
+      _SpinKitPouringHourglassState();
 }
 
 class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
@@ -30,7 +30,7 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 2400),
     );

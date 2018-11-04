@@ -18,7 +18,7 @@ class SpinKitRotatingPlain extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitRotatingPlainState createState() => new _SpinKitRotatingPlainState();
+  _SpinKitRotatingPlainState createState() => _SpinKitRotatingPlainState();
 }
 
 class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
@@ -30,19 +30,19 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 180.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.0, 0.5, curve: Curves.easeIn),
+        curve: Interval(0.0, 0.5, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: 0.0, end: 180.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.5, 1.0, curve: Curves.easeOut),
+        curve: Interval(0.5, 1.0, curve: Curves.easeOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -57,11 +57,11 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = new Matrix4.identity()
+    final Matrix4 transform = Matrix4.identity()
       ..rotateX((0 - _animation1.value) * 0.0174533)
       ..rotateY((0 - _animation2.value) * 0.0174533);
     return Center(
-      child: new Transform(
+      child: Transform(
         transform: transform,
         alignment: FractionalOffset.center,
         child: SizedBox.fromSize(

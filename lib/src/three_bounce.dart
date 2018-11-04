@@ -19,7 +19,7 @@ class SpinKitThreeBounce extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitThreeBounceState createState() => new _SpinKitThreeBounceState();
+  _SpinKitThreeBounceState createState() => _SpinKitThreeBounceState();
 }
 
 class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
@@ -30,7 +30,7 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = new AnimationController(
+    _scaleCtrl = AnimationController(
       vsync: this,
       duration: _duration,
     )..repeat();
@@ -61,8 +61,8 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
 
   Widget _circle(int index, double delay) {
     final _size = widget.size * 0.5;
-    return new ScaleTransition(
-      scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+    return ScaleTransition(
+      scale: DelayTween(begin: 0.0, end: 1.0, delay: delay)
           .animate(_scaleCtrl),
       child: SizedBox.fromSize(
         size: Size.square(_size),

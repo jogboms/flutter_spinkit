@@ -19,7 +19,7 @@ class SpinKitCircle extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitCircleState createState() => new _SpinKitCircleState();
+  _SpinKitCircleState createState() => _SpinKitCircleState();
 }
 
 class _SpinKitCircleState extends State<SpinKitCircle>
@@ -29,7 +29,7 @@ class _SpinKitCircleState extends State<SpinKitCircle>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200))
       ..repeat();
   }
@@ -76,7 +76,7 @@ class _SpinKitCircleState extends State<SpinKitCircle>
         child: Align(
           alignment: Alignment.center,
           child: ScaleTransition(
-            scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+            scale: DelayTween(begin: 0.0, end: 1.0, delay: delay)
                 .animate(_controller),
             child: _itemBuilder(i - 1, _size),
           ),

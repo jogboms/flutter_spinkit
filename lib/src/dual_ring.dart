@@ -15,7 +15,7 @@ class SpinKitDualRing extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitDualRingState createState() => new _SpinKitDualRingState();
+  _SpinKitDualRingState createState() => _SpinKitDualRingState();
 }
 
 class _SpinKitDualRingState extends State<SpinKitDualRing>
@@ -26,12 +26,12 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.0, 1.0, curve: Curves.linear),
+        curve: Interval(0.0, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -46,14 +46,14 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = new Matrix4.identity()
+    final Matrix4 transform = Matrix4.identity()
       ..rotateZ((_animation1.value) * math.pi * 2);
     return Center(
-      child: new Transform(
+      child: Transform(
         transform: transform,
         alignment: FractionalOffset.center,
         child: CustomPaint(
-          child: new Container(
+          child: Container(
             height: widget.size,
             width: widget.size,
           ),

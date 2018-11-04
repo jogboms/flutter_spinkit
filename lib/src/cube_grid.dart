@@ -18,7 +18,7 @@ class SpinKitCubeGrid extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitCubeGridState createState() => new _SpinKitCubeGridState();
+  _SpinKitCubeGridState createState() => _SpinKitCubeGridState();
 }
 
 class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
@@ -29,40 +29,40 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
     _anim1 = Tween(begin: 1.0, end: 0.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.1, 0.6, curve: Curves.easeIn),
+        curve: Interval(0.1, 0.6, curve: Curves.easeIn),
       ),
     );
 
     _anim2 = Tween(begin: 1.0, end: 0.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.2, 0.7, curve: Curves.easeIn),
+        curve: Interval(0.2, 0.7, curve: Curves.easeIn),
       ),
     );
 
     _anim3 = Tween(begin: 1.0, end: 0.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.3, 0.8, curve: Curves.easeIn),
+        curve: Interval(0.3, 0.8, curve: Curves.easeIn),
       ),
     );
 
     _anim4 = Tween(begin: 1.0, end: 0.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.4, 0.9, curve: Curves.easeIn),
+        curve: Interval(0.4, 0.9, curve: Curves.easeIn),
       ),
     );
 
     _anim5 = Tween(begin: 1.0, end: 0.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.5, 1.0, curve: Curves.easeIn),
+        curve: Interval(0.5, 1.0, curve: Curves.easeIn),
       ),
     );
 
@@ -87,14 +87,14 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       height: widget.size,
       width: widget.size,
-      child: new Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          new Row(
+          Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -103,7 +103,7 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
               _square(_anim5, 2),
             ],
           ),
-          new Row(
+          Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -112,7 +112,7 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
               _square(_anim4, 5),
             ],
           ),
-          new Row(
+          Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -127,14 +127,14 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
   }
 
   Widget _square(Animation<double> animation, int index) {
-    return new ScaleTransition(
+    return ScaleTransition(
       scale: animation,
       child: _itemBuilder(index),
     );
   }
 
   Widget _itemBuilder(int index) {
-    return new SizedBox.fromSize(
+    return SizedBox.fromSize(
       size: Size.square(widget.size / 3),
       child: widget.itemBuilder != null
           ? widget.itemBuilder(context, index)

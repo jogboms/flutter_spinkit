@@ -24,7 +24,7 @@ class SpinKitSpinningCircle extends StatefulWidget {
 
   @override
   _SpinKitSpinningCircleState createState() =>
-      new _SpinKitSpinningCircleState();
+      _SpinKitSpinningCircleState();
 }
 
 class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
@@ -35,12 +35,12 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 7.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.0, 1.0, curve: Curves.easeOut),
+        curve: Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -55,10 +55,10 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = new Matrix4.identity()
+    final Matrix4 transform = Matrix4.identity()
       ..rotateY((0 - _animation1.value) * pi);
     return Center(
-      child: new Transform(
+      child: Transform(
         transform: transform,
         alignment: FractionalOffset.center,
         child: SizedBox.fromSize(

@@ -18,7 +18,7 @@ class SpinKitChasingDots extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitChasingDotsState createState() => new _SpinKitChasingDotsState();
+  _SpinKitChasingDotsState createState() => _SpinKitChasingDotsState();
 }
 
 class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
@@ -30,11 +30,11 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = new AnimationController(vsync: this, duration: _duration);
-    _rotateCtrl = new AnimationController(vsync: this, duration: _duration);
+    _scaleCtrl = AnimationController(vsync: this, duration: _duration);
+    _rotateCtrl = AnimationController(vsync: this, duration: _duration);
 
     _scale = Tween(begin: -1.0, end: 1.0).animate(
-      new CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
+      CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
     )
       ..addListener(() => setState(() => <String, void>{}))
       ..addStatusListener((status) {
@@ -46,7 +46,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
       });
 
     _rotate = Tween(begin: 0.0, end: 360.0).animate(
-      new CurvedAnimation(parent: _rotateCtrl, curve: Curves.linear),
+      CurvedAnimation(parent: _rotateCtrl, curve: Curves.linear),
     )..addListener(() => setState(() => <String, void>{}));
 
     _rotateCtrl.repeat();
@@ -86,7 +86,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
 
   Widget _itemBuilder(int index) {
     final _size = widget.size * 0.6;
-    return new SizedBox.fromSize(
+    return SizedBox.fromSize(
       size: Size.square(_size),
       child: widget.itemBuilder != null
           ? widget.itemBuilder(context, index)
@@ -100,7 +100,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
   }
 
   Widget _circle(double scale, int index) {
-    return new Transform.scale(
+    return Transform.scale(
       scale: scale,
       child: _itemBuilder(index),
     );

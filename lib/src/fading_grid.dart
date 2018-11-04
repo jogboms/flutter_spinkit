@@ -22,7 +22,7 @@ class SpinKitFadingGrid extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitFadingGridState createState() => new _SpinKitFadingGridState();
+  _SpinKitFadingGridState createState() => _SpinKitFadingGridState();
 }
 
 class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
@@ -32,7 +32,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200))
       ..repeat();
   }
@@ -45,14 +45,14 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       height: widget.size,
       width: widget.size,
-      child: new Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          new Row(
+          Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -67,7 +67,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
               _circle(2, 2),
             ],
           ),
-          new Row(
+          Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -77,7 +77,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
               ),
             ],
           ),
-          new Row(
+          Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -92,7 +92,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
               _circle(5, 2),
             ],
           ),
-          new Row(
+          Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -102,7 +102,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
               ),
             ],
           ),
-          new Row(
+          Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -123,7 +123,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
   }
 
   Widget _circle(int index, int i) {
-    return new FadeTransition(
+    return FadeTransition(
       opacity: DelayTween(begin: 0.4, end: 0.9, delay: 0.3 * (i - 1))
           .animate(_controller),
       child: SizedBox.fromSize(

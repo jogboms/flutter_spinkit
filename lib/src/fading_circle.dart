@@ -19,7 +19,7 @@ class SpinKitFadingCircle extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitFadingCircleState createState() => new _SpinKitFadingCircleState();
+  _SpinKitFadingCircleState createState() => _SpinKitFadingCircleState();
 }
 
 class _SpinKitFadingCircleState extends State<SpinKitFadingCircle>
@@ -29,7 +29,7 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200))
       ..repeat();
   }
@@ -76,7 +76,7 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle>
         child: Align(
           alignment: Alignment.center,
           child: FadeTransition(
-            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+            opacity: DelayTween(begin: 0.0, end: 1.0, delay: delay)
                 .animate(_controller),
             child: SizedBox.fromSize(
               size: Size.square(_size),

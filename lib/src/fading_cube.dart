@@ -19,7 +19,7 @@ class SpinKitFadingCube extends StatefulWidget {
         super(key: key);
 
   @override
-  _SpinKitFadingCubeState createState() => new _SpinKitFadingCubeState();
+  _SpinKitFadingCubeState createState() => _SpinKitFadingCubeState();
 }
 
 class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
@@ -30,7 +30,7 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
   @override
   void initState() {
     super.initState();
-    _opacityCtrl = new AnimationController(vsync: this, duration: _duration)
+    _opacityCtrl = AnimationController(vsync: this, duration: _duration)
       ..repeat();
   }
 
