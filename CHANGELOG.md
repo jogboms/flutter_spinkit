@@ -1,4 +1,4 @@
-# 2.2.0
+# 3.0.0
 
 ### Before
 
@@ -23,5 +23,6 @@ SpinKitFadingCircle(
 );
 ```
 
-### Which produces 
-<img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/itemBuilder.gif" width="100px">
+### Which produces
+
+<img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/itemBuilder.gif" width="100px">
