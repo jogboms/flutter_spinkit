@@ -4,12 +4,18 @@ import 'package:flutter_spinkit/src/utils.dart';
 class SpinKitCircle extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitCircle({
+  SpinKitCircle({
     Key key,
     @required this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitCircleState createState() => new _SpinKitCircleState();
@@ -71,17 +77,24 @@ class _SpinKitCircleState extends State<SpinKitCircle>
           child: ScaleTransition(
             scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
                 .animate(_controller),
-            child: Container(
-              width: _size,
-              height: _size,
+            child: _itemBuilder(i - 1, _size),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _itemBuilder(int index, double _size) {
+    return SizedBox.fromSize(
+      size: Size.square(_size),
+      child: widget.itemBuilder != null
+          ? widget.itemBuilder(context, index)
+          : DecoratedBox(
               decoration: BoxDecoration(
                 color: widget.color,
                 shape: BoxShape.circle,
               ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }

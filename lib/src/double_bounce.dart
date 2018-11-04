@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 class SpinKitDoubleBounce extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitDoubleBounce({
+  SpinKitDoubleBounce({
     Key key,
     @required this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitDoubleBounceState createState() => new _SpinKitDoubleBounceState();
@@ -58,24 +64,28 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
         children: <Widget>[
           new Transform.scale(
             scale: 1.0 - _animation1.value.abs(),
-            child: new Container(
-              height: widget.size,
-              width: widget.size,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
-            ),
+            child: _itemBuilder(0),
           ),
           new Transform.scale(
             scale: _animation1.value.abs(),
-            child: new Container(
-              height: widget.size,
-              width: widget.size,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle, color: widget.color.withOpacity(0.6)),
-            ),
+            child: _itemBuilder(1),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _itemBuilder(int index) {
+    return SizedBox.fromSize(
+      size: Size.square(widget.size),
+      child: widget.itemBuilder != null
+          ? widget.itemBuilder(context, index)
+          : new DecoratedBox(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: widget.color.withOpacity(0.6),
+              ),
+            ),
     );
   }
 }

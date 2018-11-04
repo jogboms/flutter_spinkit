@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 class SpinKitChasingDots extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitChasingDots({
+  SpinKitChasingDots({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitChasingDotsState createState() => new _SpinKitChasingDotsState();
@@ -64,11 +70,11 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
             children: <Widget>[
               Positioned(
                 top: 0.0,
-                child: _circle(1.0 - _scale.value.abs()),
+                child: _circle(1.0 - _scale.value.abs(), 0),
               ),
               Positioned(
                 bottom: 0.0,
-                child: _circle(_scale.value.abs()),
+                child: _circle(_scale.value.abs(), 1),
               ),
             ],
           ),
@@ -77,19 +83,25 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
     );
   }
 
-  Widget _circle(double scale) {
+  Widget _itemBuilder(int index) {
     final _size = widget.size * 0.6;
+    return new SizedBox.fromSize(
+      size: Size.square(_size),
+      child: widget.itemBuilder != null
+          ? widget.itemBuilder(context, index)
+          : DecoratedBox(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: widget.color,
+              ),
+            ),
+    );
+  }
 
+  Widget _circle(double scale, int index) {
     return new Transform.scale(
       scale: scale,
-      child: new Container(
-        height: _size,
-        width: _size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: widget.color,
-        ),
-      ),
+      child: _itemBuilder(index),
     );
   }
 }

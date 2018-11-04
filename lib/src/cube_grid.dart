@@ -3,12 +3,18 @@ import 'package:flutter/widgets.dart';
 class SpinKitCubeGrid extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitCubeGrid({
+  SpinKitCubeGrid({
     Key key,
     @required this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitCubeGridState createState() => new _SpinKitCubeGridState();
@@ -91,27 +97,27 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _square(_anim3),
-              _square(_anim4),
-              _square(_anim5),
+              _square(_anim3, 0),
+              _square(_anim4, 1),
+              _square(_anim5, 2),
             ],
           ),
           new Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _square(_anim2),
-              _square(_anim3),
-              _square(_anim4),
+              _square(_anim2, 3),
+              _square(_anim3, 4),
+              _square(_anim4, 5),
             ],
           ),
           new Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _square(_anim1),
-              _square(_anim2),
-              _square(_anim3),
+              _square(_anim1, 6),
+              _square(_anim2, 7),
+              _square(_anim3, 8),
             ],
           ),
         ],
@@ -119,14 +125,23 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
     );
   }
 
-  Widget _square(Animation<double> animation) {
+  Widget _square(Animation<double> animation, int index) {
     return new ScaleTransition(
       scale: animation,
-      child: new Container(
-        height: widget.size / 3,
-        width: widget.size / 3,
-        color: widget.color,
-      ),
+      child: _itemBuilder(index),
+    );
+  }
+
+  Widget _itemBuilder(int index) {
+    return new SizedBox.fromSize(
+      size: Size.square(widget.size / 3),
+      child: widget.itemBuilder != null
+          ? widget.itemBuilder(context, index)
+          : DecoratedBox(
+              decoration: BoxDecoration(
+                color: widget.color,
+              ),
+            ),
     );
   }
 }

@@ -1,17 +1,24 @@
 import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 
 class SpinKitSpinningCircle extends StatefulWidget {
   final Color color;
   final BoxShape shape;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitSpinningCircle({
+  SpinKitSpinningCircle({
     Key key,
     @required this.color,
     this.shape = BoxShape.circle,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitSpinningCircleState createState() =>
@@ -52,12 +59,22 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
       child: new Transform(
         transform: transform,
         alignment: FractionalOffset.center,
-        child: new Container(
-          height: widget.size,
-          width: widget.size,
-          decoration: BoxDecoration(shape: widget.shape, color: widget.color),
+        child: SizedBox.fromSize(
+          size: Size.square(widget.size),
+          child: _itemBuilder(0),
         ),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+              shape: widget.shape,
+            ),
+          );
   }
 }

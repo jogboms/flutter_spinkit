@@ -4,13 +4,19 @@ class SpinKitWanderingCubes extends StatefulWidget {
   final Color color;
   final BoxShape shape;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitWanderingCubes({
+  SpinKitWanderingCubes({
     Key key,
     @required this.color,
     this.shape = BoxShape.rectangle,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitWanderingCubesState createState() =>
@@ -125,15 +131,15 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
         size: Size.square(widget.size),
         child: Stack(
           children: <Widget>[
-            _cube(),
-            _cube(true),
+            _cube(0),
+            _cube(1, true),
           ],
         ),
       ),
     );
   }
 
-  Widget _cube([bool offset = false]) {
+  Widget _cube(int index, [bool offset = false]) {
     final _size = widget.size * 0.25;
     final Matrix4 _tScale = new Matrix4.identity()
       ..scale(_scale2.value)
@@ -165,17 +171,24 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
           angle: _rotate.value * 0.0174533,
           child: Transform(
             transform: _tScale,
-            child: new Container(
-              height: _size,
-              width: _size,
-              decoration: BoxDecoration(
-                shape: widget.shape,
-                color: widget.color,
-              ),
+            child: SizedBox.fromSize(
+              size: Size.square(_size),
+              child: _itemBuilder(index),
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+              shape: widget.shape,
+            ),
+          );
   }
 }

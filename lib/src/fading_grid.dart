@@ -5,13 +5,19 @@ class SpinKitFadingGrid extends StatefulWidget {
   final Color color;
   final BoxShape shape;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitFadingGrid({
+  SpinKitFadingGrid({
     Key key,
     @required this.color,
     this.shape = BoxShape.circle,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitFadingGridState createState() => new _SpinKitFadingGridState();
@@ -48,15 +54,15 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _circle(1),
+              _circle(0, 1),
               SizedBox(
                 width: widget.size / 8,
               ),
-              _circle(1),
+              _circle(1, 1),
               SizedBox(
                 width: widget.size / 8,
               ),
-              _circle(2),
+              _circle(2, 2),
             ],
           ),
           new Row(
@@ -73,15 +79,15 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _circle(4),
+              _circle(3, 4),
               SizedBox(
                 width: widget.size / 8,
               ),
-              _circle(1),
+              _circle(4, 1),
               SizedBox(
                 width: widget.size / 8,
               ),
-              _circle(2),
+              _circle(5, 2),
             ],
           ),
           new Row(
@@ -98,15 +104,15 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _circle(4),
+              _circle(6, 4),
               SizedBox(
                 width: widget.size / 8,
               ),
-              _circle(3),
+              _circle(7, 3),
               SizedBox(
                 width: widget.size / 8,
               ),
-              _circle(3),
+              _circle(8, 3),
             ],
           ),
         ],
@@ -114,15 +120,25 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
     );
   }
 
-  Widget _circle(int i) {
+  Widget _circle(int index, int i) {
     return new FadeTransition(
       opacity: DelayTween(begin: 0.4, end: 0.9, delay: 0.3 * (i - 1))
           .animate(_controller),
-      child: new Container(
-        height: widget.size / 4,
-        width: widget.size / 4,
-        decoration: BoxDecoration(shape: widget.shape, color: widget.color),
+      child: SizedBox.fromSize(
+        size: Size.square(widget.size / 4),
+        child: _itemBuilder(index),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+              shape: widget.shape,
+            ),
+          );
   }
 }

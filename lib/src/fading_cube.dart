@@ -1,16 +1,21 @@
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingCube extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitFadingCube({
+  SpinKitFadingCube({
     Key key,
     @required this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitFadingCubeState createState() => new _SpinKitFadingCubeState();
@@ -72,15 +77,24 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
             child: FadeTransition(
               opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * (i - 1))
                   .animate(_opacityCtrl),
-              child: new Container(
-                height: _size,
-                width: _size,
-                decoration: BoxDecoration(color: widget.color),
+              child: SizedBox.fromSize(
+                size: Size.square(_size),
+                child: _itemBuilder(i - 1),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+            ),
+          );
   }
 }

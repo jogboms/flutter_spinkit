@@ -6,12 +6,18 @@ import 'package:flutter/widgets.dart';
 class SpinKitPumpingHeart extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitPumpingHeart({
+  SpinKitPumpingHeart({
     Key key,
     @required this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitPumpingHeartState createState() => new _SpinKitPumpingHeartState();
@@ -44,12 +50,18 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
   Widget build(BuildContext context) {
     return new ScaleTransition(
       scale: _anim1,
-      child: Icon(
-        Icons.favorite,
-        color: widget.color,
-        size: widget.size,
-      ),
+      child: _itemBuilder(0),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : Icon(
+            Icons.favorite,
+            color: widget.color,
+            size: widget.size,
+          );
   }
 }
 

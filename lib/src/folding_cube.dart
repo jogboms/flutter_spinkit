@@ -3,12 +3,18 @@ import 'package:flutter/widgets.dart';
 class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitFoldingCube({
+  SpinKitFoldingCube({
     Key key,
     @required this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitFoldingCubeState createState() => new _SpinKitFoldingCubeState();
@@ -112,15 +118,24 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
             alignment: Alignment.centerLeft,
             child: new Opacity(
               opacity: 1.0 - (animation.value / 180.0),
-              child: new Container(
-                height: _size,
-                width: _size,
-                decoration: BoxDecoration(color: widget.color),
+              child: SizedBox.fromSize(
+                size: Size.square(_size / 4),
+                child: _itemBuilder(i - 1),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+            ),
+          );
   }
 }

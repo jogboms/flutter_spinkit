@@ -7,13 +7,19 @@ class SpinKitWave extends StatefulWidget {
   final Color color;
   final double size;
   final SpinKitWaveType type;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitWave({
+  SpinKitWave({
     Key key,
     @required this.color,
     this.type = SpinKitWaveType.start,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        super(key: key);
 
   @override
   _SpinKitWaveState createState() => new _SpinKitWaveState();
@@ -44,27 +50,27 @@ class _SpinKitWaveState extends State<SpinKitWave>
     List<Widget> _bars;
     if (widget.type == SpinKitWaveType.start) {
       _bars = [
-        _bar(-1.2),
-        _bar(-1.1),
-        _bar(-1.0),
-        _bar(-.9),
-        _bar(-.8),
+        _bar(0, -1.2),
+        _bar(1, -1.1),
+        _bar(2, -1.0),
+        _bar(3, -.9),
+        _bar(4, -.8),
       ];
     } else if (widget.type == SpinKitWaveType.end) {
       _bars = [
-        _bar(-.8),
-        _bar(-.9),
-        _bar(-1.0),
-        _bar(-1.1),
-        _bar(-1.2),
+        _bar(0, -.8),
+        _bar(1, -.9),
+        _bar(2, -1.0),
+        _bar(3, -1.1),
+        _bar(4, -1.2),
       ];
     } else if (widget.type == SpinKitWaveType.center) {
       _bars = [
-        _bar(-0.75),
-        _bar(-0.95),
-        _bar(-1.2),
-        _bar(-0.95),
-        _bar(-0.75),
+        _bar(0, -0.75),
+        _bar(1, -0.95),
+        _bar(2, -1.2),
+        _bar(3, -0.95),
+        _bar(4, -0.75),
       ];
     }
     return Center(
@@ -78,19 +84,29 @@ class _SpinKitWaveState extends State<SpinKitWave>
     );
   }
 
-  Widget _bar(double delay) {
+  Widget _bar(int index, double delay) {
     final _size = widget.size * 0.2;
     return new ScaleYWidget(
-      scaleY:
-          new DelayTween(begin: .4, end: 1.0, delay: delay).animate(_scaleCtrl),
-      child: new Container(
-        height: widget.size,
-        width: _size,
-        decoration: new BoxDecoration(
-          color: widget.color,
-        ),
+      scaleY: new DelayTween(
+        begin: .4,
+        end: 1.0,
+        delay: delay,
+      ).animate(_scaleCtrl),
+      child: SizedBox.fromSize(
+        size: Size(_size, widget.size),
+        child: _itemBuilder(index),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+            ),
+          );
   }
 }
 
