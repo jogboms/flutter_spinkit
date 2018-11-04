@@ -4,15 +4,22 @@ import 'package:flutter_spinkit/src/utils.dart';
 class SpinKitThreeBounce extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitThreeBounce({
+  SpinKitThreeBounce({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        assert(size != null),
+        super(key: key);
 
   @override
-  _SpinKitThreeBounceState createState() => new _SpinKitThreeBounceState();
+  _SpinKitThreeBounceState createState() => _SpinKitThreeBounceState();
 }
 
 class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
@@ -23,7 +30,7 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = new AnimationController(
+    _scaleCtrl = AnimationController(
       vsync: this,
       duration: _duration,
     )..repeat();
@@ -43,28 +50,35 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _circle(.0),
-            _circle(.2),
-            _circle(.4),
+            _circle(0, .0),
+            _circle(1, .2),
+            _circle(2, .4),
           ],
         ),
       ),
     );
   }
 
-  Widget _circle(double delay) {
+  Widget _circle(int index, double delay) {
     final _size = widget.size * 0.5;
-    return new ScaleTransition(
-      scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+    return ScaleTransition(
+      scale: DelayTween(begin: 0.0, end: 1.0, delay: delay)
           .animate(_scaleCtrl),
-      child: new Container(
-        height: _size,
-        width: _size,
-        decoration: new BoxDecoration(
-          shape: BoxShape.circle,
-          color: widget.color,
-        ),
+      child: SizedBox.fromSize(
+        size: Size.square(_size),
+        child: _itemBuilder(index),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+              shape: BoxShape.circle,
+            ),
+          );
   }
 }

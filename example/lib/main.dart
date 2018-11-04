@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import './showcase.dart';
 import './workspace.dart';
 
-void main() => runApp(new App());
+void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'SpinKit Demo',
       debugShowCheckedModeBanner: false,
-      theme: new ThemeData(
+      theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: new Scaffold(
+      home: Scaffold(
         body: SafeArea(
           child: Stack(
             children: <Widget>[

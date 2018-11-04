@@ -4,15 +4,22 @@ import 'package:flutter_spinkit/src/utils.dart';
 class SpinKitCircle extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitCircle({
+  SpinKitCircle({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        assert(size != null),
+        super(key: key);
 
   @override
-  _SpinKitCircleState createState() => new _SpinKitCircleState();
+  _SpinKitCircleState createState() => _SpinKitCircleState();
 }
 
 class _SpinKitCircleState extends State<SpinKitCircle>
@@ -22,7 +29,7 @@ class _SpinKitCircleState extends State<SpinKitCircle>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200))
       ..repeat();
   }
@@ -69,19 +76,26 @@ class _SpinKitCircleState extends State<SpinKitCircle>
         child: Align(
           alignment: Alignment.center,
           child: ScaleTransition(
-            scale: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+            scale: DelayTween(begin: 0.0, end: 1.0, delay: delay)
                 .animate(_controller),
-            child: Container(
-              width: _size,
-              height: _size,
+            child: _itemBuilder(i - 1, _size),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _itemBuilder(int index, double _size) {
+    return SizedBox.fromSize(
+      size: Size.square(_size),
+      child: widget.itemBuilder != null
+          ? widget.itemBuilder(context, index)
+          : DecoratedBox(
               decoration: BoxDecoration(
                 color: widget.color,
                 shape: BoxShape.circle,
               ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }

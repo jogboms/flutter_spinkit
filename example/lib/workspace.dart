@@ -5,12 +5,18 @@ class WorkSpace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.orangeAccent,
+      color: Colors.white,
       width: 300.0,
       height: 300.0,
-      child: SpinKitPouringHourglass(
-        color: Colors.white,
-        size: 100.0,
+      child: SpinKitFadingCircle(
+        itemBuilder: (_, int index) {
+          return DecoratedBox(
+            decoration: BoxDecoration(
+              color: index.isEven ? Colors.red : Colors.green,
+            ),
+          );
+        },
+        size: 120.0,
       ),
     );
   }

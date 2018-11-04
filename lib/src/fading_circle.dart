@@ -4,15 +4,22 @@ import 'package:flutter_spinkit/src/utils.dart';
 class SpinKitFadingCircle extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitFadingCircle({
+  SpinKitFadingCircle({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        assert(size != null),
+        super(key: key);
 
   @override
-  _SpinKitFadingCircleState createState() => new _SpinKitFadingCircleState();
+  _SpinKitFadingCircleState createState() => _SpinKitFadingCircleState();
 }
 
 class _SpinKitFadingCircleState extends State<SpinKitFadingCircle>
@@ -22,7 +29,7 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200))
       ..repeat();
   }
@@ -69,19 +76,26 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle>
         child: Align(
           alignment: Alignment.center,
           child: FadeTransition(
-            opacity: new DelayTween(begin: 0.0, end: 1.0, delay: delay)
+            opacity: DelayTween(begin: 0.0, end: 1.0, delay: delay)
                 .animate(_controller),
-            child: Container(
-              width: _size,
-              height: _size,
-              decoration: BoxDecoration(
-                color: widget.color,
-                shape: BoxShape.circle,
-              ),
+            child: SizedBox.fromSize(
+              size: Size.square(_size),
+              child: _itemBuilder(i - 1),
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+              shape: BoxShape.circle,
+            ),
+          );
   }
 }

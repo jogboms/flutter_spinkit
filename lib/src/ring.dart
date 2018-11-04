@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 
 class SpinKitRing extends StatefulWidget {
@@ -11,10 +12,13 @@ class SpinKitRing extends StatefulWidget {
     @required this.color,
     this.lineWidth = 7.0,
     this.size = 50.0,
-  }) : super(key: key);
+  })  : assert(color != null),
+        assert(lineWidth != null),
+        assert(size != null),
+        super(key: key);
 
   @override
-  _SpinKitRingState createState() => new _SpinKitRingState();
+  _SpinKitRingState createState() => _SpinKitRingState();
 }
 
 class _SpinKitRingState extends State<SpinKitRing>
@@ -25,26 +29,26 @@ class _SpinKitRingState extends State<SpinKitRing>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1500));
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.0, 1.0, curve: Curves.linear),
+        curve: Interval(0.0, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: -2 / 3, end: 1 / 2).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.5, 1.0, curve: Curves.linear),
+        curve: Interval(0.5, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation3 = Tween(begin: 0.25, end: 5 / 6).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.0, 1.0, curve: _MyCurve()),
+        curve: Interval(0.0, 1.0, curve: _MyCurve()),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -59,13 +63,13 @@ class _SpinKitRingState extends State<SpinKitRing>
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = new Matrix4.identity()
+    final Matrix4 transform = Matrix4.identity()
       ..rotateZ((_animation1.value) * 5 * pi / 6);
     return Center(
-      child: new Transform(
+      child: Transform(
         transform: transform,
         alignment: FractionalOffset.center,
-        child: new Container(
+        child: Container(
           height: widget.size,
           width: widget.size,
           child: CustomPaint(

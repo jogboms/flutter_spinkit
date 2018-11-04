@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+
 import 'package:flutter/widgets.dart';
 
 class SpinKitHourGlass extends StatefulWidget {
@@ -9,10 +10,12 @@ class SpinKitHourGlass extends StatefulWidget {
     Key key,
     @required this.color,
     this.size = 50.0,
-  }) : super(key: key);
+  })  : assert(color != null),
+        assert(size != null),
+        super(key: key);
 
   @override
-  _SpinKitHourGlassState createState() => new _SpinKitHourGlassState();
+  _SpinKitHourGlassState createState() => _SpinKitHourGlassState();
 }
 
 class _SpinKitHourGlassState extends State<SpinKitHourGlass>
@@ -23,12 +26,12 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1200));
     _animation1 = Tween(begin: 0.0, end: 8.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(0.0, 1.0, curve: Curves.easeOut),
+        curve: Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -43,14 +46,14 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = new Matrix4.identity()
+    final Matrix4 transform = Matrix4.identity()
       ..rotateZ((_animation1.value) * math.pi);
     return Center(
-      child: new Transform(
+      child: Transform(
         transform: transform,
         alignment: FractionalOffset.center,
         child: CustomPaint(
-          child: new Container(
+          child: Container(
             height: widget.size,
             width: widget.size,
           ),

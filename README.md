@@ -8,7 +8,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ```yaml
 dependencies:
-  flutter_spinkit: "^2.1.0"
+  flutter_spinkit: "^3.0.0"
 ```
 
 ### ⚡️ Import
@@ -25,6 +25,24 @@ SpinKitRotatingCircle(
   size: 50.0,
 );
 ```
+
+#### As from 3.0.0
+
+```dart
+SpinKitFadingCircle(
+  itemBuilder: (_, int index) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: index.isEven ? Colors.red : Colors.green,
+      ),
+    );
+  },
+);
+```
+
+#### Which produces
+
+<img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/itemBuilder.gif" width="100px">
 
 For more info, please, refer to the `showcase.dart` in the example.
 

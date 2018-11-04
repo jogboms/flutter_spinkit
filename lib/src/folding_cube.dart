@@ -3,15 +3,22 @@ import 'package:flutter/widgets.dart';
 class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitFoldingCube({
+  SpinKitFoldingCube({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        assert(size != null),
+        super(key: key);
 
   @override
-  _SpinKitFoldingCubeState createState() => new _SpinKitFoldingCubeState();
+  _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();
 }
 
 class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
@@ -23,7 +30,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
   @override
   void initState() {
     super.initState();
-    _rotateCtrl = new AnimationController(vsync: this, duration: _duration);
+    _rotateCtrl = AnimationController(vsync: this, duration: _duration);
 
     _rotateCtrl
       ..addStatusListener((status) {
@@ -36,28 +43,28 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
       });
 
     _rotate1 = Tween(begin: 0.0, end: 180.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.0, 0.25, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _rotate2 = Tween(begin: 0.0, end: 180.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.25, 0.5, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _rotate3 = Tween(begin: 0.0, end: 180.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.5, 0.75, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _rotate4 = Tween(begin: 0.0, end: 180.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _rotateCtrl,
         curve: Interval(0.75, 1.0, curve: Curves.easeIn),
       ),
@@ -97,7 +104,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
   Widget _cube(int i, {Animation<double> animation}) {
     final _size = widget.size * 0.5, _position = widget.size * .5;
 
-    final Matrix4 _tRotate = new Matrix4.identity()
+    final Matrix4 _tRotate = Matrix4.identity()
       ..rotateY(animation.value * 0.0174533);
 
     return Positioned.fill(
@@ -107,20 +114,29 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
         transform: Matrix4.rotationZ(90.0 * (i - 1) * 0.0174533),
         child: Align(
           alignment: Alignment.center,
-          child: new Transform(
+          child: Transform(
             transform: _tRotate,
             alignment: Alignment.centerLeft,
-            child: new Opacity(
+            child: Opacity(
               opacity: 1.0 - (animation.value / 180.0),
-              child: new Container(
-                height: _size,
-                width: _size,
-                decoration: BoxDecoration(color: widget.color),
+              child: SizedBox.fromSize(
+                size: Size.square(_size / 4),
+                child: _itemBuilder(i - 1),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : DecoratedBox(
+            decoration: BoxDecoration(
+              color: widget.color,
+            ),
+          );
   }
 }

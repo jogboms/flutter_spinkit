@@ -3,15 +3,25 @@ import 'package:flutter/material.dart';
 class SpinKitRipple extends StatefulWidget {
   final Color color;
   final double size;
+  final double borderWidth;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitRipple({
+  SpinKitRipple({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.borderWidth = 6.0,
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        assert(size != null),
+        assert(borderWidth != null),
+        super(key: key);
 
   @override
-  _SpinKitRippleState createState() => new _SpinKitRippleState();
+  _SpinKitRippleState createState() => _SpinKitRippleState();
 }
 
 class _SpinKitRippleState extends State<SpinKitRipple>
@@ -22,19 +32,19 @@ class _SpinKitRippleState extends State<SpinKitRipple>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1800))
       ..repeat();
 
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
         curve: Interval(0.0, 0.75, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: 0.0, end: 1.0).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
         curve: Interval(0.25, 1.0, curve: Curves.linear),
       ),
@@ -54,34 +64,35 @@ class _SpinKitRippleState extends State<SpinKitRipple>
         children: <Widget>[
           Opacity(
             opacity: 1.0 - _animation1.value,
-            child: new Transform.scale(
+            child: Transform.scale(
               scale: _animation1.value,
-              child: new Container(
-                height: widget.size,
-                width: widget.size,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: widget.color, width: 10.0),
-                ),
-              ),
+              child: _itemBuilder(0),
             ),
           ),
           Opacity(
-            opacity: 1.0 - _animation1.value,
-            child: new Transform.scale(
+            opacity: 1.0 - _animation2.value,
+            child: Transform.scale(
               scale: _animation2.value,
-              child: new Container(
-                height: widget.size,
-                width: widget.size,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: widget.color, width: 10.0),
-                ),
-              ),
+              child: _itemBuilder(1),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _itemBuilder(int index) {
+    return SizedBox.fromSize(
+      size: Size.square(widget.size),
+      child: widget.itemBuilder != null
+          ? widget.itemBuilder(context, index)
+          : DecoratedBox(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border:
+                    Border.all(color: widget.color, width: widget.borderWidth),
+              ),
+            ),
     );
   }
 }

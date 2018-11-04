@@ -4,18 +4,18 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 class ShowCase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         title: Text("SpinKit", style: TextStyle(fontSize: 24.0)),
       ),
       body: SingleChildScrollView(
-        child: new Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 32.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitRotatingCircle(color: Colors.white),
@@ -24,7 +24,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitPumpingHeart(color: Colors.white),
@@ -33,7 +33,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
@@ -42,7 +42,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitThreeBounce(color: Colors.white),
@@ -52,7 +52,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitCircle(color: Colors.white),
@@ -62,7 +62,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitFadingCube(color: Colors.white),
@@ -71,7 +71,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitRing(color: Colors.white),
@@ -80,7 +80,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitFadingGrid(color: Colors.white),
@@ -90,7 +90,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitSpinningCircle(color: Colors.white),
@@ -100,7 +100,7 @@ class ShowCase extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 48.0),
-            new Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SpinKitPouringHourglass(color: Colors.white),

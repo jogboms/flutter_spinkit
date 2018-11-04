@@ -6,15 +6,22 @@ import 'package:flutter/widgets.dart';
 class SpinKitPumpingHeart extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitPumpingHeart({
+  SpinKitPumpingHeart({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        assert(size != null),
+        super(key: key);
 
   @override
-  _SpinKitPumpingHeartState createState() => new _SpinKitPumpingHeartState();
+  _SpinKitPumpingHeartState createState() => _SpinKitPumpingHeartState();
 }
 
 class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
@@ -25,12 +32,13 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
-        vsync: this, duration: Duration(milliseconds: 2400))
-      ..repeat();
-    _anim1 = Tween(begin: 1.0, end: 1.25).animate(new CurvedAnimation(
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 2400),
+    )..repeat();
+    _anim1 = Tween(begin: 1.0, end: 1.25).animate(CurvedAnimation(
       parent: _controller,
-      curve: new Interval(0.0, 1.0, curve: MyCurve()),
+      curve: Interval(0.0, 1.0, curve: MyCurve()),
     ));
   }
 
@@ -42,14 +50,20 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
 
   @override
   Widget build(BuildContext context) {
-    return new ScaleTransition(
+    return ScaleTransition(
       scale: _anim1,
-      child: Icon(
-        Icons.favorite,
-        color: widget.color,
-        size: widget.size,
-      ),
+      child: _itemBuilder(0),
     );
+  }
+
+  Widget _itemBuilder(int index) {
+    return widget.itemBuilder != null
+        ? widget.itemBuilder(context, index)
+        : Icon(
+            Icons.favorite,
+            color: widget.color,
+            size: widget.size,
+          );
   }
 }
 

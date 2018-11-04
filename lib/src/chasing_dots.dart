@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 class SpinKitChasingDots extends StatefulWidget {
   final Color color;
   final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
-  const SpinKitChasingDots({
+  SpinKitChasingDots({
     Key key,
-    @required this.color,
+    this.color,
     this.size = 50.0,
-  }) : super(key: key);
+    this.itemBuilder,
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
+            'You should specify either a itemBuilder or a color'),
+        assert(size != null),
+        super(key: key);
 
   @override
-  _SpinKitChasingDotsState createState() => new _SpinKitChasingDotsState();
+  _SpinKitChasingDotsState createState() => _SpinKitChasingDotsState();
 }
 
 class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
@@ -23,11 +30,11 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = new AnimationController(vsync: this, duration: _duration);
-    _rotateCtrl = new AnimationController(vsync: this, duration: _duration);
+    _scaleCtrl = AnimationController(vsync: this, duration: _duration);
+    _rotateCtrl = AnimationController(vsync: this, duration: _duration);
 
     _scale = Tween(begin: -1.0, end: 1.0).animate(
-      new CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
+      CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
     )
       ..addListener(() => setState(() => <String, void>{}))
       ..addStatusListener((status) {
@@ -39,7 +46,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
       });
 
     _rotate = Tween(begin: 0.0, end: 360.0).animate(
-      new CurvedAnimation(parent: _rotateCtrl, curve: Curves.linear),
+      CurvedAnimation(parent: _rotateCtrl, curve: Curves.linear),
     )..addListener(() => setState(() => <String, void>{}));
 
     _rotateCtrl.repeat();
@@ -64,11 +71,11 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
             children: <Widget>[
               Positioned(
                 top: 0.0,
-                child: _circle(1.0 - _scale.value.abs()),
+                child: _circle(1.0 - _scale.value.abs(), 0),
               ),
               Positioned(
                 bottom: 0.0,
-                child: _circle(_scale.value.abs()),
+                child: _circle(_scale.value.abs(), 1),
               ),
             ],
           ),
@@ -77,19 +84,25 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
     );
   }
 
-  Widget _circle(double scale) {
+  Widget _itemBuilder(int index) {
     final _size = widget.size * 0.6;
+    return SizedBox.fromSize(
+      size: Size.square(_size),
+      child: widget.itemBuilder != null
+          ? widget.itemBuilder(context, index)
+          : DecoratedBox(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: widget.color,
+              ),
+            ),
+    );
+  }
 
-    return new Transform.scale(
+  Widget _circle(double scale, int index) {
+    return Transform.scale(
       scale: scale,
-      child: new Container(
-        height: _size,
-        width: _size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: widget.color,
-        ),
-      ),
+      child: _itemBuilder(index),
     );
   }
 }
