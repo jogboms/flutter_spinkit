@@ -49,8 +49,8 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
