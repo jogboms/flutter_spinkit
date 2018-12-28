@@ -2,10 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitThreeBounce extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitThreeBounce({
     Key key,
     this.color,
@@ -17,6 +13,10 @@ class SpinKitThreeBounce extends StatefulWidget {
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
   @override
   _SpinKitThreeBounceState createState() => _SpinKitThreeBounceState();
@@ -62,8 +62,7 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
   Widget _circle(int index, double delay) {
     final _size = widget.size * 0.5;
     return ScaleTransition(
-      scale: DelayTween(begin: 0.0, end: 1.0, delay: delay)
-          .animate(_scaleCtrl),
+      scale: DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_scaleCtrl),
       child: SizedBox.fromSize(
         size: Size.square(_size),
         child: _itemBuilder(index),

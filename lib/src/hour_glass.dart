@@ -3,9 +3,6 @@ import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 
 class SpinKitHourGlass extends StatefulWidget {
-  final Color color;
-  final double size;
-
   const SpinKitHourGlass({
     Key key,
     @required this.color,
@@ -13,6 +10,9 @@ class SpinKitHourGlass extends StatefulWidget {
   })  : assert(color != null),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
 
   @override
   _SpinKitHourGlassState createState() => _SpinKitHourGlassState();
@@ -53,9 +53,8 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
         transform: transform,
         alignment: FractionalOffset.center,
         child: CustomPaint(
-          child: Container(
-            height: widget.size,
-            width: widget.size,
+          child: SizedBox.fromSize(
+            size: Size.square(widget.size),
           ),
           painter: _HourGlassPainter(color: widget.color),
         ),
@@ -65,13 +64,13 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
 }
 
 class _HourGlassPainter extends CustomPainter {
-  Paint p = Paint();
-  final double weight;
-
   _HourGlassPainter({this.weight = 90.0, Color color}) {
     p.color = color;
     p.strokeWidth = 1.0;
   }
+
+  Paint p = Paint();
+  final double weight;
 
   @override
   void paint(Canvas canvas, Size size) {

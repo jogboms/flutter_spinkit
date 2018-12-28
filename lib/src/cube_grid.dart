@@ -1,10 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitCubeGrid extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitCubeGrid({
     Key key,
     this.color,
@@ -14,8 +10,12 @@ class SpinKitCubeGrid extends StatefulWidget {
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-				assert(size != null),
+        assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
   @override
   _SpinKitCubeGridState createState() => _SpinKitCubeGridState();
@@ -87,9 +87,8 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: widget.size,
-      width: widget.size,
+    return SizedBox.fromSize(
+      size: Size.square(widget.size),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,

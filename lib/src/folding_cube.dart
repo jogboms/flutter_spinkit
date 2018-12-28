@@ -1,10 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitFoldingCube({
     Key key,
     this.color,
@@ -16,6 +12,10 @@ class SpinKitFoldingCube extends StatefulWidget {
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
   @override
   _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();

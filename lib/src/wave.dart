@@ -4,11 +4,6 @@ import 'package:flutter_spinkit/src/utils.dart';
 enum SpinKitWaveType { start, end, center }
 
 class SpinKitWave extends StatefulWidget {
-  final Color color;
-  final double size;
-  final SpinKitWaveType type;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitWave({
     Key key,
     this.color,
@@ -22,6 +17,11 @@ class SpinKitWave extends StatefulWidget {
         assert(type != null),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final SpinKitWaveType type;
+  final IndexedWidgetBuilder itemBuilder;
 
   @override
   _SpinKitWaveState createState() => _SpinKitWaveState();
@@ -113,9 +113,6 @@ class _SpinKitWaveState extends State<SpinKitWave>
 }
 
 class ScaleYWidget extends AnimatedWidget {
-  final Widget child;
-  final Alignment alignment;
-
   const ScaleYWidget({
     Key key,
     @required Animation<double> scaleY,
@@ -123,13 +120,15 @@ class ScaleYWidget extends AnimatedWidget {
     this.alignment = Alignment.center,
   }) : super(key: key, listenable: scaleY);
 
+  final Widget child;
+  final Alignment alignment;
+
   Animation<double> get scaleY => listenable;
 
   @override
   Widget build(BuildContext context) {
     final double scaleValue = scaleY.value;
-    final Matrix4 transform = Matrix4.identity()
-      ..scale(1.0, scaleValue, 1.0);
+    final Matrix4 transform = Matrix4.identity()..scale(1.0, scaleValue, 1.0);
     return Transform(
       transform: transform,
       alignment: alignment,

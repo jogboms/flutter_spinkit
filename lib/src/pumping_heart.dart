@@ -4,10 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitPumpingHeart({
     Key key,
     this.color,
@@ -19,6 +15,10 @@ class SpinKitPumpingHeart extends StatefulWidget {
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
   @override
   _SpinKitPumpingHeartState createState() => _SpinKitPumpingHeartState();

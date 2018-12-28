@@ -3,10 +3,6 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 
 class SpinKitRing extends StatefulWidget {
-  final Color color;
-  final double size;
-  final double lineWidth;
-
   const SpinKitRing({
     Key key,
     @required this.color,
@@ -16,6 +12,10 @@ class SpinKitRing extends StatefulWidget {
         assert(lineWidth != null),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final double lineWidth;
 
   @override
   _SpinKitRingState createState() => _SpinKitRingState();
@@ -69,9 +69,8 @@ class _SpinKitRingState extends State<SpinKitRing>
       child: Transform(
         transform: transform,
         alignment: FractionalOffset.center,
-        child: Container(
-          height: widget.size,
-          width: widget.size,
+        child: SizedBox.fromSize(
+          size: Size.square(widget.size),
           child: CustomPaint(
             foregroundPainter: RingPainter(
               paintWidth: widget.lineWidth,
@@ -87,12 +86,6 @@ class _SpinKitRingState extends State<SpinKitRing>
 }
 
 class RingPainter extends CustomPainter {
-  final double paintWidth;
-  final Paint trackPaint;
-  final Color trackColor;
-  final double progressPercent;
-  final double startAngle;
-
   RingPainter({
     this.paintWidth,
     this.progressPercent,
@@ -103,6 +96,12 @@ class RingPainter extends CustomPainter {
           ..style = PaintingStyle.stroke
           ..strokeWidth = paintWidth
           ..strokeCap = StrokeCap.square;
+
+  final double paintWidth;
+  final Paint trackPaint;
+  final Color trackColor;
+  final double progressPercent;
+  final double startAngle;
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SpinKitRipple extends StatefulWidget {
-  final Color color;
-  final double size;
-  final double borderWidth;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitRipple({
     Key key,
     this.color,
@@ -20,6 +15,11 @@ class SpinKitRipple extends StatefulWidget {
         assert(borderWidth != null),
         super(key: key);
 
+  final Color color;
+  final double size;
+  final double borderWidth;
+  final IndexedWidgetBuilder itemBuilder;
+
   @override
   _SpinKitRippleState createState() => _SpinKitRippleState();
 }
@@ -32,9 +32,9 @@ class _SpinKitRippleState extends State<SpinKitRipple>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1800))
-      ..repeat();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 1800))
+          ..repeat();
 
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(

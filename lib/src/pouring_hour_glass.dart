@@ -4,9 +4,6 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 
 class SpinKitPouringHourglass extends StatefulWidget {
-  final double size;
-  final Color color;
-
   const SpinKitPouringHourglass({
     Key key,
     @required this.color,
@@ -14,6 +11,9 @@ class SpinKitPouringHourglass extends StatefulWidget {
   })  : assert(color != null),
         assert(size != null),
         super(key: key);
+
+  final double size;
+  final Color color;
 
   @override
   _SpinKitPouringHourglassState createState() =>
@@ -58,10 +58,8 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
     return Center(
       child: RotationTransition(
         turns: _rotationAnimation,
-        child: Container(
-          // to avoid painting outside of the box
-          width: widget.size * math.sqrt1_2,
-          height: widget.size * math.sqrt1_2,
+        child: SizedBox.fromSize(
+          size: Size.square(widget.size * math.sqrt1_2),
           child: CustomPaint(
             painter: _HourGlassPaint(
               poured: _pouringAnimation.value,
@@ -77,12 +75,6 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
 }
 
 class _HourGlassPaint extends CustomPainter {
-  final double poured;
-
-  final Paint _paint;
-
-  final Paint _powderPaint;
-
   _HourGlassPaint({
     this.poured,
     @required Color color,
@@ -92,6 +84,10 @@ class _HourGlassPaint extends CustomPainter {
         _powderPaint = Paint()
           ..style = PaintingStyle.fill
           ..color = color;
+
+  final double poured;
+  final Paint _paint;
+  final Paint _powderPaint;
 
   @override
   void paint(Canvas canvas, Size size) {

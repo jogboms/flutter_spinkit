@@ -3,11 +3,6 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 
 class SpinKitSpinningCircle extends StatefulWidget {
-  final Color color;
-  final BoxShape shape;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitSpinningCircle({
     Key key,
     this.color,
@@ -22,9 +17,13 @@ class SpinKitSpinningCircle extends StatefulWidget {
         assert(size != null),
         super(key: key);
 
+  final Color color;
+  final BoxShape shape;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+
   @override
-  _SpinKitSpinningCircleState createState() =>
-      _SpinKitSpinningCircleState();
+  _SpinKitSpinningCircleState createState() => _SpinKitSpinningCircleState();
 }
 
 class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>

@@ -1,10 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitRotatingCircle extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitRotatingCircle({
     Key key,
     this.color,
@@ -17,9 +13,12 @@ class SpinKitRotatingCircle extends StatefulWidget {
         assert(size != null),
         super(key: key);
 
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+
   @override
-  _SpinKitRotatingCircleState createState() =>
-      _SpinKitRotatingCircleState();
+  _SpinKitRotatingCircleState createState() => _SpinKitRotatingCircleState();
 }
 
 class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle>

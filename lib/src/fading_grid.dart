@@ -2,11 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingGrid extends StatefulWidget {
-  final Color color;
-  final BoxShape shape;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitFadingGrid({
     Key key,
     this.color,
@@ -21,6 +16,11 @@ class SpinKitFadingGrid extends StatefulWidget {
         assert(size != null),
         super(key: key);
 
+  final Color color;
+  final BoxShape shape;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+
   @override
   _SpinKitFadingGridState createState() => _SpinKitFadingGridState();
 }
@@ -32,9 +32,9 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200))
-      ..repeat();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 1200))
+          ..repeat();
   }
 
   @override
@@ -45,9 +45,8 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: widget.size,
-      width: widget.size,
+    return SizedBox.fromSize(
+      size: Size.square(widget.size),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,

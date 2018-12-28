@@ -1,10 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitRotatingPlain extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitRotatingPlain({
     Key key,
     this.color,
@@ -16,6 +12,10 @@ class SpinKitRotatingPlain extends StatefulWidget {
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
   @override
   _SpinKitRotatingPlainState createState() => _SpinKitRotatingPlainState();

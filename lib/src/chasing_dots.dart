@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SpinKitChasingDots extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitChasingDots({
     Key key,
     this.color,
@@ -16,6 +12,10 @@ class SpinKitChasingDots extends StatefulWidget {
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
 
   @override
   _SpinKitChasingDotsState createState() => _SpinKitChasingDotsState();
