@@ -3,19 +3,21 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 
 class SpinKitRing extends StatefulWidget {
-  final Color color;
-  final double size;
-  final double lineWidth;
-
   const SpinKitRing({
     Key key,
     @required this.color,
     this.lineWidth = 7.0,
     this.size = 50.0,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(color != null),
         assert(lineWidth != null),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final double lineWidth;
+  final Duration duration;
 
   @override
   _SpinKitRingState createState() => _SpinKitRingState();
@@ -29,26 +31,25 @@ class _SpinKitRingState extends State<SpinKitRing>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1500));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 1.0, curve: Curves.linear),
+        curve: const Interval(0.0, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: -2 / 3, end: 1 / 2).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.5, 1.0, curve: Curves.linear),
+        curve: const Interval(0.5, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation3 = Tween(begin: 0.25, end: 5 / 6).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 1.0, curve: _MyCurve()),
+        curve: const Interval(0.0, 1.0, curve: _MyCurve()),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -69,9 +70,8 @@ class _SpinKitRingState extends State<SpinKitRing>
       child: Transform(
         transform: transform,
         alignment: FractionalOffset.center,
-        child: Container(
-          height: widget.size,
-          width: widget.size,
+        child: SizedBox.fromSize(
+          size: Size.square(widget.size),
           child: CustomPaint(
             foregroundPainter: RingPainter(
               paintWidth: widget.lineWidth,
@@ -87,12 +87,6 @@ class _SpinKitRingState extends State<SpinKitRing>
 }
 
 class RingPainter extends CustomPainter {
-  final double paintWidth;
-  final Paint trackPaint;
-  final Color trackColor;
-  final double progressPercent;
-  final double startAngle;
-
   RingPainter({
     this.paintWidth,
     this.progressPercent,
@@ -104,6 +98,12 @@ class RingPainter extends CustomPainter {
           ..strokeWidth = paintWidth
           ..strokeCap = StrokeCap.square;
 
+  final double paintWidth;
+  final Paint trackPaint;
+  final Color trackColor;
+  final double progressPercent;
+  final double startAngle;
+
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
@@ -112,14 +112,15 @@ class RingPainter extends CustomPainter {
     final progressAngle = 2 * pi * progressPercent;
 
     canvas.drawArc(
-        Rect.fromCircle(
-          center: center,
-          radius: radius,
-        ),
-        startAngle,
-        progressAngle,
-        false,
-        trackPaint);
+      Rect.fromCircle(
+        center: center,
+        radius: radius,
+      ),
+      startAngle,
+      progressAngle,
+      false,
+      trackPaint,
+    );
   }
 
   @override
@@ -129,6 +130,8 @@ class RingPainter extends CustomPainter {
 }
 
 class _MyCurve extends Curve {
+  const _MyCurve();
+
   @override
   double transform(double t) {
     if (t <= 0.5) {

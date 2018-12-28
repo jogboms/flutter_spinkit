@@ -3,17 +3,13 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 
 class SpinKitSpinningCircle extends StatefulWidget {
-  final Color color;
-  final BoxShape shape;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitSpinningCircle({
     Key key,
     this.color,
     this.shape = BoxShape.circle,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -22,9 +18,14 @@ class SpinKitSpinningCircle extends StatefulWidget {
         assert(size != null),
         super(key: key);
 
+  final Color color;
+  final BoxShape shape;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
+
   @override
-  _SpinKitSpinningCircleState createState() =>
-      _SpinKitSpinningCircleState();
+  _SpinKitSpinningCircleState createState() => _SpinKitSpinningCircleState();
 }
 
 class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
@@ -35,12 +36,11 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 7.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 1.0, curve: Curves.easeOut),
+        curve: const Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 

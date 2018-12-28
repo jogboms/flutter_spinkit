@@ -3,16 +3,18 @@ import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 
 class SpinKitHourGlass extends StatefulWidget {
-  final Color color;
-  final double size;
-
   const SpinKitHourGlass({
     Key key,
     @required this.color,
     this.size = 50.0,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(color != null),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final Duration duration;
 
   @override
   _SpinKitHourGlassState createState() => _SpinKitHourGlassState();
@@ -26,12 +28,11 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 8.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 1.0, curve: Curves.easeOut),
+        curve: const Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -53,9 +54,8 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
         transform: transform,
         alignment: FractionalOffset.center,
         child: CustomPaint(
-          child: Container(
-            height: widget.size,
-            width: widget.size,
+          child: SizedBox.fromSize(
+            size: Size.square(widget.size),
           ),
           painter: _HourGlassPainter(color: widget.color),
         ),
@@ -65,13 +65,13 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
 }
 
 class _HourGlassPainter extends CustomPainter {
-  Paint p = Paint();
-  final double weight;
-
   _HourGlassPainter({this.weight = 90.0, Color color}) {
     p.color = color;
     p.strokeWidth = 1.0;
   }
+
+  Paint p = Paint();
+  final double weight;
 
   @override
   void paint(Canvas canvas, Size size) {

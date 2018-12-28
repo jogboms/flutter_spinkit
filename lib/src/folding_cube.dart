@@ -1,21 +1,23 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitFoldingCube({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 2400),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();
@@ -25,12 +27,11 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
     with SingleTickerProviderStateMixin {
   AnimationController _rotateCtrl;
   Animation<double> _rotate1, _rotate2, _rotate3, _rotate4;
-  final _duration = const Duration(milliseconds: 2400);
 
   @override
   void initState() {
     super.initState();
-    _rotateCtrl = AnimationController(vsync: this, duration: _duration);
+    _rotateCtrl = AnimationController(vsync: this, duration: widget.duration);
 
     _rotateCtrl
       ..addStatusListener((status) {
@@ -45,28 +46,28 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
     _rotate1 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _rotateCtrl,
-        curve: Interval(0.0, 0.25, curve: Curves.easeIn),
+        curve: const Interval(0.0, 0.25, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _rotate2 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _rotateCtrl,
-        curve: Interval(0.25, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0.25, 0.5, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _rotate3 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _rotateCtrl,
-        curve: Interval(0.5, 0.75, curve: Curves.easeIn),
+        curve: const Interval(0.5, 0.75, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _rotate4 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _rotateCtrl,
-        curve: Interval(0.75, 1.0, curve: Curves.easeIn),
+        curve: const Interval(0.75, 1.0, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 

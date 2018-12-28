@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SpinKitRipple extends StatefulWidget {
-  final Color color;
-  final double size;
-  final double borderWidth;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitRipple({
     Key key,
     this.color,
     this.size = 50.0,
     this.borderWidth = 6.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1800),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -19,6 +15,12 @@ class SpinKitRipple extends StatefulWidget {
         assert(size != null),
         assert(borderWidth != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final double borderWidth;
+  final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitRippleState createState() => _SpinKitRippleState();
@@ -32,21 +34,20 @@ class _SpinKitRippleState extends State<SpinKitRipple>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1800))
+    _controller = AnimationController(vsync: this, duration: widget.duration)
       ..repeat();
 
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 0.75, curve: Curves.linear),
+        curve: const Interval(0.0, 0.75, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.25, 1.0, curve: Curves.linear),
+        curve: const Interval(0.25, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
   }

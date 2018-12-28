@@ -2,17 +2,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingFour extends StatefulWidget {
-  final Color color;
-  final BoxShape shape;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitFadingFour({
     Key key,
     this.color,
     this.shape = BoxShape.circle,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -20,6 +16,12 @@ class SpinKitFadingFour extends StatefulWidget {
         assert(shape != null),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final BoxShape shape;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitFadingFourState createState() => _SpinKitFadingFourState();
@@ -32,8 +34,7 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200))
+    _controller = AnimationController(vsync: this, duration: widget.duration)
       ..repeat();
   }
 

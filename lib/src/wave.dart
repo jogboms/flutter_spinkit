@@ -4,17 +4,13 @@ import 'package:flutter_spinkit/src/utils.dart';
 enum SpinKitWaveType { start, end, center }
 
 class SpinKitWave extends StatefulWidget {
-  final Color color;
-  final double size;
-  final SpinKitWaveType type;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitWave({
     Key key,
     this.color,
     this.type = SpinKitWaveType.start,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -23,6 +19,12 @@ class SpinKitWave extends StatefulWidget {
         assert(size != null),
         super(key: key);
 
+  final Color color;
+  final double size;
+  final SpinKitWaveType type;
+  final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
+
   @override
   _SpinKitWaveState createState() => _SpinKitWaveState();
 }
@@ -30,15 +32,12 @@ class SpinKitWave extends StatefulWidget {
 class _SpinKitWaveState extends State<SpinKitWave>
     with SingleTickerProviderStateMixin {
   AnimationController _scaleCtrl;
-  final _duration = const Duration(milliseconds: 1200);
 
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = AnimationController(
-      vsync: this,
-      duration: _duration,
-    )..repeat();
+    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
+      ..repeat();
   }
 
   @override
@@ -113,9 +112,6 @@ class _SpinKitWaveState extends State<SpinKitWave>
 }
 
 class ScaleYWidget extends AnimatedWidget {
-  final Widget child;
-  final Alignment alignment;
-
   const ScaleYWidget({
     Key key,
     @required Animation<double> scaleY,
@@ -123,13 +119,15 @@ class ScaleYWidget extends AnimatedWidget {
     this.alignment = Alignment.center,
   }) : super(key: key, listenable: scaleY);
 
+  final Widget child;
+  final Alignment alignment;
+
   Animation<double> get scaleY => listenable;
 
   @override
   Widget build(BuildContext context) {
     final double scaleValue = scaleY.value;
-    final Matrix4 transform = Matrix4.identity()
-      ..scale(1.0, scaleValue, 1.0);
+    final Matrix4 transform = Matrix4.identity()..scale(1.0, scaleValue, 1.0);
     return Transform(
       transform: transform,
       alignment: alignment,

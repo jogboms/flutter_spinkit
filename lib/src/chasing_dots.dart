@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
 class SpinKitChasingDots extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitChasingDots({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 2000),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitChasingDotsState createState() => _SpinKitChasingDotsState();
@@ -25,13 +27,12 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
     with TickerProviderStateMixin {
   AnimationController _scaleCtrl, _rotateCtrl;
   Animation<double> _scale, _rotate;
-  final _duration = const Duration(milliseconds: 2000);
 
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = AnimationController(vsync: this, duration: _duration);
-    _rotateCtrl = AnimationController(vsync: this, duration: _duration);
+    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration);
+    _rotateCtrl = AnimationController(vsync: this, duration: widget.duration);
 
     _scale = Tween(begin: -1.0, end: 1.0).animate(
       CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),

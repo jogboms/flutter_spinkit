@@ -2,21 +2,23 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitCircle extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitCircle({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitCircleState createState() => _SpinKitCircleState();
@@ -29,8 +31,7 @@ class _SpinKitCircleState extends State<SpinKitCircle>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200))
+    _controller = AnimationController(vsync: this, duration: widget.duration)
       ..repeat();
   }
 

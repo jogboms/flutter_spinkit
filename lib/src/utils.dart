@@ -3,13 +3,13 @@ import 'dart:math' as math show sin, pi;
 import 'package:flutter/widgets.dart';
 
 class DelayTween extends Tween<double> {
-  final double delay;
-
   DelayTween({
     double begin,
     double end,
     this.delay,
   }) : super(begin: begin, end: end);
+
+  final double delay;
 
   @override
   double lerp(double t) {
@@ -21,13 +21,13 @@ class DelayTween extends Tween<double> {
 }
 
 class AngleDelayTween extends Tween<double> {
-  final double delay;
-
   AngleDelayTween({
     double begin,
     double end,
     this.delay,
   }) : super(begin: begin, end: end);
+
+  final double delay;
 
   @override
   double lerp(double t) => super.lerp(math.sin((t - delay) * math.pi * 0.5));

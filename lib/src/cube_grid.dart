@@ -1,21 +1,23 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitCubeGrid extends StatefulWidget {
-  final Color color;
-  final double size;
-  final IndexedWidgetBuilder itemBuilder;
-
   SpinKitCubeGrid({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-				assert(size != null),
+        assert(size != null),
         super(key: key);
+
+  final Color color;
+  final double size;
+  final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitCubeGridState createState() => _SpinKitCubeGridState();
@@ -29,40 +31,39 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
     _anim1 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.1, 0.6, curve: Curves.easeIn),
+        curve: const Interval(0.1, 0.6, curve: Curves.easeIn),
       ),
     );
 
     _anim2 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.2, 0.7, curve: Curves.easeIn),
+        curve: const Interval(0.2, 0.7, curve: Curves.easeIn),
       ),
     );
 
     _anim3 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.3, 0.8, curve: Curves.easeIn),
+        curve: const Interval(0.3, 0.8, curve: Curves.easeIn),
       ),
     );
 
     _anim4 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.4, 0.9, curve: Curves.easeIn),
+        curve: const Interval(0.4, 0.9, curve: Curves.easeIn),
       ),
     );
 
     _anim5 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.5, 1.0, curve: Curves.easeIn),
+        curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
       ),
     );
 
@@ -87,9 +88,8 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: widget.size,
-      width: widget.size,
+    return SizedBox.fromSize(
+      size: Size.square(widget.size),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
