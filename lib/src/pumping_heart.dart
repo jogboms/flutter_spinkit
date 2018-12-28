@@ -38,7 +38,7 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
       ..repeat();
     _anim1 = Tween(begin: 1.0, end: 1.25).animate(CurvedAnimation(
       parent: _controller,
-      curve: Interval(0.0, 1.0, curve: MyCurve()),
+      curve: const Interval(0.0, 1.0, curve: MyCurve()),
     ));
   }
 
@@ -68,6 +68,8 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
 }
 
 class MyCurve extends Curve {
+  const MyCurve();
+
   @override
   double transform(double t) {
     if (t >= 0.0 && t < 0.22) {

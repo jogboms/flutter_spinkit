@@ -35,21 +35,21 @@ class _SpinKitRingState extends State<SpinKitRing>
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 1.0, curve: Curves.linear),
+        curve: const Interval(0.0, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: -2 / 3, end: 1 / 2).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.5, 1.0, curve: Curves.linear),
+        curve: const Interval(0.5, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation3 = Tween(begin: 0.25, end: 5 / 6).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 1.0, curve: _MyCurve()),
+        curve: const Interval(0.0, 1.0, curve: _MyCurve()),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -112,14 +112,15 @@ class RingPainter extends CustomPainter {
     final progressAngle = 2 * pi * progressPercent;
 
     canvas.drawArc(
-        Rect.fromCircle(
-          center: center,
-          radius: radius,
-        ),
-        startAngle,
-        progressAngle,
-        false,
-        trackPaint);
+      Rect.fromCircle(
+        center: center,
+        radius: radius,
+      ),
+      startAngle,
+      progressAngle,
+      false,
+      trackPaint,
+    );
   }
 
   @override
@@ -129,6 +130,8 @@ class RingPainter extends CustomPainter {
 }
 
 class _MyCurve extends Curve {
+  const _MyCurve();
+
   @override
   double transform(double t) {
     if (t <= 0.5) {

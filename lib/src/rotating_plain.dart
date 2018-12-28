@@ -36,14 +36,14 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
     _animation1 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.5, 1.0, curve: Curves.easeOut),
+        curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 

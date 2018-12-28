@@ -35,35 +35,35 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
     _anim1 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.1, 0.6, curve: Curves.easeIn),
+        curve: const Interval(0.1, 0.6, curve: Curves.easeIn),
       ),
     );
 
     _anim2 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.2, 0.7, curve: Curves.easeIn),
+        curve: const Interval(0.2, 0.7, curve: Curves.easeIn),
       ),
     );
 
     _anim3 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.3, 0.8, curve: Curves.easeIn),
+        curve: const Interval(0.3, 0.8, curve: Curves.easeIn),
       ),
     );
 
     _anim4 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.4, 0.9, curve: Curves.easeIn),
+        curve: const Interval(0.4, 0.9, curve: Curves.easeIn),
       ),
     );
 
     _anim5 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.5, 1.0, curve: Curves.easeIn),
+        curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
       ),
     );
 

@@ -40,7 +40,7 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
     _animation1 = Tween(begin: 0.0, end: 7.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 1.0, curve: Curves.easeOut),
+        curve: const Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 

@@ -35,7 +35,7 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 1.0, curve: Curves.linear),
+        curve: const Interval(0.0, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 

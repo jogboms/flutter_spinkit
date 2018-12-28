@@ -38,12 +38,12 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
     );
     _pouringAnimation = CurvedAnimation(
       parent: _controller,
-      curve: Interval(0.0, 0.9),
+      curve: const Interval(0.0, 0.9),
     )..addListener(_repaint);
     _rotationAnimation = Tween(begin: 0.0, end: 0.5).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.9, 1.0, curve: Curves.fastOutSlowIn),
+        curve: const Interval(0.9, 1.0, curve: Curves.fastOutSlowIn),
       ),
     )..addListener(_repaint);
     _controller.repeat();

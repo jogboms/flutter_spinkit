@@ -40,28 +40,28 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
     _translate1 = Tween(begin: 0.0, end: _offset).animate(
       CurvedAnimation(
         parent: _translateCtrl,
-        curve: Interval(0.0, 0.25, curve: Curves.easeInOut),
+        curve: const Interval(0.0, 0.25, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _translate2 = Tween(begin: 0.0, end: _offset).animate(
       CurvedAnimation(
         parent: _translateCtrl,
-        curve: Interval(0.25, 0.5, curve: Curves.easeInOut),
+        curve: const Interval(0.25, 0.5, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _translate3 = Tween(begin: 0.0, end: -_offset).animate(
       CurvedAnimation(
         parent: _translateCtrl,
-        curve: Interval(0.5, 0.75, curve: Curves.easeInOut),
+        curve: const Interval(0.5, 0.75, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _translate4 = Tween(begin: 0.0, end: -_offset).animate(
       CurvedAnimation(
         parent: _translateCtrl,
-        curve: Interval(0.75, 1.0, curve: Curves.easeInOut),
+        curve: const Interval(0.75, 1.0, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
@@ -74,28 +74,28 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
     _scale1 = Tween(begin: 1.0, end: 0.5).animate(
       CurvedAnimation(
         parent: _scaleCtrl,
-        curve: Interval(0.0, 0.25, curve: Curves.easeInOut),
+        curve: const Interval(0.0, 0.25, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _scale2 = Tween(begin: 1.0, end: 2.0).animate(
       CurvedAnimation(
         parent: _scaleCtrl,
-        curve: Interval(0.25, 0.5, curve: Curves.easeInOut),
+        curve: const Interval(0.25, 0.5, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _scale3 = Tween(begin: 1.0, end: 0.5).animate(
       CurvedAnimation(
         parent: _scaleCtrl,
-        curve: Interval(0.5, 0.75, curve: Curves.easeInOut),
+        curve: const Interval(0.5, 0.75, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _scale4 = Tween(begin: 1.0, end: 2.0).animate(
       CurvedAnimation(
         parent: _scaleCtrl,
-        curve: Interval(0.75, 1.0, curve: Curves.easeInOut),
+        curve: const Interval(0.75, 1.0, curve: Curves.easeInOut),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 

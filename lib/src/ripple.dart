@@ -40,14 +40,14 @@ class _SpinKitRippleState extends State<SpinKitRipple>
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 0.75, curve: Curves.linear),
+        curve: const Interval(0.0, 0.75, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
 
     _animation2 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.25, 1.0, curve: Curves.linear),
+        curve: const Interval(0.25, 1.0, curve: Curves.linear),
       ),
     )..addListener(() => setState(() => <String, void>{}));
   }
