@@ -9,6 +9,7 @@ class SpinKitSpinningCircle extends StatefulWidget {
     this.shape = BoxShape.circle,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -21,6 +22,7 @@ class SpinKitSpinningCircle extends StatefulWidget {
   final BoxShape shape;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitSpinningCircleState createState() => _SpinKitSpinningCircleState();
@@ -34,8 +36,7 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 7.0).animate(
       CurvedAnimation(
         parent: _controller,

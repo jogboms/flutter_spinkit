@@ -6,6 +6,7 @@ class SpinKitFoldingCube extends StatefulWidget {
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 2400),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -16,6 +17,7 @@ class SpinKitFoldingCube extends StatefulWidget {
   final Color color;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();
@@ -25,12 +27,11 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
     with SingleTickerProviderStateMixin {
   AnimationController _rotateCtrl;
   Animation<double> _rotate1, _rotate2, _rotate3, _rotate4;
-  final _duration = const Duration(milliseconds: 2400);
 
   @override
   void initState() {
     super.initState();
-    _rotateCtrl = AnimationController(vsync: this, duration: _duration);
+    _rotateCtrl = AnimationController(vsync: this, duration: widget.duration);
 
     _rotateCtrl
       ..addStatusListener((status) {

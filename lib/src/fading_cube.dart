@@ -7,6 +7,7 @@ class SpinKitFadingCube extends StatefulWidget {
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 2400),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -17,6 +18,7 @@ class SpinKitFadingCube extends StatefulWidget {
   final Color color;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitFadingCubeState createState() => _SpinKitFadingCubeState();
@@ -25,12 +27,11 @@ class SpinKitFadingCube extends StatefulWidget {
 class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
     with TickerProviderStateMixin {
   AnimationController _opacityCtrl;
-  final _duration = const Duration(milliseconds: 2400);
 
   @override
   void initState() {
     super.initState();
-    _opacityCtrl = AnimationController(vsync: this, duration: _duration)
+    _opacityCtrl = AnimationController(vsync: this, duration: widget.duration)
       ..repeat();
   }
 

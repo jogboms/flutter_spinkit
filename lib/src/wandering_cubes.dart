@@ -7,6 +7,7 @@ class SpinKitWanderingCubes extends StatefulWidget {
     this.shape = BoxShape.rectangle,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1800),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -19,6 +20,7 @@ class SpinKitWanderingCubes extends StatefulWidget {
   final BoxShape shape;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitWanderingCubesState createState() => _SpinKitWanderingCubesState();
@@ -29,11 +31,11 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
   AnimationController _scaleCtrl, _rotateCtrl, _translateCtrl;
   Animation<double> _scale1, _scale2, _scale3, _scale4, _rotate;
   Animation<double> _translate1, _translate2, _translate3, _translate4;
-  final _duration = const Duration(milliseconds: 1800);
   double _offset;
 
   void initTranslateAnim() {
-    _translateCtrl = AnimationController(vsync: this, duration: _duration);
+    _translateCtrl =
+        AnimationController(vsync: this, duration: widget.duration);
 
     _translate1 = Tween(begin: 0.0, end: _offset).animate(
       CurvedAnimation(
@@ -67,7 +69,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
   }
 
   void initScaleAnim() {
-    _scaleCtrl = AnimationController(vsync: this, duration: _duration);
+    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration);
 
     _scale1 = Tween(begin: 1.0, end: 0.5).animate(
       CurvedAnimation(
@@ -108,7 +110,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
     initTranslateAnim();
     initScaleAnim();
 
-    _rotateCtrl = AnimationController(vsync: this, duration: _duration);
+    _rotateCtrl = AnimationController(vsync: this, duration: widget.duration);
 
     _rotate = Tween(begin: 0.0, end: 360.0).animate(
       CurvedAnimation(parent: _translateCtrl, curve: Curves.linear),

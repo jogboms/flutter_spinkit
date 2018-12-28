@@ -8,6 +8,7 @@ class SpinKitFadingGrid extends StatefulWidget {
     this.shape = BoxShape.circle,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -20,6 +21,7 @@ class SpinKitFadingGrid extends StatefulWidget {
   final BoxShape shape;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitFadingGridState createState() => _SpinKitFadingGridState();
@@ -32,9 +34,8 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 1200))
-          ..repeat();
+    _controller = AnimationController(vsync: this, duration: widget.duration)
+      ..repeat();
   }
 
   @override

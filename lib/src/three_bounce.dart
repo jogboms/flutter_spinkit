@@ -7,6 +7,7 @@ class SpinKitThreeBounce extends StatefulWidget {
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1400),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -17,6 +18,7 @@ class SpinKitThreeBounce extends StatefulWidget {
   final Color color;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitThreeBounceState createState() => _SpinKitThreeBounceState();
@@ -25,15 +27,12 @@ class SpinKitThreeBounce extends StatefulWidget {
 class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
     with SingleTickerProviderStateMixin {
   AnimationController _scaleCtrl;
-  final _duration = const Duration(milliseconds: 1400);
 
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = AnimationController(
-      vsync: this,
-      duration: _duration,
-    )..repeat();
+    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
+      ..repeat();
   }
 
   @override

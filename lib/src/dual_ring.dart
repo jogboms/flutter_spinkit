@@ -7,12 +7,14 @@ class SpinKitDualRing extends StatefulWidget {
     Key key,
     @required this.color,
     this.size = 50.0,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(color != null),
         assert(size != null),
         super(key: key);
 
   final Color color;
   final double size;
+  final Duration duration;
 
   @override
   _SpinKitDualRingState createState() => _SpinKitDualRingState();
@@ -28,7 +30,7 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1200),
+      duration: widget.duration,
     );
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(

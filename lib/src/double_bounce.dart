@@ -6,6 +6,7 @@ class SpinKitDoubleBounce extends StatefulWidget {
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 2000),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -16,6 +17,7 @@ class SpinKitDoubleBounce extends StatefulWidget {
   final Color color;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitDoubleBounceState createState() => _SpinKitDoubleBounceState();
@@ -39,7 +41,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 2000),
+      duration: widget.duration,
     );
 
     _animation1 = Tween(begin: -1.0, end: 1.0).animate(

@@ -7,12 +7,14 @@ class SpinKitHourGlass extends StatefulWidget {
     Key key,
     @required this.color,
     this.size = 50.0,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(color != null),
         assert(size != null),
         super(key: key);
 
   final Color color;
   final double size;
+  final Duration duration;
 
   @override
   _SpinKitHourGlassState createState() => _SpinKitHourGlassState();
@@ -26,8 +28,7 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 8.0).animate(
       CurvedAnimation(
         parent: _controller,

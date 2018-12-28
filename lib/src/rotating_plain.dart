@@ -6,6 +6,7 @@ class SpinKitRotatingPlain extends StatefulWidget {
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 1200),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -16,6 +17,7 @@ class SpinKitRotatingPlain extends StatefulWidget {
   final Color color;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitRotatingPlainState createState() => _SpinKitRotatingPlainState();
@@ -30,8 +32,7 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1200));
+    _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _controller,

@@ -9,6 +9,7 @@ class SpinKitPumpingHeart extends StatefulWidget {
     this.color,
     this.size = 50.0,
     this.itemBuilder,
+    this.duration = const Duration(milliseconds: 2400),
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -19,6 +20,7 @@ class SpinKitPumpingHeart extends StatefulWidget {
   final Color color;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
+  final Duration duration;
 
   @override
   _SpinKitPumpingHeartState createState() => _SpinKitPumpingHeartState();
@@ -32,10 +34,8 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 2400),
-    )..repeat();
+    _controller = AnimationController(vsync: this, duration: widget.duration)
+      ..repeat();
     _anim1 = Tween(begin: 1.0, end: 1.25).animate(CurvedAnimation(
       parent: _controller,
       curve: Interval(0.0, 1.0, curve: MyCurve()),
