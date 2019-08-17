@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitFoldingCube({
     Key key,
     this.color,
@@ -48,28 +49,28 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
         parent: _rotateCtrl,
         curve: const Interval(0.0, 0.25, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _rotate2 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _rotateCtrl,
         curve: const Interval(0.25, 0.5, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _rotate3 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _rotateCtrl,
         curve: const Interval(0.5, 0.75, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _rotate4 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _rotateCtrl,
         curve: const Interval(0.75, 1.0, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _rotateCtrl.forward();
   }

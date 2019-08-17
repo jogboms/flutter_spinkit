@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SpinKitPulse extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitPulse({
     Key key,
     this.color,
@@ -34,7 +35,7 @@ class _SpinKitPulseState extends State<SpinKitPulse>
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
       ..addListener(
-        () => setState(() => <String, void>{}),
+        () => setState(() {}),
       );
 
     _controller.repeat();

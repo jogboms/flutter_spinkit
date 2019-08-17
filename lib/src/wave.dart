@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/src/utils.dart';
 enum SpinKitWaveType { start, end, center }
 
 class SpinKitWave extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitWave({
     Key key,
     this.color,

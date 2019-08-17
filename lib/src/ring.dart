@@ -37,21 +37,21 @@ class _SpinKitRingState extends State<SpinKitRing>
         parent: _controller,
         curve: const Interval(0.0, 1.0, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _animation2 = Tween(begin: -2 / 3, end: 1 / 2).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.5, 1.0, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _animation3 = Tween(begin: 0.25, end: 5 / 6).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.0, 1.0, curve: _MyCurve()),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _controller.repeat();
   }

@@ -3,7 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 
 class SpinKitDualRing extends StatefulWidget {
-  const SpinKitDualRing({
+  // ignore: prefer_const_constructors_in_immutables
+  SpinKitDualRing({
     Key key,
     @required this.color,
     this.size = 50.0,
@@ -37,7 +38,7 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
         parent: _controller,
         curve: const Interval(0.0, 1.0, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _controller.repeat();
   }

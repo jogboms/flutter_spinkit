@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingCircle extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitFadingCircle({
     Key key,
     this.color,

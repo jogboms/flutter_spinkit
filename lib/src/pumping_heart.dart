@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitPumpingHeart({
     Key key,
     this.color,

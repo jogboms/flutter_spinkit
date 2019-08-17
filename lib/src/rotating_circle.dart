@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitRotatingCircle extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitRotatingCircle({
     Key key,
     this.color,
@@ -38,14 +39,14 @@ class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle>
         parent: _controller,
         curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _animation2 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _controller.repeat();
   }

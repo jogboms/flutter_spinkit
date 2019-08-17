@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 
 class SpinKitSpinningCircle extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitSpinningCircle({
     Key key,
     this.color,
@@ -42,7 +43,7 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
         parent: _controller,
         curve: const Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _controller.repeat();
   }

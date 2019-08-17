@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SpinKitDoubleBounce extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitDoubleBounce({
     Key key,
     this.color,
@@ -50,7 +51,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
         curve: Curves.easeInOut,
       ),
     )
-      ..addListener(() => setState(() => <String, void>{}))
+      ..addListener(() => setState(() {}))
       ..addStatusListener(_statusListener);
 
     _controller.forward();

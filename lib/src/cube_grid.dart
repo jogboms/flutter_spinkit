@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitCubeGrid extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitCubeGrid({
     Key key,
     this.color,

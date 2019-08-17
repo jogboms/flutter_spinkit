@@ -34,7 +34,7 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
         parent: _controller,
         curve: const Interval(0.0, 1.0, curve: Curves.easeOut),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _controller.repeat();
   }
