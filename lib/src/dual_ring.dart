@@ -7,6 +7,7 @@ class SpinKitDualRing extends StatefulWidget {
   SpinKitDualRing({
     Key key,
     @required this.color,
+    this.lineWidth = 7.0,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
@@ -15,6 +16,7 @@ class SpinKitDualRing extends StatefulWidget {
         super(key: key);
 
   final Color color;
+  final double lineWidth;
   final double size;
   final Duration duration;
   final AnimationController controller;
@@ -61,7 +63,10 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
           child: SizedBox.fromSize(
             size: Size.square(widget.size),
           ),
-          painter: _DualRingPainter(color: widget.color),
+          painter: _DualRingPainter(
+            paintWidth: widget.lineWidth,
+            color: widget.color,
+          ),
         ),
       ),
     );
@@ -69,31 +74,23 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
 }
 
 class _DualRingPainter extends CustomPainter {
-  _DualRingPainter({this.weight = 90.0, Color color}) {
-    p.color = color;
-    p.strokeWidth = 10.0;
-    p.style = PaintingStyle.stroke;
-  }
+  _DualRingPainter({
+    this.angle = 90.0,
+    double paintWidth,
+    Color color,
+  }) : ringPaint = Paint()
+          ..color = color
+          ..strokeWidth = paintWidth
+          ..style = PaintingStyle.stroke;
 
-  Paint p = Paint();
-  final double weight;
+  final Paint ringPaint;
+  final double angle;
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawArc(
-      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
-      0.0,
-      getRadian(weight),
-      false,
-      p,
-    );
-    canvas.drawArc(
-      Rect.fromPoints(Offset.zero, Offset(size.width, size.height)),
-      getRadian(180.0),
-      getRadian(weight),
-      false,
-      p,
-    );
+    final rect = Rect.fromPoints(Offset.zero, Offset(size.width, size.height));
+    canvas.drawArc(rect, 0.0, getRadian(angle), false, ringPaint);
+    canvas.drawArc(rect, getRadian(180.0), getRadian(angle), false, ringPaint);
   }
 
   @override
