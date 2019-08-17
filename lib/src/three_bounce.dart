@@ -9,6 +9,7 @@ class SpinKitThreeBounce extends StatefulWidget {
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1400),
+    this.controller,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -20,6 +21,7 @@ class SpinKitThreeBounce extends StatefulWidget {
   final double size;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitThreeBounceState createState() => _SpinKitThreeBounceState();
@@ -32,7 +34,8 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
+    _scaleCtrl = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..repeat();
   }
 

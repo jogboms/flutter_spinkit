@@ -12,6 +12,7 @@ class SpinKitWave extends StatefulWidget {
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
+    this.controller,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -25,6 +26,7 @@ class SpinKitWave extends StatefulWidget {
   final SpinKitWaveType type;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitWaveState createState() => _SpinKitWaveState();
@@ -37,7 +39,8 @@ class _SpinKitWaveState extends State<SpinKitWave>
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
+    _scaleCtrl = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..repeat();
   }
 

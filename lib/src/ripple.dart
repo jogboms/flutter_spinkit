@@ -9,6 +9,7 @@ class SpinKitRipple extends StatefulWidget {
     this.borderWidth = 6.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1800),
+    this.controller,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -22,6 +23,7 @@ class SpinKitRipple extends StatefulWidget {
   final double borderWidth;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitRippleState createState() => _SpinKitRippleState();
@@ -35,7 +37,8 @@ class _SpinKitRippleState extends State<SpinKitRipple>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration)
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..repeat();
 
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
