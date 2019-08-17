@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingGrid extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitFadingGrid({
     Key key,
     this.color,
@@ -9,6 +10,7 @@ class SpinKitFadingGrid extends StatefulWidget {
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
+    this.controller,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -22,6 +24,7 @@ class SpinKitFadingGrid extends StatefulWidget {
   final double size;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitFadingGridState createState() => _SpinKitFadingGridState();
@@ -34,7 +37,8 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration)
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..repeat();
   }
 

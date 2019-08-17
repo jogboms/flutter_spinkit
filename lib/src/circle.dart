@@ -2,12 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitCircle extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitCircle({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
+    this.controller,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -19,6 +21,7 @@ class SpinKitCircle extends StatefulWidget {
   final double size;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitCircleState createState() => _SpinKitCircleState();
@@ -31,7 +34,8 @@ class _SpinKitCircleState extends State<SpinKitCircle>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration)
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..repeat();
   }
 

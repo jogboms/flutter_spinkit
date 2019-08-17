@@ -9,6 +9,7 @@ class SpinKitPouringHourglass extends StatefulWidget {
     @required this.color,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 2400),
+    this.controller,
   })  : assert(color != null),
         assert(size != null),
         super(key: key);
@@ -16,6 +17,7 @@ class SpinKitPouringHourglass extends StatefulWidget {
   final double size;
   final Color color;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitPouringHourglassState createState() =>
@@ -32,10 +34,8 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
+    _controller = widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration);
     _pouringAnimation = CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.0, 0.9),

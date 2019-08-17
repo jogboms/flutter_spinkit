@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SpinKitPulse extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitPulse({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(seconds: 1),
+    this.controller,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -18,6 +20,7 @@ class SpinKitPulse extends StatefulWidget {
   final double size;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitPulseState createState() => _SpinKitPulseState();
@@ -31,10 +34,11 @@ class _SpinKitPulseState extends State<SpinKitPulse>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration);
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
       ..addListener(
-        () => setState(() => <String, void>{}),
+        () => setState(() {}),
       );
 
     _controller.repeat();

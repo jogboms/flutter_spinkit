@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitPumpingHeart({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
+    this.controller,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -21,6 +23,7 @@ class SpinKitPumpingHeart extends StatefulWidget {
   final double size;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitPumpingHeartState createState() => _SpinKitPumpingHeartState();
@@ -34,7 +37,8 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration)
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..repeat();
     _anim1 = Tween(begin: 1.0, end: 1.25).animate(CurvedAnimation(
       parent: _controller,

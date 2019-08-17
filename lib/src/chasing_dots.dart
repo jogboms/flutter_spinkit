@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SpinKitChasingDots extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitChasingDots({
     Key key,
     this.color,
@@ -37,7 +38,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
     _scale = Tween(begin: -1.0, end: 1.0).animate(
       CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
     )
-      ..addListener(() => setState(() => <String, void>{}))
+      ..addListener(() => setState(() {}))
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _scaleCtrl.reverse();
@@ -48,7 +49,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
 
     _rotate = Tween(begin: 0.0, end: 360.0).animate(
       CurvedAnimation(parent: _rotateCtrl, curve: Curves.linear),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _rotateCtrl.repeat();
     _scaleCtrl.forward();

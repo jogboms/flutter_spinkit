@@ -1,12 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitRotatingPlain extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   SpinKitRotatingPlain({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
+    this.controller,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
                 !(itemBuilder == null && color == null),
@@ -18,6 +20,7 @@ class SpinKitRotatingPlain extends StatefulWidget {
   final double size;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitRotatingPlainState createState() => _SpinKitRotatingPlainState();
@@ -32,20 +35,21 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _animation2 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _controller.repeat();
   }

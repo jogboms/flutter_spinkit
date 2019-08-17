@@ -9,6 +9,7 @@ class SpinKitRing extends StatefulWidget {
     this.lineWidth = 7.0,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 1200),
+    this.controller,
   })  : assert(color != null),
         assert(lineWidth != null),
         assert(size != null),
@@ -18,6 +19,7 @@ class SpinKitRing extends StatefulWidget {
   final double size;
   final double lineWidth;
   final Duration duration;
+  final AnimationController controller;
 
   @override
   _SpinKitRingState createState() => _SpinKitRingState();
@@ -31,27 +33,28 @@ class _SpinKitRingState extends State<SpinKitRing>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.0, 1.0, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _animation2 = Tween(begin: -2 / 3, end: 1 / 2).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.5, 1.0, curve: Curves.linear),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _animation3 = Tween(begin: 0.25, end: 5 / 6).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.0, 1.0, curve: _MyCurve()),
       ),
-    )..addListener(() => setState(() => <String, void>{}));
+    )..addListener(() => setState(() {}));
 
     _controller.repeat();
   }
