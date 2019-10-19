@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class SpinKitRipple extends StatefulWidget {
   // ignore: prefer_const_constructors_in_immutables

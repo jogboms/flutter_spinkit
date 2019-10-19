@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 enum SpinKitWaveType { start, end, center }
