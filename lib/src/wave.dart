@@ -4,8 +4,7 @@ import 'package:flutter_spinkit/src/utils.dart';
 enum SpinKitWaveType { start, end, center }
 
 class SpinKitWave extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitWave({
+  const SpinKitWave({
     Key key,
     this.color,
     this.type = SpinKitWaveType.start,
@@ -13,9 +12,7 @@ class SpinKitWave extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(type != null),
         assert(size != null),
@@ -32,16 +29,13 @@ class SpinKitWave extends StatefulWidget {
   _SpinKitWaveState createState() => _SpinKitWaveState();
 }
 
-class _SpinKitWaveState extends State<SpinKitWave>
-    with SingleTickerProviderStateMixin {
+class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStateMixin {
   AnimationController _scaleCtrl;
 
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _scaleCtrl = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override
@@ -107,11 +101,7 @@ class _SpinKitWaveState extends State<SpinKitWave>
   Widget _itemBuilder(int index) {
     return widget.itemBuilder != null
         ? widget.itemBuilder(context, index)
-        : DecoratedBox(
-            decoration: BoxDecoration(
-              color: widget.color,
-            ),
-          );
+        : DecoratedBox(decoration: BoxDecoration(color: widget.color));
   }
 }
 

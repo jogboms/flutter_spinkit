@@ -3,8 +3,7 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 
 class SpinKitSpinningCircle extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitSpinningCircle({
+  const SpinKitSpinningCircle({
     Key key,
     this.color,
     this.shape = BoxShape.circle,
@@ -12,9 +11,7 @@ class SpinKitSpinningCircle extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(shape != null),
         assert(size != null),
@@ -31,16 +28,14 @@ class SpinKitSpinningCircle extends StatefulWidget {
   _SpinKitSpinningCircleState createState() => _SpinKitSpinningCircleState();
 }
 
-class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
-    with SingleTickerProviderStateMixin {
+class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
 
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 7.0).animate(
       CurvedAnimation(
         parent: _controller,
@@ -59,8 +54,7 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = Matrix4.identity()
-      ..rotateY((0 - _animation1.value) * pi);
+    final Matrix4 transform = Matrix4.identity()..rotateY((0 - _animation1.value) * pi);
     return Center(
       child: Transform(
         transform: transform,

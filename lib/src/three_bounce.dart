@@ -2,17 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitThreeBounce extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitThreeBounce({
+  const SpinKitThreeBounce({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1400),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -27,16 +24,13 @@ class SpinKitThreeBounce extends StatefulWidget {
   _SpinKitThreeBounceState createState() => _SpinKitThreeBounceState();
 }
 
-class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
-    with SingleTickerProviderStateMixin {
+class _SpinKitThreeBounceState extends State<SpinKitThreeBounce> with SingleTickerProviderStateMixin {
   AnimationController _scaleCtrl;
 
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _scaleCtrl = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override

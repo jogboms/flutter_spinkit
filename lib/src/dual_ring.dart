@@ -3,8 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/widgets.dart';
 
 class SpinKitDualRing extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitDualRing({
+  const SpinKitDualRing({
     Key key,
     @required this.color,
     this.lineWidth = 7.0,
@@ -25,16 +24,14 @@ class SpinKitDualRing extends StatefulWidget {
   _SpinKitDualRingState createState() => _SpinKitDualRingState();
 }
 
-class _SpinKitDualRingState extends State<SpinKitDualRing>
-    with SingleTickerProviderStateMixin {
+class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
 
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
@@ -53,8 +50,7 @@ class _SpinKitDualRingState extends State<SpinKitDualRing>
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = Matrix4.identity()
-      ..rotateZ((_animation1.value) * math.pi * 2);
+    final Matrix4 transform = Matrix4.identity()..rotateZ((_animation1.value) * math.pi * 2);
     return Center(
       child: Transform(
         transform: transform,

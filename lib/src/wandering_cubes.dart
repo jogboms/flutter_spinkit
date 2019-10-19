@@ -1,17 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitWanderingCubes extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitWanderingCubes({
+  const SpinKitWanderingCubes({
     Key key,
     this.color,
     this.shape = BoxShape.rectangle,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1800),
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(shape != null),
         assert(size != null),
@@ -27,16 +24,14 @@ class SpinKitWanderingCubes extends StatefulWidget {
   _SpinKitWanderingCubesState createState() => _SpinKitWanderingCubesState();
 }
 
-class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
-    with TickerProviderStateMixin {
+class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with TickerProviderStateMixin {
   AnimationController _scaleCtrl, _rotateCtrl, _translateCtrl;
   Animation<double> _scale1, _scale2, _scale3, _scale4, _rotate;
   Animation<double> _translate1, _translate2, _translate3, _translate4;
   double _offset;
 
   void initTranslateAnim() {
-    _translateCtrl =
-        AnimationController(vsync: this, duration: widget.duration);
+    _translateCtrl = AnimationController(vsync: this, duration: widget.duration);
 
     _translate1 = Tween(begin: 0.0, end: _offset).animate(
       CurvedAnimation(

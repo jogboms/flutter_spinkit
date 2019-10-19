@@ -22,16 +22,14 @@ class SpinKitHourGlass extends StatefulWidget {
   _SpinKitHourGlassState createState() => _SpinKitHourGlassState();
 }
 
-class _SpinKitHourGlassState extends State<SpinKitHourGlass>
-    with SingleTickerProviderStateMixin {
+class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
 
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 8.0).animate(
       CurvedAnimation(
         parent: _controller,
@@ -50,8 +48,7 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass>
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = Matrix4.identity()
-      ..rotateZ((_animation1.value) * math.pi);
+    final Matrix4 transform = Matrix4.identity()..rotateZ((_animation1.value) * math.pi);
     return Center(
       child: Transform(
         transform: transform,

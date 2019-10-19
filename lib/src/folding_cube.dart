@@ -1,17 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitFoldingCube({
+  const SpinKitFoldingCube({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -26,16 +23,14 @@ class SpinKitFoldingCube extends StatefulWidget {
   _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();
 }
 
-class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
-    with SingleTickerProviderStateMixin {
+class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTickerProviderStateMixin {
   AnimationController _rotateCtrl;
   Animation<double> _rotate1, _rotate2, _rotate3, _rotate4;
 
   @override
   void initState() {
     super.initState();
-    _rotateCtrl = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _rotateCtrl = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
 
     _rotateCtrl
       ..addStatusListener((status) {
@@ -109,8 +104,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
   Widget _cube(int i, {Animation<double> animation}) {
     final _size = widget.size * 0.5, _position = widget.size * .5;
 
-    final Matrix4 _tRotate = Matrix4.identity()
-      ..rotateY(animation.value * 0.0174533);
+    final Matrix4 _tRotate = Matrix4.identity()..rotateY(animation.value * 0.0174533);
 
     return Positioned.fill(
       top: _position,

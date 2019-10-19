@@ -20,12 +20,10 @@ class SpinKitPouringHourglass extends StatefulWidget {
   final AnimationController controller;
 
   @override
-  _SpinKitPouringHourglassState createState() =>
-      _SpinKitPouringHourglassState();
+  _SpinKitPouringHourglassState createState() => _SpinKitPouringHourglassState();
 }
 
-class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
-    with SingleTickerProviderStateMixin {
+class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _pouringAnimation;
 
@@ -34,8 +32,7 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass>
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
     _pouringAnimation = CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.0, 0.9),

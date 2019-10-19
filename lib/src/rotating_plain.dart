@@ -1,17 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitRotatingPlain extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitRotatingPlain({
+  const SpinKitRotatingPlain({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -26,8 +23,7 @@ class SpinKitRotatingPlain extends StatefulWidget {
   _SpinKitRotatingPlainState createState() => _SpinKitRotatingPlainState();
 }
 
-class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
-    with SingleTickerProviderStateMixin {
+class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
   Animation<double> _animation2;
@@ -35,8 +31,7 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
     _animation1 = Tween(begin: 0.0, end: 180.0).animate(
       CurvedAnimation(
         parent: _controller,

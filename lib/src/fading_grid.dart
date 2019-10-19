@@ -2,8 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingGrid extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitFadingGrid({
+  const SpinKitFadingGrid({
     Key key,
     this.color,
     this.shape = BoxShape.circle,
@@ -11,9 +10,7 @@ class SpinKitFadingGrid extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(shape != null),
         assert(size != null),
@@ -30,16 +27,13 @@ class SpinKitFadingGrid extends StatefulWidget {
   _SpinKitFadingGridState createState() => _SpinKitFadingGridState();
 }
 
-class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
-    with SingleTickerProviderStateMixin {
+class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override
@@ -128,8 +122,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
 
   Widget _circle(int index, int i) {
     return FadeTransition(
-      opacity: DelayTween(begin: 0.4, end: 0.9, delay: 0.3 * (i - 1))
-          .animate(_controller),
+      opacity: DelayTween(begin: 0.4, end: 0.9, delay: 0.3 * (i - 1)).animate(_controller),
       child: SizedBox.fromSize(
         size: Size.square(widget.size / 4),
         child: _itemBuilder(index),

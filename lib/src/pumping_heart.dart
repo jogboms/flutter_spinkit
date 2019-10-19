@@ -4,17 +4,14 @@ import 'package:flutter/material.dart' show Icons;
 import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitPumpingHeart({
+  const SpinKitPumpingHeart({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -29,17 +26,14 @@ class SpinKitPumpingHeart extends StatefulWidget {
   _SpinKitPumpingHeartState createState() => _SpinKitPumpingHeartState();
 }
 
-class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
-    with SingleTickerProviderStateMixin {
+class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _anim1;
 
   @override
   void initState() {
     super.initState();
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
     _anim1 = Tween(begin: 1.0, end: 1.25).animate(CurvedAnimation(
       parent: _controller,
       curve: const Interval(0.0, 1.0, curve: MyCurve()),

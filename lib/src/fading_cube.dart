@@ -2,17 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFadingCube extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitFadingCube({
+  const SpinKitFadingCube({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -27,16 +24,13 @@ class SpinKitFadingCube extends StatefulWidget {
   _SpinKitFadingCubeState createState() => _SpinKitFadingCubeState();
 }
 
-class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
-    with TickerProviderStateMixin {
+class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with TickerProviderStateMixin {
   AnimationController _opacityCtrl;
 
   @override
   void initState() {
     super.initState();
-    _opacityCtrl = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _opacityCtrl = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override
@@ -81,8 +75,7 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube>
           child: Align(
             alignment: Alignment.center,
             child: FadeTransition(
-              opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * (i - 1))
-                  .animate(_opacityCtrl),
+              opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * (i - 1)).animate(_opacityCtrl),
               child: SizedBox.fromSize(
                 size: Size.square(_size),
                 child: _itemBuilder(i - 1),

@@ -1,16 +1,13 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitChasingDots extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitChasingDots({
+  const SpinKitChasingDots({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2000),
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -24,8 +21,7 @@ class SpinKitChasingDots extends StatefulWidget {
   _SpinKitChasingDotsState createState() => _SpinKitChasingDotsState();
 }
 
-class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
-    with TickerProviderStateMixin {
+class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProviderStateMixin {
   AnimationController _scaleCtrl, _rotateCtrl;
   Animation<double> _scale, _rotate;
 

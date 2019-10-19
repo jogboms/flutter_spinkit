@@ -10,9 +10,7 @@ class SpinKitSquareCircle extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(seconds: 1),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -27,8 +25,7 @@ class SpinKitSquareCircle extends StatefulWidget {
   _SpinKitSquareCircleState createState() => _SpinKitSquareCircleState();
 }
 
-class _SpinKitSquareCircleState extends State<SpinKitSquareCircle>
-    with SingleTickerProviderStateMixin {
+class _SpinKitSquareCircleState extends State<SpinKitSquareCircle> with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> animation_curve;
   Animation<double> animation_size;
@@ -36,8 +33,7 @@ class _SpinKitSquareCircleState extends State<SpinKitSquareCircle>
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    controller = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
 
     animation_curve = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(

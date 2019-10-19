@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitRipple extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitRipple({
+  const SpinKitRipple({
     Key key,
     this.color,
     this.size = 50.0,
@@ -10,9 +9,7 @@ class SpinKitRipple extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1800),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         assert(borderWidth != null),
@@ -29,17 +26,14 @@ class SpinKitRipple extends StatefulWidget {
   _SpinKitRippleState createState() => _SpinKitRippleState();
 }
 
-class _SpinKitRippleState extends State<SpinKitRipple>
-    with TickerProviderStateMixin {
+class _SpinKitRippleState extends State<SpinKitRipple> with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1, _animation2;
 
   @override
   void initState() {
     super.initState();
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
 
     _animation1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -94,8 +88,7 @@ class _SpinKitRippleState extends State<SpinKitRipple>
           : DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border:
-                    Border.all(color: widget.color, width: widget.borderWidth),
+                border: Border.all(color: widget.color, width: widget.borderWidth),
               ),
             ),
     );

@@ -1,17 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitCubeGrid extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitCubeGrid({
+  const SpinKitCubeGrid({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -26,16 +23,14 @@ class SpinKitCubeGrid extends StatefulWidget {
   _SpinKitCubeGridState createState() => _SpinKitCubeGridState();
 }
 
-class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
-    with SingleTickerProviderStateMixin {
+class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _anim1, _anim2, _anim3, _anim4, _anim5;
 
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
     _anim1 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,

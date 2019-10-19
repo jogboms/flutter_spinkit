@@ -1,17 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class SpinKitDoubleBounce extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitDoubleBounce({
+  const SpinKitDoubleBounce({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2000),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -26,8 +23,7 @@ class SpinKitDoubleBounce extends StatefulWidget {
   _SpinKitDoubleBounceState createState() => _SpinKitDoubleBounceState();
 }
 
-class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
-    with SingleTickerProviderStateMixin {
+class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1;
 
@@ -42,8 +38,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
 
     _animation1 = Tween(begin: -1.0, end: 1.0).animate(
       CurvedAnimation(
