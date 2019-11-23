@@ -8,7 +8,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ```yaml
 dependencies:
-  flutter_spinkit: "^4.0.0"
+  flutter_spinkit: "^4.1.0"
 ```
 
 ### ⚡️ Import
@@ -27,8 +27,8 @@ const spinkit = SpinKitRotatingCircle(
 ```
 
 ```dart
-const spinkit = SpinKitFadingCircle(
-  itemBuilder: (_, int index) {
+final spinkit = SpinKitFadingCircle(
+  itemBuilder: (BuildContext context, int index) {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: index.isEven ? Colors.red : Colors.green,
@@ -38,10 +38,8 @@ const spinkit = SpinKitFadingCircle(
 );
 ```
 
-#### As from 4.0.0
-
 ```dart
-const spinkit = SpinKitFadingCircle(
+final spinkit = SpinKitSquareCircle(
   color: Colors.white,
   size: 50.0,
   controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200)),

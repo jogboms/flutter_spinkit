@@ -2,6 +2,26 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
+## 4.1.0
+
+- Introduces a new SpinKit [SpinKitSquareCircle]
+- Introduces `const` SpinKits
+- Improve code quality across all spinners
+
+### Before
+
+```dart
+final spinkit = SpinKitSquareCircle(color: Colors.white, size: 50.0);
+```
+
+### Now, all SpinKits can be initialized as `const`s
+
+```dart
+const spinkit = SpinKitSquareCircle(color: Colors.white, size: 50.0);
+```
+
+<img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/square_circle.gif" width="100px" height="100px">
+
 ## 4.0.0
 
 ### Feature
