@@ -33,6 +33,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
   @override
   void initState() {
     super.initState();
+
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
@@ -55,13 +56,9 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _circle(0, 1),
-              SizedBox(
-                width: widget.size / 8,
-              ),
+              SizedBox(width: widget.size / 8),
               _circle(1, 1),
-              SizedBox(
-                width: widget.size / 8,
-              ),
+              SizedBox(width: widget.size / 8),
               _circle(2, 2),
             ],
           ),
@@ -69,10 +66,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                height: widget.size / 8,
-                width: widget.size,
-              ),
+              SizedBox(height: widget.size / 8, width: widget.size),
             ],
           ),
           Row(
@@ -80,13 +74,9 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _circle(3, 4),
-              SizedBox(
-                width: widget.size / 8,
-              ),
+              SizedBox(width: widget.size / 8),
               _circle(4, 1),
-              SizedBox(
-                width: widget.size / 8,
-              ),
+              SizedBox(width: widget.size / 8),
               _circle(5, 2),
             ],
           ),
@@ -94,10 +84,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                height: widget.size / 8,
-                width: widget.size,
-              ),
+              SizedBox(height: widget.size / 8, width: widget.size),
             ],
           ),
           Row(
@@ -105,13 +92,9 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _circle(6, 4),
-              SizedBox(
-                width: widget.size / 8,
-              ),
+              SizedBox(width: widget.size / 8),
               _circle(7, 3),
-              SizedBox(
-                width: widget.size / 8,
-              ),
+              SizedBox(width: widget.size / 8),
               _circle(8, 3),
             ],
           ),
@@ -130,14 +113,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
     );
   }
 
-  Widget _itemBuilder(int index) {
-    return widget.itemBuilder != null
-        ? widget.itemBuilder(context, index)
-        : DecoratedBox(
-            decoration: BoxDecoration(
-              color: widget.color,
-              shape: widget.shape,
-            ),
-          );
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.shape));
 }

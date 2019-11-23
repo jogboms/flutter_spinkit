@@ -32,29 +32,16 @@ class _SpinKitRingState extends State<SpinKitRing> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
-    _animation1 = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 1.0, curve: Curves.linear),
-      ),
-    )..addListener(() => setState(() {}));
 
-    _animation2 = Tween(begin: -2 / 3, end: 1 / 2).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.5, 1.0, curve: Curves.linear),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _animation3 = Tween(begin: 0.25, end: 5 / 6).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 1.0, curve: _MyCurve()),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _controller.repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+      ..addListener(() => setState(() {}))
+      ..repeat();
+    _animation1 = Tween(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: Curves.linear)));
+    _animation2 = Tween(begin: -2 / 3, end: 1 / 2)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.5, 1.0, curve: Curves.linear)));
+    _animation3 = Tween(begin: 0.25, end: 5 / 6)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: _MyCurve())));
   }
 
   @override
@@ -65,10 +52,9 @@ class _SpinKitRingState extends State<SpinKitRing> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    final Matrix4 transform = Matrix4.identity()..rotateZ((_animation1.value) * 5 * pi / 6);
     return Center(
       child: Transform(
-        transform: transform,
+        transform: Matrix4.identity()..rotateZ((_animation1.value) * 5 * pi / 6),
         alignment: FractionalOffset.center,
         child: SizedBox.fromSize(
           size: Size.square(widget.size),
@@ -108,36 +94,22 @@ class RingPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = (min(size.width, size.height) - paintWidth) / 2;
-
-    final progressAngle = 2 * pi * progressPercent;
-
     canvas.drawArc(
-      Rect.fromCircle(
-        center: center,
-        radius: radius,
-      ),
+      Rect.fromCircle(center: center, radius: radius),
       startAngle,
-      progressAngle,
+      2 * pi * progressPercent,
       false,
       trackPaint,
     );
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
 class _MyCurve extends Curve {
   const _MyCurve();
 
   @override
-  double transform(double t) {
-    if (t <= 0.5) {
-      return 2 * t;
-    } else {
-      return 2 * (1 - t);
-    }
-  }
+  double transform(double t) => (t <= 0.5) ? 2 * t : 2 * (1 - t);
 }

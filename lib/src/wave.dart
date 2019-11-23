@@ -30,79 +30,55 @@ class SpinKitWave extends StatefulWidget {
 }
 
 class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStateMixin {
-  AnimationController _scaleCtrl;
+  AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
+
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override
   void dispose() {
-    _scaleCtrl.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _bars;
-    if (widget.type == SpinKitWaveType.start) {
-      _bars = [
-        _bar(0, -1.2),
-        _bar(1, -1.1),
-        _bar(2, -1.0),
-        _bar(3, -.9),
-        _bar(4, -.8),
-      ];
-    } else if (widget.type == SpinKitWaveType.end) {
-      _bars = [
-        _bar(0, -.8),
-        _bar(1, -.9),
-        _bar(2, -1.0),
-        _bar(3, -1.1),
-        _bar(4, -1.2),
-      ];
-    } else if (widget.type == SpinKitWaveType.center) {
-      _bars = [
-        _bar(0, -0.75),
-        _bar(1, -0.95),
-        _bar(2, -1.2),
-        _bar(3, -0.95),
-        _bar(4, -0.75),
-      ];
-    }
+    final List<double> _bars = getAnimationDelay();
     return Center(
       child: SizedBox.fromSize(
         size: Size(widget.size * 1.25, widget.size),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: _bars,
+          children: List.generate(_bars.length, (i) {
+            return ScaleYWidget(
+              scaleY: DelayTween(begin: .4, end: 1.0, delay: _bars[i]).animate(_controller),
+              child: SizedBox.fromSize(size: Size(widget.size * 0.2, widget.size), child: _itemBuilder(i)),
+            );
+          }),
         ),
       ),
     );
   }
 
-  Widget _bar(int index, double delay) {
-    final _size = widget.size * 0.2;
-    return ScaleYWidget(
-      scaleY: DelayTween(
-        begin: .4,
-        end: 1.0,
-        delay: delay,
-      ).animate(_scaleCtrl),
-      child: SizedBox.fromSize(
-        size: Size(_size, widget.size),
-        child: _itemBuilder(index),
-      ),
-    );
+  List<double> getAnimationDelay() {
+    switch (widget.type) {
+      case SpinKitWaveType.start:
+        return [-1.2, -1.1, -1.0, -.9, -.8];
+      case SpinKitWaveType.end:
+        return [-.8, -.9, -1.0, -1.1, -1.2];
+      case SpinKitWaveType.center:
+      default:
+        return [-0.75, -0.95, -1.2, -0.95, -0.75];
+    }
   }
 
-  Widget _itemBuilder(int index) {
-    return widget.itemBuilder != null
-        ? widget.itemBuilder(context, index)
-        : DecoratedBox(decoration: BoxDecoration(color: widget.color));
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : DecoratedBox(decoration: BoxDecoration(color: widget.color));
 }
 
 class ScaleYWidget extends AnimatedWidget {
@@ -116,16 +92,10 @@ class ScaleYWidget extends AnimatedWidget {
   final Widget child;
   final Alignment alignment;
 
-  Animation<double> get scaleY => listenable;
+  Animation<double> get scale => listenable;
 
   @override
   Widget build(BuildContext context) {
-    final double scaleValue = scaleY.value;
-    final Matrix4 transform = Matrix4.identity()..scale(1.0, scaleValue, 1.0);
-    return Transform(
-      transform: transform,
-      alignment: alignment,
-      child: child,
-    );
+    return Transform(transform: Matrix4.identity()..scale(1.0, scale.value, 1.0), alignment: alignment, child: child);
   }
 }

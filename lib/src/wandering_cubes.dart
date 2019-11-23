@@ -12,10 +12,12 @@ class SpinKitWanderingCubes extends StatefulWidget {
             'You should specify either a itemBuilder or a color'),
         assert(shape != null),
         assert(size != null),
+        offset = size * 0.75,
         super(key: key);
 
   final Color color;
   final BoxShape shape;
+  final double offset;
   final double size;
   final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
@@ -28,91 +30,39 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
   AnimationController _scaleCtrl, _rotateCtrl, _translateCtrl;
   Animation<double> _scale1, _scale2, _scale3, _scale4, _rotate;
   Animation<double> _translate1, _translate2, _translate3, _translate4;
-  double _offset;
-
-  void initTranslateAnim() {
-    _translateCtrl = AnimationController(vsync: this, duration: widget.duration);
-
-    _translate1 = Tween(begin: 0.0, end: _offset).animate(
-      CurvedAnimation(
-        parent: _translateCtrl,
-        curve: const Interval(0.0, 0.25, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _translate2 = Tween(begin: 0.0, end: _offset).animate(
-      CurvedAnimation(
-        parent: _translateCtrl,
-        curve: const Interval(0.25, 0.5, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _translate3 = Tween(begin: 0.0, end: -_offset).animate(
-      CurvedAnimation(
-        parent: _translateCtrl,
-        curve: const Interval(0.5, 0.75, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _translate4 = Tween(begin: 0.0, end: -_offset).animate(
-      CurvedAnimation(
-        parent: _translateCtrl,
-        curve: const Interval(0.75, 1.0, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _translateCtrl.repeat();
-  }
-
-  void initScaleAnim() {
-    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration);
-
-    _scale1 = Tween(begin: 1.0, end: 0.5).animate(
-      CurvedAnimation(
-        parent: _scaleCtrl,
-        curve: const Interval(0.0, 0.25, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _scale2 = Tween(begin: 1.0, end: 2.0).animate(
-      CurvedAnimation(
-        parent: _scaleCtrl,
-        curve: const Interval(0.25, 0.5, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _scale3 = Tween(begin: 1.0, end: 0.5).animate(
-      CurvedAnimation(
-        parent: _scaleCtrl,
-        curve: const Interval(0.5, 0.75, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _scale4 = Tween(begin: 1.0, end: 2.0).animate(
-      CurvedAnimation(
-        parent: _scaleCtrl,
-        curve: const Interval(0.75, 1.0, curve: Curves.easeInOut),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _scaleCtrl.repeat();
-  }
 
   @override
   void initState() {
     super.initState();
-    _offset = widget.size * 0.75;
 
-    initTranslateAnim();
-    initScaleAnim();
+    _translateCtrl = AnimationController(vsync: this, duration: widget.duration)
+      ..addListener(() => setState(() {}))
+      ..repeat();
+    _translate1 = Tween(begin: 0.0, end: widget.offset)
+        .animate(CurvedAnimation(parent: _translateCtrl, curve: const Interval(0.0, 0.25, curve: Curves.easeInOut)));
+    _translate2 = Tween(begin: 0.0, end: widget.offset)
+        .animate(CurvedAnimation(parent: _translateCtrl, curve: const Interval(0.25, 0.5, curve: Curves.easeInOut)));
+    _translate3 = Tween(begin: 0.0, end: -widget.offset)
+        .animate(CurvedAnimation(parent: _translateCtrl, curve: const Interval(0.5, 0.75, curve: Curves.easeInOut)));
+    _translate4 = Tween(begin: 0.0, end: -widget.offset)
+        .animate(CurvedAnimation(parent: _translateCtrl, curve: const Interval(0.75, 1.0, curve: Curves.easeInOut)));
 
-    _rotateCtrl = AnimationController(vsync: this, duration: widget.duration);
+    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
+      ..addListener(() => setState(() {}))
+      ..repeat();
+    _scale1 = Tween(begin: 1.0, end: 0.5)
+        .animate(CurvedAnimation(parent: _scaleCtrl, curve: const Interval(0.0, 0.25, curve: Curves.easeInOut)));
+    _scale2 = Tween(begin: 1.0, end: 2.0)
+        .animate(CurvedAnimation(parent: _scaleCtrl, curve: const Interval(0.25, 0.5, curve: Curves.easeInOut)));
+    _scale3 = Tween(begin: 1.0, end: 0.5)
+        .animate(CurvedAnimation(parent: _scaleCtrl, curve: const Interval(0.5, 0.75, curve: Curves.easeInOut)));
+    _scale4 = Tween(begin: 1.0, end: 2.0)
+        .animate(CurvedAnimation(parent: _scaleCtrl, curve: const Interval(0.75, 1.0, curve: Curves.easeInOut)));
 
-    _rotate = Tween(begin: 0.0, end: 360.0).animate(
-      CurvedAnimation(parent: _translateCtrl, curve: Curves.linear),
-    )..addListener(() => setState(() {}));
-
-    _rotateCtrl.repeat();
+    _rotateCtrl = AnimationController(vsync: this, duration: widget.duration)
+      ..addListener(() => setState(() {}))
+      ..repeat();
+    _rotate = Tween(begin: 0.0, end: 360.0).animate(CurvedAnimation(parent: _translateCtrl, curve: Curves.linear));
   }
 
   @override
@@ -139,13 +89,6 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
   }
 
   Widget _cube(int index, [bool offset = false]) {
-    final _size = widget.size * 0.25;
-    final Matrix4 _tScale = Matrix4.identity()
-      ..scale(_scale2.value)
-      ..scale(_scale3.value)
-      ..scale(_scale4.value)
-      ..scale(_scale1.value);
-
     Matrix4 _tTranslate;
     if (offset == true) {
       _tTranslate = Matrix4.identity()
@@ -163,15 +106,19 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
 
     return Positioned(
       top: 0.0,
-      left: offset == true ? 0.0 : _offset,
+      left: offset == true ? 0.0 : widget.offset,
       child: Transform(
         transform: _tTranslate,
         child: Transform.rotate(
           angle: _rotate.value * 0.0174533,
           child: Transform(
-            transform: _tScale,
+            transform: Matrix4.identity()
+              ..scale(_scale2.value)
+              ..scale(_scale3.value)
+              ..scale(_scale4.value)
+              ..scale(_scale1.value),
             child: SizedBox.fromSize(
-              size: Size.square(_size),
+              size: Size.square(widget.size * 0.25),
               child: _itemBuilder(index),
             ),
           ),
@@ -180,14 +127,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Tick
     );
   }
 
-  Widget _itemBuilder(int index) {
-    return widget.itemBuilder != null
-        ? widget.itemBuilder(context, index)
-        : DecoratedBox(
-            decoration: BoxDecoration(
-              color: widget.color,
-              shape: widget.shape,
-            ),
-          );
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.shape));
 }

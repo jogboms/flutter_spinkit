@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitChasingDots extends StatefulWidget {
   const SpinKitChasingDots({
@@ -28,27 +29,17 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
   @override
   void initState() {
     super.initState();
-    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration);
-    _rotateCtrl = AnimationController(vsync: this, duration: widget.duration);
 
-    _scale = Tween(begin: -1.0, end: 1.0).animate(
-      CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
-    )
+    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
       ..addListener(() => setState(() {}))
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _scaleCtrl.reverse();
-        } else if (status == AnimationStatus.dismissed) {
-          _scaleCtrl.forward();
-        }
-      });
+      ..addStatusListener(autoReverseFn(() => _scaleCtrl))
+      ..forward();
+    _scale = Tween(begin: -1.0, end: 1.0).animate(CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut));
 
-    _rotate = Tween(begin: 0.0, end: 360.0).animate(
-      CurvedAnimation(parent: _rotateCtrl, curve: Curves.linear),
-    )..addListener(() => setState(() {}));
-
-    _rotateCtrl.repeat();
-    _scaleCtrl.forward();
+    _rotateCtrl = AnimationController(vsync: this, duration: widget.duration)
+      ..addListener(() => setState(() {}))
+      ..repeat();
+    _rotate = Tween(begin: 0.0, end: 360.0).animate(CurvedAnimation(parent: _rotateCtrl, curve: Curves.linear));
   }
 
   @override
@@ -67,14 +58,8 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
           angle: _rotate.value * 0.0174533,
           child: Stack(
             children: <Widget>[
-              Positioned(
-                top: 0.0,
-                child: _circle(1.0 - _scale.value.abs(), 0),
-              ),
-              Positioned(
-                bottom: 0.0,
-                child: _circle(_scale.value.abs(), 1),
-              ),
+              Positioned(top: 0.0, child: _circle(1.0 - _scale.value.abs(), 0)),
+              Positioned(bottom: 0.0, child: _circle(_scale.value.abs(), 1)),
             ],
           ),
         ),
@@ -82,25 +67,15 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
     );
   }
 
-  Widget _itemBuilder(int index) {
-    final _size = widget.size * 0.6;
-    return SizedBox.fromSize(
-      size: Size.square(_size),
-      child: widget.itemBuilder != null
-          ? widget.itemBuilder(context, index)
-          : DecoratedBox(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: widget.color,
-              ),
-            ),
-    );
-  }
-
   Widget _circle(double scale, int index) {
     return Transform.scale(
       scale: scale,
-      child: _itemBuilder(index),
+      child: SizedBox.fromSize(
+        size: Size.square(widget.size * 0.6),
+        child: widget.itemBuilder != null
+            ? widget.itemBuilder(context, index)
+            : DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color)),
+      ),
     );
   }
 }

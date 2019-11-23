@@ -33,21 +33,14 @@ class _SpinKitRippleState extends State<SpinKitRipple> with TickerProviderStateM
   @override
   void initState() {
     super.initState();
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
 
-    _animation1 = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 0.75, curve: Curves.linear),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _animation2 = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.25, 1.0, curve: Curves.linear),
-      ),
-    )..addListener(() => setState(() {}));
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+      ..addListener(() => setState(() {}))
+      ..repeat();
+    _animation1 = Tween(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.75, curve: Curves.linear)));
+    _animation2 = Tween(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.25, 1.0, curve: Curves.linear)));
   }
 
   @override
@@ -63,17 +56,11 @@ class _SpinKitRippleState extends State<SpinKitRipple> with TickerProviderStateM
         children: <Widget>[
           Opacity(
             opacity: 1.0 - _animation1.value,
-            child: Transform.scale(
-              scale: _animation1.value,
-              child: _itemBuilder(0),
-            ),
+            child: Transform.scale(scale: _animation1.value, child: _itemBuilder(0)),
           ),
           Opacity(
             opacity: 1.0 - _animation2.value,
-            child: Transform.scale(
-              scale: _animation2.value,
-              child: _itemBuilder(1),
-            ),
+            child: Transform.scale(scale: _animation2.value, child: _itemBuilder(1)),
           ),
         ],
       ),

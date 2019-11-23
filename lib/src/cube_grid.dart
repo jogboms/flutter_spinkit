@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitCubeGrid extends StatefulWidget {
   const SpinKitCubeGrid({
@@ -30,53 +31,20 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
-    _anim1 = Tween(begin: 1.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.1, 0.6, curve: Curves.easeIn),
-      ),
-    );
 
-    _anim2 = Tween(begin: 1.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.2, 0.7, curve: Curves.easeIn),
-      ),
-    );
-
-    _anim3 = Tween(begin: 1.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.3, 0.8, curve: Curves.easeIn),
-      ),
-    );
-
-    _anim4 = Tween(begin: 1.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.4, 0.9, curve: Curves.easeIn),
-      ),
-    );
-
-    _anim5 = Tween(begin: 1.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
-      ),
-    );
-
-    _controller
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _controller.reverse();
-        }
-        if (status == AnimationStatus.dismissed) {
-          _controller.forward();
-        }
-      });
-
-    _controller.forward();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+      ..addStatusListener(autoReverseFn(() => _controller))
+      ..forward();
+    _anim1 = Tween(begin: 1.0, end: 0.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.1, 0.6, curve: Curves.easeIn)));
+    _anim2 = Tween(begin: 1.0, end: 0.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.2, 0.7, curve: Curves.easeIn)));
+    _anim3 = Tween(begin: 1.0, end: 0.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.3, 0.8, curve: Curves.easeIn)));
+    _anim4 = Tween(begin: 1.0, end: 0.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.4, 0.9, curve: Curves.easeIn)));
+    _anim5 = Tween(begin: 1.0, end: 0.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.5, 1.0, curve: Curves.easeIn)));
   }
 
   @override
@@ -128,20 +96,11 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
   Widget _square(Animation<double> animation, int index) {
     return ScaleTransition(
       scale: animation,
-      child: _itemBuilder(index),
+      child: SizedBox.fromSize(size: Size.square(widget.size / 3), child: _itemBuilder(index)),
     );
   }
 
-  Widget _itemBuilder(int index) {
-    return SizedBox.fromSize(
-      size: Size.square(widget.size / 3),
-      child: widget.itemBuilder != null
-          ? widget.itemBuilder(context, index)
-          : DecoratedBox(
-              decoration: BoxDecoration(
-                color: widget.color,
-              ),
-            ),
-    );
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : DecoratedBox(decoration: BoxDecoration(color: widget.color));
 }

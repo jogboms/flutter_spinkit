@@ -28,16 +28,15 @@ class SpinKitPumpingHeart extends StatefulWidget {
 
 class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  Animation<double> _anim1;
+  Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
+
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
-    _anim1 = Tween(begin: 1.0, end: 1.25).animate(CurvedAnimation(
-      parent: _controller,
-      curve: const Interval(0.0, 1.0, curve: MyCurve()),
-    ));
+    _animation = Tween(begin: 1.0, end: 1.25)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: _PumpCurve())));
   }
 
   @override
@@ -48,25 +47,16 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTi
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: _anim1,
-      child: _itemBuilder(0),
-    );
+    return ScaleTransition(scale: _animation, child: _itemBuilder(0));
   }
 
-  Widget _itemBuilder(int index) {
-    return widget.itemBuilder != null
-        ? widget.itemBuilder(context, index)
-        : Icon(
-            Icons.favorite,
-            color: widget.color,
-            size: widget.size,
-          );
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : Icon(Icons.favorite, color: widget.color, size: widget.size);
 }
 
-class MyCurve extends Curve {
-  const MyCurve();
+class _PumpCurve extends Curve {
+  const _PumpCurve();
 
   @override
   double transform(double t) {
@@ -80,8 +70,7 @@ class MyCurve extends Curve {
       return pow(t - 0.5, 1.0) * 2.27272727;
     } else if (t >= 0.72 && t < 0.94) {
       return 0.5 - (pow(t - 0.72, 1.0) * 2.27272727);
-    } else {
-      return 0.0;
     }
+    return 0.0;
   }
 }
