@@ -41,7 +41,7 @@ class _SpinKitRingState extends State<SpinKitRing> with SingleTickerProviderStat
     _animation2 = Tween(begin: -2 / 3, end: 1 / 2)
         .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.5, 1.0, curve: Curves.linear)));
     _animation3 = Tween(begin: 0.25, end: 5 / 6)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: _MyCurve())));
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: SpinKitRingCurve())));
   }
 
   @override
@@ -107,8 +107,8 @@ class RingPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
-class _MyCurve extends Curve {
-  const _MyCurve();
+class SpinKitRingCurve extends Curve {
+  const SpinKitRingCurve();
 
   @override
   double transform(double t) => (t <= 0.5) ? 2 * t : 2 * (1 - t);
