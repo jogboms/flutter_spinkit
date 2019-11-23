@@ -9,7 +9,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by @t
 - `controller` parameter [5873e7](https://github.com/jogboms/flutter_spinkit/commit/5873e75430aca52d2ec0c483dcd71a02438f3e8b). Closes [#51](https://github.com/jogboms/flutter_spinkit/issues/51)
 
 ```dart
-SpinKitFadingCircle(
+final spinkit = SpinKitFadingCircle(
   color: Colors.white,
   size: 50.0,
   controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200)),
@@ -32,16 +32,13 @@ SpinKitFadingCircle(
 ### Before
 
 ```dart
-SpinKitFadingCircle(
-  color: Colors.white,
-  size: 50.0,
-);
+final spinkit = SpinKitFadingCircle(color: Colors.white, size: 50.0);
 ```
 
 ### Now, there is an itemBuilder alternative
 
 ```dart
-SpinKitFadingCircle(
+final spinkit = SpinKitFadingCircle(
   itemBuilder: (_, int index) {
     return DecoratedBox(
       decoration: BoxDecoration(
