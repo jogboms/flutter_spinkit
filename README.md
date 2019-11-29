@@ -214,6 +214,13 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       ✅
     </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/abhishek0706/flutter_spinkit/square_circle/screenshots/square_circle.gif" width="100px">
+      <br />
+      SquareCircle
+      <br />
+      ✅
+    </td>
   </tr>
 </table>
 

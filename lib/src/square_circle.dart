@@ -47,7 +47,7 @@ class _SpinKitSquareCircleState extends State<SpinKitSquareCircle>
     );
     animation_curve.addListener(() => setState(() {}));
 
-    animation_size = Tween(begin: 0.2, end: 1.0).animate(
+    animation_size = Tween(begin: 0.5, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
         curve: Curves.easeInOutCubic,
