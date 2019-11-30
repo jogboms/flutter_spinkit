@@ -37,6 +37,7 @@ Icon?
 /Flutter/app.zip
 /Flutter/flutter_assets/
 /Flutter/App.framework
+/Flutter/flutter_export_environment.sh
 /Flutter/Flutter.framework
 /Flutter/Generated.xcconfig
 /ServiceDefinitions.json
