@@ -1,6 +1,6 @@
 # ✨ Flutter Spinkit
 
-[![pub package](https://img.shields.io/pub/v/flutter_spinkit.svg)](https://pub.dartlang.org/packages/flutter_spinkit)
+[![Build Status - Travis](https://travis-ci.org/jogboms/flutter_spinkit.svg?branch=master)](https://travis-ci.org/jogboms/flutter_spinkit) [![codecov](https://codecov.io/gh/jogboms/flutter_spinkit/branch/master/graph/badge.svg)](https://codecov.io/gh/jogboms/flutter_spinkit) [![pub package](https://img.shields.io/pub/v/flutter_spinkit.svg)](https://pub.dartlang.org/packages/flutter_spinkit)
 
 A collection of loading indicators animated with flutter. Heavily inspired by [@tobiasahlin](https://github.com/tobiasahlin)'s [SpinKit](https://github.com/tobiasahlin/SpinKit).
 
@@ -8,7 +8,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ```yaml
 dependencies:
-  flutter_spinkit: "^4.0.0"
+  flutter_spinkit: "^4.1.0"
 ```
 
 ### ⚡️ Import
@@ -20,15 +20,15 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 ## 🎮 How To Use
 
 ```dart
-SpinKitRotatingCircle(
+const spinkit = SpinKitRotatingCircle(
   color: Colors.white,
   size: 50.0,
 );
 ```
 
 ```dart
-SpinKitFadingCircle(
-  itemBuilder: (_, int index) {
+final spinkit = SpinKitFadingCircle(
+  itemBuilder: (BuildContext context, int index) {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: index.isEven ? Colors.red : Colors.green,
@@ -38,10 +38,8 @@ SpinKitFadingCircle(
 );
 ```
 
-#### As from 4.0.0
-
 ```dart
-SpinKitFadingCircle(
+final spinkit = SpinKitSquareCircle(
   color: Colors.white,
   size: 50.0,
   controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200)),
@@ -55,164 +53,125 @@ For more info, please, refer to the `showcase.dart` in the example.
 <table>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingPlane.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingPlane.gif" width="100px" height="100px">
       <br />
-      RotatingPlane
-      <br />
-      ✅
+      RotatingPlain
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/DoubleBounce.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/DoubleBounce.gif" width="100px" height="100px">
       <br />
       DoubleBounce
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/Wave.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/Wave.gif" width="100px" height="100px">
       <br />
       Wave
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/WanderingCubes.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/WanderingCubes.gif" width="100px" height="100px">
       <br />
       WanderingCubes
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/FadingFour.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/FadingFour.gif" width="100px" height="100px">
       <br />
       FadingFour
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/FadingCube.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/FadingCube.gif" width="100px" height="100px">
       <br />
       FadingCube
-      <br />
-      ✅
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/Pulse.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/Pulse.gif" width="100px" height="100px">
       <br />
       Pulse
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/ChasingDots.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/ChasingDots.gif" width="100px" height="100px">
       <br />
       ChasingDots
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/ThreeBounce.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/ThreeBounce.gif" width="100px" height="100px">
       <br />
       ThreeBounce
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/Circle.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/Circle.gif" width="100px" height="100px">
       <br />
       Circle
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/CubeGrid.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/CubeGrid.gif" width="100px" height="100px">
       <br />
       CubeGrid
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/FadingCircle.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/FadingCircle.gif" width="100px" height="100px">
       <br />
       FadingCircle
-      <br />
-      ✅
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingCircle.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/RotatingCircle.gif" width="100px" height="100px">
       <br />
       RotatingCircle
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/FoldingCube.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/ybq/AndroidSpinKit/master/art/FoldingCube.gif" width="100px" height="100px">
       <br />
       FoldingCube
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/heart.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/heart.gif" width="100px" height="100px">
       <br />
       PumpingHeart
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/dual-ring.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/dual-ring.gif" width="100px" height="100px">
       <br />
       DualRing
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/hour-glass.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/hour-glass.gif" width="100px" height="100px">
       <br />
       HourGlass
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/PouringHourGlass.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/PouringHourGlass.gif" width="100px" height="100px">
       <br />
       PouringHourGlass
-      <br />
-      ✅
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/grid.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/grid.gif" width="100px" height="100px">
       <br />
       FadingGrid
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/ring.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/ring.gif" width="100px" height="100px">
       <br />
       Ring
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/ripple.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/ripple.gif" width="100px" height="100px">
       <br />
       Ripple
-      <br />
-      ✅
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/spinning-circle.gif" width="100px">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/spinning-circle.gif" width="100px" height="100px">
       <br />
       SpinningCircle
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/abhishek0706/flutter_spinkit/square_circle/screenshots/square_circle.gif" width="100px" height="100px">
       <br />
-      ✅
+      SquareCircle
     </td>
   </tr>
 </table>

@@ -18,92 +18,89 @@ class ShowCase extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitRotatingCircle(color: Colors.white),
-                SpinKitRotatingPlain(color: Colors.white),
-                SpinKitChasingDots(color: Colors.white),
+                const SpinKitRotatingCircle(color: Colors.white),
+                const SpinKitRotatingPlain(color: Colors.white),
+                const SpinKitChasingDots(color: Colors.white),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitPumpingHeart(color: Colors.white),
-                SpinKitPulse(color: Colors.white),
-                SpinKitDoubleBounce(color: Colors.white),
+                const SpinKitPumpingHeart(color: Colors.white),
+                const SpinKitPulse(color: Colors.white),
+                const SpinKitDoubleBounce(color: Colors.white),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
-                SpinKitWave(color: Colors.white, type: SpinKitWaveType.center),
-                SpinKitWave(color: Colors.white, type: SpinKitWaveType.end),
+                const SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
+                const SpinKitWave(color: Colors.white, type: SpinKitWaveType.center),
+                const SpinKitWave(color: Colors.white, type: SpinKitWaveType.end),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitThreeBounce(color: Colors.white),
-                SpinKitWanderingCubes(color: Colors.white),
-                SpinKitWanderingCubes(
-                    color: Colors.white, shape: BoxShape.circle),
+                const SpinKitThreeBounce(color: Colors.white),
+                const SpinKitWanderingCubes(color: Colors.white),
+                const SpinKitWanderingCubes(color: Colors.white, shape: BoxShape.circle),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitCircle(color: Colors.white),
-                SpinKitFadingFour(color: Colors.white),
-                SpinKitFadingFour(
-                    color: Colors.white, shape: BoxShape.rectangle),
+                const SpinKitCircle(color: Colors.white),
+                const SpinKitFadingFour(color: Colors.white),
+                const SpinKitFadingFour(color: Colors.white, shape: BoxShape.rectangle),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitFadingCube(color: Colors.white),
-                SpinKitCubeGrid(size: 51.0, color: Colors.white),
-                SpinKitFoldingCube(color: Colors.white),
+                const SpinKitFadingCube(color: Colors.white),
+                const SpinKitCubeGrid(size: 51.0, color: Colors.white),
+                const SpinKitFoldingCube(color: Colors.white),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitRing(color: Colors.white),
-                SpinKitDualRing(color: Colors.white),
-                SpinKitRipple(color: Colors.white),
+                const SpinKitRing(color: Colors.white),
+                const SpinKitDualRing(color: Colors.white),
+                const SpinKitRipple(color: Colors.white),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitFadingGrid(color: Colors.white),
-                SpinKitFadingGrid(
-                    color: Colors.white, shape: BoxShape.rectangle),
-                SpinKitHourGlass(color: Colors.white),
+                const SpinKitFadingGrid(color: Colors.white),
+                const SpinKitFadingGrid(color: Colors.white, shape: BoxShape.rectangle),
+                const SpinKitSquareCircle(color: Colors.white),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitSpinningCircle(color: Colors.white),
-                SpinKitSpinningCircle(
-                    color: Colors.white, shape: BoxShape.rectangle),
-                SpinKitFadingCircle(color: Colors.white),
+                const SpinKitSpinningCircle(color: Colors.white),
+                const SpinKitSpinningCircle(color: Colors.white, shape: BoxShape.rectangle),
+                const SpinKitFadingCircle(color: Colors.white),
               ],
             ),
             const SizedBox(height: 48.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SpinKitPouringHourglass(color: Colors.white),
+                const SpinKitHourGlass(color: Colors.white),
+                const SpinKitPouringHourglass(color: Colors.white),
               ],
             ),
             const SizedBox(height: 64.0),

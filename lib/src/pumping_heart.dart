@@ -1,20 +1,17 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show Icons;
 import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitPumpingHeart({
+  const SpinKitPumpingHeart({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -29,21 +26,17 @@ class SpinKitPumpingHeart extends StatefulWidget {
   _SpinKitPumpingHeartState createState() => _SpinKitPumpingHeartState();
 }
 
-class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
-    with SingleTickerProviderStateMixin {
+class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  Animation<double> _anim1;
+  Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
-    _anim1 = Tween(begin: 1.0, end: 1.25).animate(CurvedAnimation(
-      parent: _controller,
-      curve: const Interval(0.0, 1.0, curve: MyCurve()),
-    ));
+
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
+    _animation = Tween(begin: 1.0, end: 1.25)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: _PumpCurve())));
   }
 
   @override
@@ -54,25 +47,16 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: _anim1,
-      child: _itemBuilder(0),
-    );
+    return ScaleTransition(scale: _animation, child: _itemBuilder(0));
   }
 
-  Widget _itemBuilder(int index) {
-    return widget.itemBuilder != null
-        ? widget.itemBuilder(context, index)
-        : Icon(
-            Icons.favorite,
-            color: widget.color,
-            size: widget.size,
-          );
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : Icon(Icons.favorite, color: widget.color, size: widget.size);
 }
 
-class MyCurve extends Curve {
-  const MyCurve();
+class _PumpCurve extends Curve {
+  const _PumpCurve();
 
   @override
   double transform(double t) {
@@ -86,8 +70,7 @@ class MyCurve extends Curve {
       return pow(t - 0.5, 1.0) * 2.27272727;
     } else if (t >= 0.72 && t < 0.94) {
       return 0.5 - (pow(t - 0.72, 1.0) * 2.27272727);
-    } else {
-      return 0.0;
     }
+    return 0.0;
   }
 }

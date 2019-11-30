@@ -1,17 +1,15 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitFoldingCube({
+  const SpinKitFoldingCube({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -26,61 +24,31 @@ class SpinKitFoldingCube extends StatefulWidget {
   _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();
 }
 
-class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
-    with SingleTickerProviderStateMixin {
-  AnimationController _rotateCtrl;
+class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
   Animation<double> _rotate1, _rotate2, _rotate3, _rotate4;
 
   @override
   void initState() {
     super.initState();
-    _rotateCtrl = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
 
-    _rotateCtrl
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _rotateCtrl.reverse();
-        }
-        if (status == AnimationStatus.dismissed) {
-          _rotateCtrl.forward();
-        }
-      });
-
-    _rotate1 = Tween(begin: 0.0, end: 180.0).animate(
-      CurvedAnimation(
-        parent: _rotateCtrl,
-        curve: const Interval(0.0, 0.25, curve: Curves.easeIn),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _rotate2 = Tween(begin: 0.0, end: 180.0).animate(
-      CurvedAnimation(
-        parent: _rotateCtrl,
-        curve: const Interval(0.25, 0.5, curve: Curves.easeIn),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _rotate3 = Tween(begin: 0.0, end: 180.0).animate(
-      CurvedAnimation(
-        parent: _rotateCtrl,
-        curve: const Interval(0.5, 0.75, curve: Curves.easeIn),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _rotate4 = Tween(begin: 0.0, end: 180.0).animate(
-      CurvedAnimation(
-        parent: _rotateCtrl,
-        curve: const Interval(0.75, 1.0, curve: Curves.easeIn),
-      ),
-    )..addListener(() => setState(() {}));
-
-    _rotateCtrl.forward();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+      ..addListener(() => setState(() {}))
+      ..addStatusListener(autoReverseFn(() => _controller))
+      ..forward();
+    _rotate1 = Tween(begin: 0.0, end: 180.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.25, curve: Curves.easeIn)));
+    _rotate2 = Tween(begin: 0.0, end: 180.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.25, 0.5, curve: Curves.easeIn)));
+    _rotate3 = Tween(begin: 0.0, end: 180.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.5, 0.75, curve: Curves.easeIn)));
+    _rotate4 = Tween(begin: 0.0, end: 180.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.75, 1.0, curve: Curves.easeIn)));
   }
 
   @override
   void dispose() {
-    _rotateCtrl.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -109,8 +77,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
   Widget _cube(int i, {Animation<double> animation}) {
     final _size = widget.size * 0.5, _position = widget.size * .5;
 
-    final Matrix4 _tRotate = Matrix4.identity()
-      ..rotateY(animation.value * 0.0174533);
+    final Matrix4 _tRotate = Matrix4.identity()..rotateY(animation.value * 0.0174533);
 
     return Positioned.fill(
       top: _position,
@@ -135,13 +102,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
     );
   }
 
-  Widget _itemBuilder(int index) {
-    return widget.itemBuilder != null
-        ? widget.itemBuilder(context, index)
-        : DecoratedBox(
-            decoration: BoxDecoration(
-              color: widget.color,
-            ),
-          );
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : DecoratedBox(decoration: BoxDecoration(color: widget.color));
 }

@@ -2,21 +2,40 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
+## 4.1.0
+
+- Introduces a new SpinKit [SpinKitSquareCircle]
+- Introduces `const` SpinKits
+- Improve code quality across all spinners
+
+### Before
+
+```dart
+final spinkit = SpinKitSquareCircle(color: Colors.white, size: 50.0);
+```
+
+### Now, all SpinKits can be initialized as `const`s
+
+```dart
+const spinkit = SpinKitSquareCircle(color: Colors.white, size: 50.0);
+```
+
+<img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/square_circle.gif" width="100px" height="100px">
+
 ## 4.0.0
 
 ### Feature
 
-- `controller` parameter [20248d](https://github.com/jogboms/flutter_spinkit/commit/20248d2f8bd1056a453a5e57f063e8d59dba9b36). Closes [#51](https://github.com/jogboms/flutter_spinkit/issues/51)
+- `controller` parameter [5873e7](https://github.com/jogboms/flutter_spinkit/commit/5873e75430aca52d2ec0c483dcd71a02438f3e8b). Closes [#51](https://github.com/jogboms/flutter_spinkit/issues/51)
 
 ```dart
-SpinKitFadingCircle(
+final spinkit = SpinKitFadingCircle(
   color: Colors.white,
   size: 50.0,
   controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200)),
 );
-
 ```
-- DualRing `lineWidth` parameter [5873e7](https://github.com/jogboms/flutter_spinkit/commit/5873e75430aca52d2ec0c483dcd71a02438f3e8b). Closes [#42](https://github.com/jogboms/flutter_spinkit/issues/42)
+- [DualRing] `lineWidth` parameter [9bcfd5](https://github.com/jogboms/flutter_spinkit/commit/9bcfd507459dfabf50d26a27cdb2c11188fce913). Closes [#42](https://github.com/jogboms/flutter_spinkit/issues/42)
 
 ## 3.1.0
 
@@ -33,16 +52,13 @@ SpinKitFadingCircle(
 ### Before
 
 ```dart
-SpinKitFadingCircle(
-  color: Colors.white,
-  size: 50.0,
-);
+final spinkit = SpinKitFadingCircle(color: Colors.white, size: 50.0);
 ```
 
 ### Now, there is an itemBuilder alternative
 
 ```dart
-SpinKitFadingCircle(
+final spinkit = SpinKitFadingCircle(
   itemBuilder: (_, int index) {
     return DecoratedBox(
       decoration: BoxDecoration(

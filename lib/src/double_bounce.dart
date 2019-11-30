@@ -1,17 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitDoubleBounce extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  SpinKitDoubleBounce({
+  const SpinKitDoubleBounce({
     Key key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2000),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         assert(size != null),
         super(key: key);
@@ -26,35 +24,19 @@ class SpinKitDoubleBounce extends StatefulWidget {
   _SpinKitDoubleBounceState createState() => _SpinKitDoubleBounceState();
 }
 
-class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
-    with SingleTickerProviderStateMixin {
+class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  Animation<double> _animation1;
-
-  void _statusListener(AnimationStatus status) {
-    if (status == AnimationStatus.completed) {
-      _controller.reverse();
-    } else if (status == AnimationStatus.dismissed) {
-      _controller.forward();
-    }
-  }
+  Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
 
-    _animation1 = Tween(begin: -1.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut,
-      ),
-    )
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() => setState(() {}))
-      ..addStatusListener(_statusListener);
-
-    _controller.forward();
+      ..addStatusListener(autoReverseFn(() => _controller))
+      ..forward();
+    _animation = Tween(begin: -1.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -67,31 +49,17 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce>
   Widget build(BuildContext context) {
     return Center(
       child: Stack(
-        children: <Widget>[
-          Transform.scale(
-            scale: 1.0 - _animation1.value.abs(),
-            child: _itemBuilder(0),
-          ),
-          Transform.scale(
-            scale: _animation1.value.abs(),
-            child: _itemBuilder(1),
-          ),
-        ],
+        children: List.generate(2, (i) {
+          return Transform.scale(
+            scale: (1.0 - i - _animation.value).abs(),
+            child: SizedBox.fromSize(size: Size.square(widget.size), child: _itemBuilder(i)),
+          );
+        }),
       ),
     );
   }
 
-  Widget _itemBuilder(int index) {
-    return SizedBox.fromSize(
-      size: Size.square(widget.size),
-      child: widget.itemBuilder != null
-          ? widget.itemBuilder(context, index)
-          : DecoratedBox(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: widget.color.withOpacity(0.6),
-              ),
-            ),
-    );
-  }
+  Widget _itemBuilder(int index) => widget.itemBuilder != null
+      ? widget.itemBuilder(context, index)
+      : DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withOpacity(0.6)));
 }
