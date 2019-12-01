@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_spinkit/src/utils.dart';
+import 'package:flutter_spinkit/src/tweens/delay_tween.dart';
 
 class SpinKitFadingCube extends StatefulWidget {
   const SpinKitFadingCube({
