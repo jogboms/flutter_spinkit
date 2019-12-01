@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitDoubleBounce extends StatefulWidget {
   const SpinKitDoubleBounce({
@@ -34,8 +33,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() => setState(() {}))
-      ..addStatusListener(autoReverseFn(() => _controller))
-      ..forward();
+      ..repeat(reverse: true);
     _animation = Tween(begin: -1.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 

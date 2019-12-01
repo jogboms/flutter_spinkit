@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitCubeGrid extends StatefulWidget {
   const SpinKitCubeGrid({
@@ -33,8 +32,7 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addStatusListener(autoReverseFn(() => _controller))
-      ..forward();
+      ..repeat(reverse: true);
     _anim1 = Tween(begin: 1.0, end: 0.0)
         .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.1, 0.6, curve: Curves.easeIn)));
     _anim2 = Tween(begin: 1.0, end: 0.0)

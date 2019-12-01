@@ -1,16 +1,6 @@
 import 'dart:math' as math show sin, pi;
 
-import 'package:flutter/widgets.dart';
-
-Function(AnimationStatus status) autoReverseFn(AnimationController Function() controllerFactory) {
-  return (AnimationStatus status) {
-    if (status == AnimationStatus.completed) {
-      controllerFactory().reverse();
-    } else if (status == AnimationStatus.dismissed) {
-      controllerFactory().forward();
-    }
-  };
-}
+import 'package:flutter/animation.dart';
 
 class DelayTween extends Tween<double> {
   DelayTween({double begin, double end, this.delay}) : super(begin: begin, end: end);
