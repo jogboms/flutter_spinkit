@@ -196,7 +196,7 @@ For help on editing plugin code, view the [documentation](https://flutter.io/pla
 <table>
   <tr>
     <td align="center">
-      <img src="https://avatars2.githubusercontent.com/u/6208486?s=400&u=01fab3fc9bb3d2ee799e314d3fe23c54d1deeb07&v=4" width="72" alt="Jeremiah Ogbomo" />
+      <a href = "https://jogboms.github.io/"><img src="https://avatars2.githubusercontent.com/u/6208486?s=400&u=01fab3fc9bb3d2ee799e314d3fe23c54d1deeb07&v=4" width="72" alt="Jeremiah Ogbomo" /></a>
       <p align="center">
         <a href = "https://github.com/jogboms"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="18" height = "18"/></a>
         <a href = "https://twitter.com/jogboms"><img src = "https://www.shareicon.net/download/2016/07/06/107115_media.svg" width="18" height="18"/></a>
@@ -204,7 +204,7 @@ For help on editing plugin code, view the [documentation](https://flutter.io/pla
       </p>
     </td>
     <td align="center">
-      <img src="https://avatars2.githubusercontent.com/u/34043023?s=400&u=01fab3fc9bb3d2ee799e314d3fe23c54d1deeb07&v=4" width="72" alt="Ayush Agarwal" />
+      <a href = "https://ayushagarwal.ml/"><img src="https://avatars2.githubusercontent.com/u/34043023?s=400&u=01fab3fc9bb3d2ee799e314d3fe23c54d1deeb07&v=4" width="72" alt="Ayush Agarwal" /></a>
       <p align="center">
         <a href = "https://github.com/aagarwal1012"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="18" height = "18"/></a>
         <a href = "https://twitter.com/aagarwal1012"><img src = "https://www.shareicon.net/download/2016/07/06/107115_media.svg" width="18" height="18"/></a>
