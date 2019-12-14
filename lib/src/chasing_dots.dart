@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitChasingDots extends StatefulWidget {
   const SpinKitChasingDots({
@@ -32,8 +31,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
 
     _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
       ..addListener(() => setState(() {}))
-      ..addStatusListener(autoReverseFn(() => _scaleCtrl))
-      ..forward();
+      ..repeat(reverse: true);
     _scale = Tween(begin: -1.0, end: 1.0).animate(CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut));
 
     _rotateCtrl = AnimationController(vsync: this, duration: widget.duration)

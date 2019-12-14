@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
   const SpinKitFoldingCube({
@@ -34,8 +33,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() => setState(() {}))
-      ..addStatusListener(autoReverseFn(() => _controller))
-      ..forward();
+      ..repeat(reverse: true);
     _rotate1 = Tween(begin: 0.0, end: 180.0)
         .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.25, curve: Curves.easeIn)));
     _rotate2 = Tween(begin: 0.0, end: 180.0)

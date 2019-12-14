@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -42,6 +43,17 @@ void main() {
       expect(find.byType(SpinKitPumpingHeart), findsOneWidget);
       expect(find.byType(Icon), findsWidgets);
       tester.verifyTickersWereDisposed();
+    });
+
+    test("on curve", () {
+      // I really don't know how else to test this. Too many magic numbers
+      const anotherMagicNumber = .8636363638;
+      final curve = SpinKitPumpCurve();
+      expect(curve.transform(0), 0);
+      expect(curve.transform(.25), closeTo(anotherMagicNumber, precisionErrorTolerance));
+      expect(curve.transform(.5), 0);
+      expect(curve.transform(.75), closeTo(anotherMagicNumber / 2, precisionErrorTolerance));
+      expect(curve.transform(1), 0);
     });
   });
 }

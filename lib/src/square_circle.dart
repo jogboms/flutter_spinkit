@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_spinkit/src/utils.dart';
 
 class SpinKitSquareCircle extends StatefulWidget {
   const SpinKitSquareCircle({
@@ -37,8 +36,7 @@ class _SpinKitSquareCircleState extends State<SpinKitSquareCircle> with SingleTi
 
     controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() => setState(() {}))
-      ..addStatusListener(autoReverseFn(() => controller))
-      ..forward();
+      ..repeat(reverse: true);
     final animation = CurvedAnimation(parent: controller, curve: Curves.easeInOutCubic);
     animationCurve = Tween(begin: 1.0, end: 0.0).animate(animation);
     animationSize = Tween(begin: 0.5, end: 1.0).animate(animation);
