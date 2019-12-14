@@ -2,6 +2,10 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
+## 4.1.1+1
+
+- Include Authors info in README
+
 ## 4.1.1
 
 - Utilize native flutter auto-reverse feature for AnimationController
