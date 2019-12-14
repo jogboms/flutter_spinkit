@@ -194,32 +194,24 @@ For help on editing plugin code, view the [documentation](https://flutter.io/pla
 ## ☀️ Authors
 
 <table>
-<tr>
-
-<td>
-<img src="https://avatars2.githubusercontent.com/u/6208486?s=400&u=01fab3fc9bb3d2ee799e314d3fe23c54d1deeb07&v=4" width="180"/>
-
-     Jeremiah Ogbomo
-
-<p align="center">
-<a href = "https://github.com/jogboms"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36"/></a>
-<a href = "https://twitter.com/jogboms"><img src = "https://www.shareicon.net/download/2016/07/06/107115_media.svg" width="36" height="36"/></a>
-<a href = "https://www.linkedin.com/in/jogboms/"><img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36"/></a>
-</p>
-</td>
-
-<td>
-<img src="https://avatars2.githubusercontent.com/u/34043023?s=400&u=01fab3fc9bb3d2ee799e314d3fe23c54d1deeb07&v=4" width="180"/>
-
-     Ayush Agarwal
-
-<p align="center">
-<a href = "https://github.com/aagarwal1012"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36"/></a>
-<a href = "https://twitter.com/aagarwal1012"><img src = "https://www.shareicon.net/download/2016/07/06/107115_media.svg" width="36" height="36"/></a>
-<a href = "https://www.linkedin.com/in/aagarwal1012/"><img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36"/></a>
-</p>
-</td>
-</tr> 
+  <tr>
+    <td align="center">
+      <img src="https://avatars2.githubusercontent.com/u/6208486?s=400&u=01fab3fc9bb3d2ee799e314d3fe23c54d1deeb07&v=4" width="72" alt="Jeremiah Ogbomo" />
+      <p align="center">
+        <a href = "https://github.com/jogboms"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="18" height = "18"/></a>
+        <a href = "https://twitter.com/jogboms"><img src = "https://www.shareicon.net/download/2016/07/06/107115_media.svg" width="18" height="18"/></a>
+        <a href = "https://www.linkedin.com/in/jogboms/"><img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="18" height="18"/></a>
+      </p>
+    </td>
+    <td align="center">
+      <img src="https://avatars2.githubusercontent.com/u/34043023?s=400&u=01fab3fc9bb3d2ee799e314d3fe23c54d1deeb07&v=4" width="72" alt="Ayush Agarwal" />
+      <p align="center">
+        <a href = "https://github.com/aagarwal1012"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="18" height = "18"/></a>
+        <a href = "https://twitter.com/aagarwal1012"><img src = "https://www.shareicon.net/download/2016/07/06/107115_media.svg" width="18" height="18"/></a>
+        <a href = "https://www.linkedin.com/in/aagarwal1012/"><img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="18" height="18"/></a>
+      </p>
+    </td>
+  </tr> 
 </table>
 
 ## ⭐️ License
