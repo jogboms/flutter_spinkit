@@ -15,6 +15,7 @@ class SpinKitWave extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
+        assert(itemCount != null && itemCount >= 2, 'itemCount Cant be less then 2 '),
         assert(type != null),
         assert(size != null),
         super(key: key);
