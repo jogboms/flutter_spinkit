@@ -10,6 +10,7 @@ class SpinKitWave extends StatefulWidget {
     this.type = SpinKitWaveType.start,
     this.size = 50.0,
     this.itemBuilder,
+    this.itemCount = 5,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
@@ -19,6 +20,7 @@ class SpinKitWave extends StatefulWidget {
         super(key: key);
 
   final Color color;
+  final int itemCount;
   final double size;
   final SpinKitWaveType type;
   final IndexedWidgetBuilder itemBuilder;
@@ -47,7 +49,7 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    final List<double> _bars = getAnimationDelay();
+    final List<double> _bars = getAnimationDelay(widget.itemCount);
     return Center(
       child: SizedBox.fromSize(
         size: Size(widget.size * 1.25, widget.size),
@@ -56,7 +58,7 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
           children: List.generate(_bars.length, (i) {
             return ScaleYWidget(
               scaleY: DelayTween(begin: .4, end: 1.0, delay: _bars[i]).animate(_controller),
-              child: SizedBox.fromSize(size: Size(widget.size * 0.2, widget.size), child: _itemBuilder(i)),
+              child: SizedBox.fromSize(size: Size(widget.size / widget.itemCount, widget.size), child: _itemBuilder(i)),
             );
           }),
         ),
@@ -64,16 +66,46 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
     );
   }
 
-  List<double> getAnimationDelay() {
+  List<double> getAnimationDelay(int itemCount) {
     switch (widget.type) {
       case SpinKitWaveType.start:
-        return [-1.2, -1.1, -1.0, -.9, -.8];
+        return _startAnimationDelay(itemCount);
       case SpinKitWaveType.end:
-        return [-.8, -.9, -1.0, -1.1, -1.2];
+        return _endAnimationDelay(itemCount);
       case SpinKitWaveType.center:
       default:
-        return [-0.75, -0.95, -1.2, -0.95, -0.75];
+        return _centerAnimationDelay(itemCount);
     }
+  }
+
+  List<double> _startAnimationDelay(int count) {
+    return <double>[
+      ...List<double>.generate(count ~/ 2, (index) => -1.0 - (index * 0.1) - 0.1).reversed,
+      if (count.isOdd) -1.0,
+      ...List<double>.generate(
+        count ~/ 2,
+        (index) => -1.0 + (index * 0.1) + (count.isOdd ? 0.1 : 0.0),
+      ),
+    ];
+  }
+
+  List<double> _endAnimationDelay(int count) {
+    return <double>[
+      ...List<double>.generate(count ~/ 2, (index) => -1.0 + (index * 0.1) + 0.1).reversed,
+      if (count.isOdd) -1.0,
+      ...List<double>.generate(
+        count ~/ 2,
+        (index) => -1.0 - (index * 0.1) - (count.isOdd ? 0.1 : 0.0),
+      ),
+    ];
+  }
+
+  List<double> _centerAnimationDelay(int count) {
+    return <double>[
+      ...List<double>.generate(count ~/ 2, (index) => -1.0 + (index * 0.2) + 0.2).reversed,
+      if (count.isOdd) -1.0,
+      ...List<double>.generate(count ~/ 2, (index) => -1.0 + (index * 0.2) + 0.2),
+    ];
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
