@@ -56,7 +56,7 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
               left: _position,
               top: _position,
               child: Transform(
-                transform: Matrix4.rotationZ(30.0 * (i * 2) * 0.0174533),
+                transform: Matrix4.rotationZ(30.0 * (i * 3) * 0.0174533),
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
