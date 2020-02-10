@@ -49,7 +49,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
       child: Stack(
         children: List.generate(2, (i) {
           return Transform.scale(
-            scale: (1.0 - i - _animation.value).abs(),
+            scale: (1.0 - i - _animation.value.abs()).abs(),
             child: SizedBox.fromSize(size: Size.square(widget.size), child: _itemBuilder(i)),
           );
         }),
