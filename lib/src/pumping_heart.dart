@@ -1,24 +1,21 @@
 import 'dart:math' as math show pow;
 
-import 'package:flutter/material.dart' show Icons;
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
   const SpinKitPumpingHeart({
     Key key,
-    this.color,
+    @required this.color,
     this.size = 50.0,
-    this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(color != null),
         assert(size != null),
         super(key: key);
 
   final Color color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
   final AnimationController controller;
 
@@ -34,9 +31,10 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTi
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
-    _animation = Tween(begin: 1.0, end: 1.25)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: SpinKitPumpCurve())));
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+      ..repeat();
+    _animation = Tween(begin: 1.0, end: 1.25).animate(
+        CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: SpinKitPumpCurve())));
   }
 
   @override
@@ -47,12 +45,66 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTi
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(scale: _animation, child: _itemBuilder(0));
+    return ScaleTransition(
+      scale: _animation,
+      child: CustomPaint(
+        size: Size.square(widget.size),
+        painter: HeartPainter(
+          color: widget.color,
+        ),
+      ),
+    );
+  }
+}
+
+class HeartPainter extends CustomPainter {
+  HeartPainter({
+    @required Color color,
+  }) : _heartPaint = Paint()
+          ..color = color
+          ..style = PaintingStyle.fill
+          ..isAntiAlias = true;
+
+  final Paint _heartPaint;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double width = size.width;
+    final double height = size.height;
+
+    final Path heartPath = Path();
+
+    //creating heart left half
+    heartPath.moveTo(0.5 * width, height * 0.15);
+    heartPath.cubicTo(
+      0.2 * width,
+      height * -0.2,
+      -0.2 * width,
+      height * 0.3,
+      0.1 * width,
+      height * 0.6,
+    );
+    heartPath.lineTo(0.5 * width, height);
+
+    //creating heart left half
+    heartPath.moveTo(0.5 * width, height * 0.15);
+    heartPath.cubicTo(
+      0.8 * width,
+      height * -0.2,
+      1.2 * width,
+      height * 0.3,
+      0.9 * width,
+      height * 0.6,
+    );
+    heartPath.lineTo(0.5 * width, height);
+
+    canvas.drawPath(heartPath, _heartPaint);
   }
 
-  Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
-      : Icon(Icons.favorite, color: widget.color, size: widget.size);
+  @override
+  bool shouldRepaint(HeartPainter oldDelegate) {
+    return oldDelegate._heartPaint != _heartPaint;
+  }
 }
 
 class SpinKitPumpCurve extends Curve {
