@@ -90,7 +90,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
             child: Opacity(
               opacity: 1.0 - (animation.value / 180.0),
               child: SizedBox.fromSize(
-                size: Size.square(_size / 4),
+                size: Size.square(_size),
                 child: _itemBuilder(i - 1),
               ),
             ),
