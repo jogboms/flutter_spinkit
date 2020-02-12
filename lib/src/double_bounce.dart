@@ -47,15 +47,12 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, _) {
-          return Container(
-            color: Colors.red,
-            child: CustomPaint(
-              size: Size.square(widget.size),
-              painter: DoubleBouncePainter(
-                color: widget.color,
-                opacity: 0.6,
-                doubleBounceSize: _animation.value.abs() *widget.size,
-              ),
+          return CustomPaint(
+            size: Size.square(widget.size),
+            painter: DoubleBouncePainter(
+              color: widget.color,
+              opacity: 0.6,
+              doubleBounceSize: _animation.value.abs() * widget.size,
             ),
           );
         },
@@ -81,8 +78,16 @@ class DoubleBouncePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final centerX = size.width / 2.0;
     final centerY = size.height / 2.0;
-    canvas.drawCircle(Offset(centerX, centerY), doubleBounceSize / 2, _doubleBouncePaint);
-    canvas.drawCircle(Offset(centerX, centerY),size.longestSide / 2  - (doubleBounceSize / 2), _doubleBouncePaint);
+    canvas.drawCircle(
+      Offset(centerX, centerY),
+      doubleBounceSize / 2,
+      _doubleBouncePaint,
+    );
+    canvas.drawCircle(
+      Offset(centerX, centerY),
+      size.longestSide / 2 - (doubleBounceSize / 2),
+      _doubleBouncePaint,
+    );
   }
 
   @override
