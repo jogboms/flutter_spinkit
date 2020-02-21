@@ -2,6 +2,11 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
+## 4.1.2
+
+- Introduced new `itemCount` property to `SpinKitWave`
+- Fixed broken calculations that made certain animations behave weirdly
+
 ## 4.1.1+1
 
 - Include Authors info in README
