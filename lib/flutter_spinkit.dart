@@ -25,5 +25,6 @@ export 'src/spinning_circle.dart';
 export 'src/spinning_lines.dart';
 export 'src/square_circle.dart';
 export 'src/three_bounce.dart';
+export 'src/three_in_out.dart';
 export 'src/wandering_cubes.dart';
 export 'src/wave.dart';
