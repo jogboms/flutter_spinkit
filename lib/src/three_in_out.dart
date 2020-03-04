@@ -7,7 +7,8 @@ class SpinKitThreeInOut extends StatefulWidget {
     this.color,
     this.size = 50.0,
     this.itemBuilder,
-    this.duration = const Duration(milliseconds: 700),
+    this.duration = const Duration(milliseconds: 500),
+    this.delay = const Duration(milliseconds: 50),
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
@@ -17,6 +18,7 @@ class SpinKitThreeInOut extends StatefulWidget {
   final double size;
   final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
+  final Duration delay;
   final AnimationController? controller;
 
   @override
@@ -43,7 +45,7 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
       ),
     );
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..forward();
 
     _controller.addListener(() {
       if (_lastAnim > _controller.value) {
@@ -51,6 +53,10 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
       }
 
       _lastAnim = _controller.value;
+
+      if (_controller.isCompleted) {
+        Future.delayed(widget.delay, () => _controller.forward(from: 0));
+      }
     });
   }
 
@@ -75,9 +81,7 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
 
                 if (index == 0) {
                   innerWidget = _wrapInAnimatedBuilder(innerWidget);
-                }
-
-                if (index == 3) {
+                } else if (index == 3) {
                   innerWidget = _wrapInAnimatedBuilder(
                     innerWidget,
                     inverse: true,
