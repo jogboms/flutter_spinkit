@@ -90,6 +90,7 @@ class SquareCirclePainter extends CustomPainter {
       Radius.circular(borderRadius),
     );
 
+    //circle rotation
     final double r = math.sqrt(size.width * size.width + size.height * size.height) / 2;
     final alpha = math.atan(size.height / size.width);
     final beta = alpha + rotate;
