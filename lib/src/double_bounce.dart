@@ -1,21 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SpinKitDoubleBounce extends StatefulWidget {
   const SpinKitDoubleBounce({
     Key key,
-    this.color,
+    @required this.color,
     this.size = 50.0,
-    this.itemBuilder,
     this.duration = const Duration(milliseconds: 2000),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(color != null),
         assert(size != null),
         super(key: key);
 
   final Color color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
   final AnimationController controller;
 
@@ -32,9 +30,9 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
       ..repeat(reverse: true);
-    _animation = Tween(begin: -1.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _animation =
+        Tween(begin: -1.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -46,18 +44,54 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Stack(
-        children: List.generate(2, (i) {
-          return Transform.scale(
-            scale: (1.0 - i - _animation.value.abs()).abs(),
-            child: SizedBox.fromSize(size: Size.square(widget.size), child: _itemBuilder(i)),
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, _) {
+          return CustomPaint(
+            size: Size.square(widget.size),
+            painter: DoubleBouncePainter(
+              color: widget.color,
+              opacity: 0.6,
+              doubleBounceSize: _animation.value.abs() * widget.size,
+            ),
           );
-        }),
+        },
       ),
     );
   }
+}
 
-  Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
-      : DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withOpacity(0.6)));
+class DoubleBouncePainter extends CustomPainter {
+  DoubleBouncePainter({
+    @required this.doubleBounceSize,
+    @required double opacity,
+    @required Color color,
+  }) : _doubleBouncePaint = Paint()
+          ..color = color.withOpacity(opacity)
+          ..style = PaintingStyle.fill
+          ..isAntiAlias = true;
+
+  final double doubleBounceSize;
+  final Paint _doubleBouncePaint;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final centerX = size.width / 2.0;
+    final centerY = size.height / 2.0;
+    canvas.drawCircle(
+      Offset(centerX, centerY),
+      doubleBounceSize / 2,
+      _doubleBouncePaint,
+    );
+    canvas.drawCircle(
+      Offset(centerX, centerY),
+      size.longestSide / 2 - (doubleBounceSize / 2),
+      _doubleBouncePaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(DoubleBouncePainter oldDelegate) {
+    return oldDelegate.doubleBounceSize != doubleBounceSize;
+  }
 }

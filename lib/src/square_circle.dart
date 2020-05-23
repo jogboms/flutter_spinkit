@@ -5,19 +5,16 @@ import 'package:flutter/widgets.dart';
 class SpinKitSquareCircle extends StatefulWidget {
   const SpinKitSquareCircle({
     Key key,
-    this.color,
+    @required this.color,
     this.size = 50.0,
-    this.itemBuilder,
     this.duration = const Duration(milliseconds: 500),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(color != null),
         assert(size != null),
         super(key: key);
 
   final Color color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
   final Duration duration;
   final AnimationController controller;
 
@@ -35,7 +32,6 @@ class _SpinKitSquareCircleState extends State<SpinKitSquareCircle> with SingleTi
     super.initState();
 
     controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
       ..repeat(reverse: true);
     final animation = CurvedAnimation(parent: controller, curve: Curves.easeInOutCubic);
     animationCurve = Tween(begin: 1.0, end: 0.0).animate(animation);
@@ -50,25 +46,68 @@ class _SpinKitSquareCircleState extends State<SpinKitSquareCircle> with SingleTi
 
   @override
   Widget build(BuildContext context) {
-    final sizeValue = widget.size * animationSize.value;
-    return Center(
-      child: Transform(
-        transform: Matrix4.identity()..rotateZ(animationCurve.value * math.pi),
-        alignment: FractionalOffset.center,
-        child: SizedBox.fromSize(
-          size: Size.square(sizeValue),
-          child: _itembuilder(0, 0.5 * sizeValue * animationCurve.value),
-        ),
+    return AnimatedBuilder(
+        animation: controller,
+        builder: (context, _) {
+          final sizeValue = widget.size * animationSize.value;
+          return Center(
+            child: CustomPaint(
+              size: Size.square(sizeValue),
+              painter: SquareCirclePainter(
+                rotate: animationCurve.value * math.pi,
+                borderRadius: 0.5 * sizeValue * animationCurve.value,
+                color: widget.color,
+              ),
+            ),
+          );
+        });
+  }
+}
+
+class SquareCirclePainter extends CustomPainter {
+  SquareCirclePainter({
+    @required this.borderRadius,
+    @required this.rotate,
+    @required Color color,
+  }) : _squareCirclePaint = Paint()
+          ..style = PaintingStyle.fill
+          ..color = color
+          ..isAntiAlias = true;
+
+  final double borderRadius;
+  final double rotate;
+  final Paint _squareCirclePaint;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rRect = RRect.fromRectAndRadius(
+      Rect.fromLTWH(
+        0,
+        0,
+        size.width,
+        size.height,
       ),
+      Radius.circular(borderRadius),
     );
+
+    //circle rotation
+    final double r = math.sqrt(size.width * size.width + size.height * size.height) / 2;
+    final alpha = math.atan(size.height / size.width);
+    final beta = alpha + rotate;
+    final shiftY = r * math.sin(beta);
+    final shiftX = r * math.cos(beta);
+    final translateX = size.width / 2 - shiftX;
+    final translateY = size.height / 2 - shiftY;
+
+    canvas.translate(translateX, translateY);
+
+    canvas.rotate(rotate);
+
+    canvas.drawRRect(rRect, _squareCirclePaint);
   }
 
-  Widget _itembuilder(int index, double curveValue) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
-      : DecoratedBox(
-          decoration: BoxDecoration(
-            color: widget.color,
-            borderRadius: BorderRadius.all(Radius.circular(curveValue)),
-          ),
-        );
+  @override
+  bool shouldRepaint(SquareCirclePainter oldDelegate) {
+    return oldDelegate.borderRadius != borderRadius;
+  }
 }
