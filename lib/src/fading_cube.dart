@@ -24,7 +24,7 @@ class SpinKitFadingCube extends StatefulWidget {
   _SpinKitFadingCubeState createState() => _SpinKitFadingCubeState();
 }
 
-class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with TickerProviderStateMixin {
+class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override

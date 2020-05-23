@@ -26,7 +26,7 @@ class SpinKitRipple extends StatefulWidget {
   _SpinKitRippleState createState() => _SpinKitRippleState();
 }
 
-class _SpinKitRippleState extends State<SpinKitRipple> with TickerProviderStateMixin {
+class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation1, _animation2;
 

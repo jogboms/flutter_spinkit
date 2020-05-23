@@ -41,8 +41,7 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override
@@ -133,7 +132,6 @@ class ScaleYWidget extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform(
-        transform: Matrix4.identity()..scale(1.0, scale.value, 1.0), alignment: alignment, child: child);
+    return Transform(transform: Matrix4.identity()..scale(1.0, scale.value, 1.0), alignment: alignment, child: child);
   }
 }
