@@ -26,7 +26,7 @@ class SpinKitThreeInOut extends StatefulWidget {
 }
 
 class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late AnimationController? _controller;
 
   late List<Widget> _widgets;
 
@@ -45,24 +45,28 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
       ),
     );
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..forward();
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
 
-    _controller.addListener(() {
-      if (_lastAnim > _controller.value) {
+    _controller!.forward();
+
+    _controller!.addListener(() {
+      if (_lastAnim > _controller!.value) {
         setState(() => _widgets.insert(0, _widgets.removeLast()));
       }
 
-      _lastAnim = _controller.value;
+      _lastAnim = _controller!.value;
 
-      if (_controller.isCompleted) {
-        Future.delayed(widget.delay, () => _controller.forward(from: 0));
+      if (_controller!.isCompleted) {
+        Future.delayed(widget.delay, () => _controller?.forward(from: 0));
       }
     });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
+    _controller = null;
+
     super.dispose();
   }
 
@@ -102,10 +106,10 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
     bool inverse = false,
   }) =>
       AnimatedBuilder(
-        animation: _controller,
+        animation: _controller!,
         child: innerWidget,
         builder: (context, inn) {
-          final value = inverse ? 1 - _controller.value : _controller.value;
+          final value = inverse ? 1 - _controller!.value : _controller!.value;
           return SizedBox.fromSize(
             size: Size.square(widget.size * 0.5 * value),
             child: Opacity(child: inn, opacity: value),
