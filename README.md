@@ -132,11 +132,6 @@ For more info, please, refer to the `showcase.dart` in the example.
       PumpingHeart
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/dual-ring.gif" width="100px" height="100px">
-      <br />
-      DualRing
-    </td>
-    <td align="center">
       <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/hour-glass.gif" width="100px" height="100px">
       <br />
       HourGlass
@@ -145,6 +140,11 @@ For more info, please, refer to the `showcase.dart` in the example.
       <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/PouringHourGlass.gif" width="100px" height="100px">
       <br />
       PouringHourGlass
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/pouring-hour-glass-refined.gif" width="100px" height="100px">
+      <br />
+      PouringHourGlassRefined
     </td>
   </tr>
   <tr>
@@ -177,6 +177,13 @@ For more info, please, refer to the `showcase.dart` in the example.
       <img src="https://raw.githubusercontent.com/abhishek0706/flutter_spinkit/square_circle/screenshots/square_circle.gif" width="100px" height="100px">
       <br />
       SquareCircle
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/dual-ring.gif" width="100px" height="100px">
+      <br />
+      DualRing
     </td>
   </tr>
 </table>
