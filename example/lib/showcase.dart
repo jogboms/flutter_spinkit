@@ -12,6 +12,9 @@ class ShowCase extends StatelessWidget {
     const SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
     const SpinKitWave(color: Colors.white, type: SpinKitWaveType.center),
     const SpinKitWave(color: Colors.white, type: SpinKitWaveType.end),
+    const SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.start),
+    const SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.center),
+    const SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.end),
     const SpinKitThreeBounce(color: Colors.white),
     const SpinKitWanderingCubes(color: Colors.white),
     const SpinKitWanderingCubes(color: Colors.white, shape: BoxShape.circle),
@@ -34,6 +37,7 @@ class ShowCase extends StatelessWidget {
     const SpinKitPouringHourglass(color: Colors.white),
     const SpinKitPouringHourGlassRefined(color: Colors.white),
     const SpinKitRipple(color: Colors.white),
+    const SpinKitDancingSquare(color: Colors.white),
   ];
 
   @override
