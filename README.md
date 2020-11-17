@@ -195,6 +195,11 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       DancingSquare
     </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/three-in-out.gif" width="100px" height="100px">
+      <br />
+      ThreeInOut
+    </td>
   </tr>
 </table>
 

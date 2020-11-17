@@ -31,6 +31,7 @@ void main() {
             SpinKitRotatingPlain(color: Colors.white),
             SpinKitSpinningCircle(color: Colors.white),
             SpinKitThreeBounce(color: Colors.white),
+            SpinKitThreeInOut(color: Colors.white),
             SpinKitWanderingCubes(color: Colors.white),
             SpinKitWave(color: Colors.white),
             SpinKitPianoWave(color: Colors.white),
