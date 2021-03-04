@@ -19,14 +19,6 @@ void main() {
       expect(() => SpinKitRipple(itemBuilder: null), throwsAssertionError);
     });
 
-    testWidgets('needs size to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitRipple(color: Colors.white, size: null), throwsAssertionError);
-    });
-
-    testWidgets('needs borderWidth to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitRipple(color: Colors.white, borderWidth: null), throwsAssertionError);
-    });
-
     testWidgets('works with color', (WidgetTester tester) async {
       await tester.pumpWidget(createMaterialApp(SpinKitRipple(color: Colors.white)));
       expect(find.byType(SpinKitRipple), findsOneWidget);

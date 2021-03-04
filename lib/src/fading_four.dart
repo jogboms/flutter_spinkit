@@ -3,7 +3,7 @@ import 'package:flutter_spinkit/src/tweens/delay_tween.dart';
 
 class SpinKitFadingFour extends StatefulWidget {
   const SpinKitFadingFour({
-    Key key,
+    Key? key,
     this.color,
     this.shape = BoxShape.circle,
     this.size = 50.0,
@@ -12,16 +12,14 @@ class SpinKitFadingFour extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(shape != null),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final BoxShape shape;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitFadingFourState createState() => _SpinKitFadingFourState();
@@ -29,7 +27,7 @@ class SpinKitFadingFour extends StatefulWidget {
 
 class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTickerProviderStateMixin {
   final List<double> delays = [.0, -0.9, -0.6, -0.3];
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -73,6 +71,6 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.shape));
 }

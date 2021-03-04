@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitSpinningCircle extends StatefulWidget {
   const SpinKitSpinningCircle({
-    Key key,
+    Key? key,
     this.color,
     this.shape = BoxShape.circle,
     this.size = 50.0,
@@ -13,24 +13,22 @@ class SpinKitSpinningCircle extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(shape != null),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final BoxShape shape;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitSpinningCircleState createState() => _SpinKitSpinningCircleState();
 }
 
 class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -64,6 +62,6 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle> with Sing
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.shape));
 }

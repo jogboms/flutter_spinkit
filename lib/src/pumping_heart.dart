@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitPumpingHeart extends StatefulWidget {
   const SpinKitPumpingHeart({
-    Key key,
+    Key? key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
@@ -13,22 +13,21 @@ class SpinKitPumpingHeart extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitPumpingHeartState createState() => _SpinKitPumpingHeartState();
 }
 
 class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -51,7 +50,7 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTi
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : Icon(Icons.favorite, color: widget.color, size: widget.size);
 }
 

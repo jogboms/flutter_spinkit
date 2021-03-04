@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitRipple extends StatefulWidget {
   const SpinKitRipple({
-    Key key,
+    Key? key,
     this.color,
     this.size = 50.0,
     this.borderWidth = 6.0,
@@ -11,24 +11,23 @@ class SpinKitRipple extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(size != null),
-        assert(borderWidth != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final double size;
   final double borderWidth;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitRippleState createState() => _SpinKitRippleState();
 }
 
 class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation1, _animation2;
+  late AnimationController _controller;
+  late Animation<double> _animation1;
+  late Animation<double> _animation2;
 
   @override
   void initState() {
@@ -71,11 +70,11 @@ class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProvider
     return SizedBox.fromSize(
       size: Size.square(widget.size),
       child: widget.itemBuilder != null
-          ? widget.itemBuilder(context, index)
+          ? widget.itemBuilder!(context, index)
           : DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: widget.color, width: widget.borderWidth),
+                border: Border.all(color: widget.color!, width: widget.borderWidth),
               ),
             ),
     );

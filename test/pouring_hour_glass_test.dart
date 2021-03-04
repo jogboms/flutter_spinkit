@@ -6,14 +6,6 @@ import 'helpers.dart';
 
 void main() {
   group("PouringHourglass", () {
-    testWidgets('needs color to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitPouringHourglass(color: null), throwsAssertionError);
-    });
-
-    testWidgets('needs size to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitPouringHourglass(color: Colors.white, size: null), throwsAssertionError);
-    });
-
     testWidgets('works with color', (WidgetTester tester) async {
       await tester.pumpWidget(createMaterialApp(SpinKitPouringHourglass(color: Colors.white)));
       expect(find.byType(SpinKitPouringHourglass), findsOneWidget);

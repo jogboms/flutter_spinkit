@@ -19,10 +19,6 @@ void main() {
       expect(() => SpinKitThreeBounce(itemBuilder: null), throwsAssertionError);
     });
 
-    testWidgets('needs size to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitThreeBounce(color: Colors.white, size: null), throwsAssertionError);
-    });
-
     testWidgets('works with color', (WidgetTester tester) async {
       await tester.pumpWidget(createMaterialApp(SpinKitThreeBounce(color: Colors.white)));
       expect(find.byType(SpinKitThreeBounce), findsOneWidget);

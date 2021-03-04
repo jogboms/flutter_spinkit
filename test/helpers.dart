@@ -6,7 +6,7 @@ final fakeBoxBuilder = (BuildContext _, int index) => FakeBox();
 
 Widget createWidgetsApp(Widget widget) {
   return WidgetsApp(
-    color: Colors.grey[900],
+    color: Colors.grey[900]!,
     home: Center(child: widget),
     pageRouteBuilder: <T>(settings, builder) => MaterialPageRoute<T>(settings: settings, builder: builder),
   );
