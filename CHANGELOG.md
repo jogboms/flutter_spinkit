@@ -2,7 +2,7 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
-## 5.0.0-nullsafety.0
+## 5.0.0
 
 - Migrate to null safety
 
