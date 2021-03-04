@@ -4,27 +4,25 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitHourGlass extends StatefulWidget {
   const SpinKitHourGlass({
-    Key key,
-    @required this.color,
+    Key? key,
+    required this.color,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(color != null),
-        assert(size != null),
-        super(key: key);
+  }) : super(key: key);
 
   final Color color;
   final double size;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitHourGlassState createState() => _SpinKitHourGlassState();
 }
 
 class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -59,7 +57,7 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
 }
 
 class _HourGlassPainter extends CustomPainter {
-  _HourGlassPainter({this.weight = 90.0, Color color})
+  _HourGlassPainter({this.weight = 90.0, required Color color})
       : _paint = Paint()
           ..color = color
           ..strokeWidth = 1.0;

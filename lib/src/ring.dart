@@ -4,30 +4,29 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitRing extends StatefulWidget {
   const SpinKitRing({
-    Key key,
-    @required this.color,
+    Key? key,
+    required this.color,
     this.lineWidth = 7.0,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(color != null),
-        assert(lineWidth != null),
-        assert(size != null),
-        super(key: key);
+  }) : super(key: key);
 
   final Color color;
   final double size;
   final double lineWidth;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitRingState createState() => _SpinKitRingState();
 }
 
 class _SpinKitRingState extends State<SpinKitRing> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation1, _animation2, _animation3;
+  late AnimationController _controller;
+  late Animation<double> _animation1;
+  late Animation<double> _animation2;
+  late Animation<double> _animation3;
 
   @override
   void initState() {
@@ -74,10 +73,10 @@ class _SpinKitRingState extends State<SpinKitRing> with SingleTickerProviderStat
 
 class RingPainter extends CustomPainter {
   RingPainter({
-    this.paintWidth,
+    required this.paintWidth,
     this.progressPercent,
     this.startAngle,
-    this.trackColor,
+    required this.trackColor,
   }) : trackPaint = Paint()
           ..color = trackColor
           ..style = PaintingStyle.stroke
@@ -87,8 +86,8 @@ class RingPainter extends CustomPainter {
   final double paintWidth;
   final Paint trackPaint;
   final Color trackColor;
-  final double progressPercent;
-  final double startAngle;
+  final double? progressPercent;
+  final double? startAngle;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -96,8 +95,8 @@ class RingPainter extends CustomPainter {
     final radius = (min(size.width, size.height) - paintWidth) / 2;
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
-      startAngle,
-      2 * pi * progressPercent,
+      startAngle!,
+      2 * pi * progressPercent!,
       false,
       trackPaint,
     );

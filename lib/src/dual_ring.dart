@@ -4,29 +4,27 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitDualRing extends StatefulWidget {
   const SpinKitDualRing({
-    Key key,
-    @required this.color,
+    Key? key,
+    required this.color,
     this.lineWidth = 7.0,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(color != null),
-        assert(size != null),
-        super(key: key);
+  }) : super(key: key);
 
   final Color color;
   final double lineWidth;
   final double size;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitDualRingState createState() => _SpinKitDualRingState();
 }
 
 class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -61,7 +59,7 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
 }
 
 class _DualRingPainter extends CustomPainter {
-  _DualRingPainter({this.angle = 90.0, double paintWidth, Color color})
+  _DualRingPainter({this.angle = 90.0, required double paintWidth, required Color color})
       : ringPaint = Paint()
           ..color = color
           ..strokeWidth = paintWidth

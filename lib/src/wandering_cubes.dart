@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitWanderingCubes extends StatefulWidget {
   const SpinKitWanderingCubes({
-    Key key,
+    Key? key,
     this.color,
     this.shape = BoxShape.rectangle,
     this.size = 50.0,
@@ -10,16 +10,14 @@ class SpinKitWanderingCubes extends StatefulWidget {
     this.duration = const Duration(milliseconds: 1800),
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(shape != null),
-        assert(size != null),
         offset = size * 0.75,
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final BoxShape shape;
   final double offset;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
 
   @override
@@ -27,9 +25,16 @@ class SpinKitWanderingCubes extends StatefulWidget {
 }
 
 class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _scale1, _scale2, _scale3, _scale4, _rotate;
-  Animation<double> _translate1, _translate2, _translate3, _translate4;
+  late AnimationController _controller;
+  late Animation<double> _scale1;
+  late Animation<double> _scale2;
+  late Animation<double> _scale3;
+  late Animation<double> _scale4;
+  late Animation<double> _rotate;
+  late Animation<double> _translate1;
+  late Animation<double> _translate2;
+  late Animation<double> _translate3;
+  late Animation<double> _translate4;
 
   @override
   void initState() {
@@ -119,6 +124,6 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Sing
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.shape));
 }

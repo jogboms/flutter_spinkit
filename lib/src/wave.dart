@@ -5,7 +5,7 @@ enum SpinKitWaveType { start, end, center }
 
 class SpinKitWave extends StatefulWidget {
   const SpinKitWave({
-    Key key,
+    Key? key,
     this.color,
     this.type = SpinKitWaveType.start,
     this.size = 50.0,
@@ -15,25 +15,23 @@ class SpinKitWave extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(itemCount != null && itemCount >= 2, 'itemCount Cant be less then 2 '),
-        assert(type != null),
-        assert(size != null),
+        assert(itemCount >= 2, 'itemCount Cant be less then 2 '),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final int itemCount;
   final double size;
   final SpinKitWaveType type;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitWaveState createState() => _SpinKitWaveState();
 }
 
 class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -110,22 +108,22 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(decoration: BoxDecoration(color: widget.color));
 }
 
 class ScaleYWidget extends AnimatedWidget {
   const ScaleYWidget({
-    Key key,
-    @required Animation<double> scaleY,
-    @required this.child,
+    Key? key,
+    required Animation<double> scaleY,
+    required this.child,
     this.alignment = Alignment.center,
   }) : super(key: key, listenable: scaleY);
 
   final Widget child;
   final Alignment alignment;
 
-  Animation<double> get scale => listenable;
+  Animation<double> get scale => listenable as Animation<double>;
 
   @override
   Widget build(BuildContext context) {

@@ -2,19 +2,18 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitChasingDots extends StatefulWidget {
   const SpinKitChasingDots({
-    Key key,
+    Key? key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2000),
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
 
   @override
@@ -22,8 +21,10 @@ class SpinKitChasingDots extends StatefulWidget {
 }
 
 class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProviderStateMixin {
-  AnimationController _scaleCtrl, _rotateCtrl;
-  Animation<double> _scale, _rotate;
+  late AnimationController _scaleCtrl;
+  late AnimationController _rotateCtrl;
+  late Animation<double> _scale;
+  late Animation<double> _rotate;
 
   @override
   void initState() {
@@ -71,7 +72,7 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
       child: SizedBox.fromSize(
         size: Size.square(widget.size * 0.6),
         child: widget.itemBuilder != null
-            ? widget.itemBuilder(context, index)
+            ? widget.itemBuilder!(context, index)
             : DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color)),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitCubeGrid extends StatefulWidget {
   const SpinKitCubeGrid({
-    Key key,
+    Key? key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
@@ -10,22 +10,25 @@ class SpinKitCubeGrid extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitCubeGridState createState() => _SpinKitCubeGridState();
 }
 
 class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _anim1, _anim2, _anim3, _anim4, _anim5;
+  late AnimationController _controller;
+  late Animation<double> _anim1;
+  late Animation<double> _anim2;
+  late Animation<double> _anim3;
+  late Animation<double> _anim4;
+  late Animation<double> _anim5;
 
   @override
   void initState() {
@@ -99,6 +102,6 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(decoration: BoxDecoration(color: widget.color));
 }

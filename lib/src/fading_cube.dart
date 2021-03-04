@@ -3,7 +3,7 @@ import 'package:flutter_spinkit/src/tweens/delay_tween.dart';
 
 class SpinKitFadingCube extends StatefulWidget {
   const SpinKitFadingCube({
-    Key key,
+    Key? key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
@@ -11,21 +11,20 @@ class SpinKitFadingCube extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitFadingCubeState createState() => _SpinKitFadingCubeState();
 }
 
 class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -78,6 +77,6 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with SingleTicker
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(decoration: BoxDecoration(color: widget.color));
 }

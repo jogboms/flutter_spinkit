@@ -5,27 +5,26 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitPouringHourglass extends StatefulWidget {
   const SpinKitPouringHourglass({
-    Key key,
-    @required this.color,
+    Key? key,
+    required this.color,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(color != null),
-        assert(size != null),
-        super(key: key);
+  }) : super(key: key);
 
   final double size;
   final Color color;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitPouringHourglassState createState() => _SpinKitPouringHourglassState();
 }
 
 class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _pouringAnimation, _rotationAnimation;
+  late AnimationController _controller;
+  late Animation<double> _pouringAnimation;
+  late Animation<double> _rotationAnimation;
 
   @override
   void initState() {
@@ -66,7 +65,7 @@ class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass> with 
 }
 
 class _HourGlassPaint extends CustomPainter {
-  _HourGlassPaint({this.poured, @required Color color})
+  _HourGlassPaint({this.poured, required Color color})
       : _paint = Paint()
           ..style = PaintingStyle.stroke
           ..color = color,
@@ -74,7 +73,7 @@ class _HourGlassPaint extends CustomPainter {
           ..style = PaintingStyle.fill
           ..color = color;
 
-  final double poured;
+  final double? poured;
   final Paint _paint;
   final Paint _powderPaint;
 
@@ -101,14 +100,14 @@ class _HourGlassPaint extends CustomPainter {
 
     final upperPart = Path()
       ..moveTo(0.0, top)
-      ..addRect(Rect.fromLTRB(0.0, halfHeight * poured, size.width, halfHeight));
+      ..addRect(Rect.fromLTRB(0.0, halfHeight * poured!, size.width, halfHeight));
     canvas.drawPath(Path.combine(PathOperation.intersect, hourglassPath, upperPart), _powderPaint);
 
     final lowerPartPath = Path()
       ..moveTo(centerX, bottom)
-      ..relativeLineTo(hourglassWidth * poured, 0.0)
-      ..lineTo(centerX, bottom - poured * halfHeight - gapWidth)
-      ..lineTo(centerX - hourglassWidth * poured, bottom)
+      ..relativeLineTo(hourglassWidth * poured!, 0.0)
+      ..lineTo(centerX, bottom - poured! * halfHeight - gapWidth)
+      ..lineTo(centerX - hourglassWidth * poured!, bottom)
       ..close();
     final lowerPart = Path.combine(
       PathOperation.intersect,

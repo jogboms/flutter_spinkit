@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitPulse extends StatefulWidget {
   const SpinKitPulse({
-    Key key,
+    Key? key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
@@ -10,22 +10,21 @@ class SpinKitPulse extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitPulseState createState() => _SpinKitPulseState();
 }
 
 class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -60,6 +59,6 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color));
 }

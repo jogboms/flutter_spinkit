@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitSquareCircle extends StatefulWidget {
   const SpinKitSquareCircle({
-    Key key,
+    Key? key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
@@ -12,23 +12,22 @@ class SpinKitSquareCircle extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitSquareCircleState createState() => _SpinKitSquareCircleState();
 }
 
 class _SpinKitSquareCircleState extends State<SpinKitSquareCircle> with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> animationCurve;
-  Animation<double> animationSize;
+  late AnimationController controller;
+  late Animation<double> animationCurve;
+  late Animation<double> animationSize;
 
   @override
   void initState() {
@@ -57,14 +56,14 @@ class _SpinKitSquareCircleState extends State<SpinKitSquareCircle> with SingleTi
         alignment: FractionalOffset.center,
         child: SizedBox.fromSize(
           size: Size.square(sizeValue),
-          child: _itembuilder(0, 0.5 * sizeValue * animationCurve.value),
+          child: _itemBuilder(0, 0.5 * sizeValue * animationCurve.value),
         ),
       ),
     );
   }
 
-  Widget _itembuilder(int index, double curveValue) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+  Widget _itemBuilder(int index, double curveValue) => widget.itemBuilder != null
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(
           decoration: BoxDecoration(
             color: widget.color,

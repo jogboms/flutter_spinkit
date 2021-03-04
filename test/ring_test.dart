@@ -7,18 +7,6 @@ import 'helpers.dart';
 
 void main() {
   group("Ring", () {
-    testWidgets('needs color to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitRing(color: null), throwsAssertionError);
-    });
-
-    testWidgets('needs size to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitRing(color: Colors.white, size: null), throwsAssertionError);
-    });
-
-    testWidgets('needs lineWidth to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitRing(color: Colors.white, lineWidth: null), throwsAssertionError);
-    });
-
     testWidgets('works with color', (WidgetTester tester) async {
       await tester.pumpWidget(createMaterialApp(SpinKitRing(color: Colors.white)));
       expect(find.byType(SpinKitRing), findsOneWidget);

@@ -19,14 +19,6 @@ void main() {
       expect(() => SpinKitWave(itemBuilder: null), throwsAssertionError);
     });
 
-    testWidgets('needs size to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitWave(color: Colors.white, size: null), throwsAssertionError);
-    });
-
-    testWidgets('needs type to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitWave(color: Colors.white, type: null), throwsAssertionError);
-    });
-
     testWidgets('works with color', (WidgetTester tester) async {
       await tester.pumpWidget(createMaterialApp(SpinKitWave(color: Colors.white)));
       expect(find.byType(SpinKitWave), findsOneWidget);

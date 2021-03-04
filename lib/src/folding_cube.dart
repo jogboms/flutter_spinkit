@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
   const SpinKitFoldingCube({
-    Key key,
+    Key? key,
     this.color,
     this.size = 50.0,
     this.itemBuilder,
@@ -10,22 +10,24 @@ class SpinKitFoldingCube extends StatefulWidget {
     this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
-        assert(size != null),
         super(key: key);
 
-  final Color color;
+  final Color? color;
   final double size;
-  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController controller;
+  final AnimationController? controller;
 
   @override
   _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();
 }
 
 class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _rotate1, _rotate2, _rotate3, _rotate4;
+  late AnimationController _controller;
+  late Animation<double> _rotate1;
+  late Animation<double> _rotate2;
+  late Animation<double> _rotate3;
+  late Animation<double> _rotate4;
 
   @override
   void initState() {
@@ -72,7 +74,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
     );
   }
 
-  Widget _cube(int i, {Animation<double> animation}) {
+  Widget _cube(int i, {required Animation<double> animation}) {
     final _size = widget.size * 0.5, _position = widget.size * .5;
 
     final Matrix4 _tRotate = Matrix4.identity()..rotateY(animation.value * 0.0174533);
@@ -101,6 +103,6 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder(context, index)
+      ? widget.itemBuilder!(context, index)
       : DecoratedBox(decoration: BoxDecoration(color: widget.color));
 }

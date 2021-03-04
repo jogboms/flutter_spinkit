@@ -19,10 +19,6 @@ void main() {
       expect(() => SpinKitCubeGrid(itemBuilder: null), throwsAssertionError);
     });
 
-    testWidgets('needs size to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitCubeGrid(color: Colors.white, size: null), throwsAssertionError);
-    });
-
     testWidgets('works with color', (WidgetTester tester) async {
       await tester.pumpWidget(createMaterialApp(SpinKitCubeGrid(color: Colors.white)));
       expect(find.byType(SpinKitCubeGrid), findsOneWidget);
