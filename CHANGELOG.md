@@ -2,6 +2,10 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
+## 5.0.0-nullsafety.0
+
+- Migrate to null safety
+
 ## 4.1.2+1
 
 - Upgrades the example to AndroidX
