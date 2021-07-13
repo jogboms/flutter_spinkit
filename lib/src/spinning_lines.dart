@@ -3,12 +3,12 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-class SpinningLines extends StatefulWidget {
-  const SpinningLines({
+class SpinKitSpinningLines extends StatefulWidget {
+  const SpinKitSpinningLines({
     Key? key,
     required this.color,
-    this.size = 100,
-    this.ringWidth = 3.0,
+    this.size = 70,
+    this.ringWidth = 2.0,
     this.ringCount = 5,
     this.duration = const Duration(milliseconds: 3000),
     this.controller,
@@ -24,10 +24,11 @@ class SpinningLines extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinningLinesState createState() => _SpinningLinesState();
+  _SpinKitSpinningLinesState createState() => _SpinKitSpinningLinesState();
 }
 
-class _SpinningLinesState extends State<SpinningLines> with SingleTickerProviderStateMixin {
+class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 

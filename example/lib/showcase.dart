@@ -74,7 +74,7 @@ class ShowCase extends StatelessWidget {
               children: [
                 const SpinKitRing(color: Colors.white),
                 const SpinKitDualRing(color: Colors.white),
-                const SpinKitRipple(color: Colors.white),
+                const SpinKitSpinningLines(color: Colors.white),
               ],
             ),
             const SizedBox(height: 48.0),
@@ -101,6 +101,7 @@ class ShowCase extends StatelessWidget {
               children: [
                 const SpinKitHourGlass(color: Colors.white),
                 const SpinKitPouringHourglass(color: Colors.white),
+                const SpinKitRipple(color: Colors.white),
               ],
             ),
             const SizedBox(height: 64.0),
