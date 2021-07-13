@@ -3,16 +3,83 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
+class SpinningLines extends StatefulWidget {
+  const SpinningLines({
+    Key? key,
+    required this.color,
+    this.size = 100,
+    this.ringWidth = 3.0,
+    this.ringCount = 5,
+    this.duration = const Duration(milliseconds: 3000),
+    this.controller,
+  }) : super(key: key);
+
+  final Color color;
+  final double size;
+
+  final double ringWidth;
+  final int ringCount;
+
+  final Duration duration;
+  final AnimationController? controller;
+
+  @override
+  _SpinningLinesState createState() => _SpinningLinesState();
+}
+
+class _SpinningLinesState extends State<SpinningLines> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
+      ..addListener(() => setState(() {}))
+      ..repeat();
+
+    _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: AnimatedBuilder(
+        builder: (BuildContext context, Widget? child) {
+          return CustomPaint(
+            child: SizedBox.fromSize(size: Size.square(widget.size)),
+            painter: SpinningLinesPainter(
+              _animation.value,
+              lineWidth: widget.ringWidth,
+              color: widget.color,
+              itemCount: widget.ringCount,
+            ),
+          );
+        },
+        animation: _animation,
+      ),
+    );
+  }
+}
+
 class SpinningLinesPainter extends CustomPainter {
   SpinningLinesPainter(
-      this.rotateValue, {
-        required Color color,
-        required this.lineWidth,
-        required this.itemCount,
-      }) : _linePaint = Paint()
-    ..color = color
-    ..strokeWidth = 1
-    ..style = PaintingStyle.fill;
+    this.rotateValue, {
+    required Color color,
+    required this.lineWidth,
+    required this.itemCount,
+  }) : _linePaint = Paint()
+          ..color = color
+          ..strokeWidth = 1
+          ..style = PaintingStyle.fill;
 
   final double rotateValue;
   final double lineWidth;
@@ -26,7 +93,6 @@ class SpinningLinesPainter extends CustomPainter {
       _drawSpin(canvas, size, _linePaint, i);
     }
   }
-
 
   void _drawSpin(Canvas canvas, Size size, Paint paint, int scale) {
     final scaledSize = size * (scale / itemCount);
@@ -42,7 +108,7 @@ class SpinningLinesPainter extends CustomPainter {
 
     final borderWith = lineWidth;
 
-    final scaleFactor = -(scale - (itemCount+1));
+    final scaleFactor = -(scale - (itemCount + 1));
 
     final path = Path();
     path.moveTo(startX, startY);
@@ -93,7 +159,7 @@ class SpinningLinesPainter extends CustomPainter {
   @override
   bool shouldRepaint(SpinningLinesPainter oldDelegate) =>
       oldDelegate.rotateValue != rotateValue ||
-          oldDelegate.lineWidth != lineWidth ||
-          oldDelegate.itemCount != itemCount ||
-          oldDelegate._linePaint != _linePaint;
+      oldDelegate.lineWidth != lineWidth ||
+      oldDelegate.itemCount != itemCount ||
+      oldDelegate._linePaint != _linePaint;
 }
