@@ -8,8 +8,8 @@ class SpinKitSpinningLines extends StatefulWidget {
     Key? key,
     required this.color,
     this.size = 70,
-    this.ringWidth = 2.0,
-    this.ringCount = 5,
+    this.lineWidth = 2.0,
+    this.itemCount = 5,
     this.duration = const Duration(milliseconds: 3000),
     this.controller,
   }) : super(key: key);
@@ -17,8 +17,8 @@ class SpinKitSpinningLines extends StatefulWidget {
   final Color color;
   final double size;
 
-  final double ringWidth;
-  final int ringCount;
+  final double lineWidth;
+  final int itemCount;
 
   final Duration duration;
   final AnimationController? controller;
@@ -59,9 +59,9 @@ class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines>
             child: SizedBox.fromSize(size: Size.square(widget.size)),
             painter: SpinningLinesPainter(
               _animation.value,
-              lineWidth: widget.ringWidth,
+              lineWidth: widget.lineWidth,
               color: widget.color,
-              itemCount: widget.ringCount,
+              itemCount: widget.itemCount,
             ),
           );
         },
