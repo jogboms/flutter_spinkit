@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
@@ -22,33 +23,87 @@ class SpinKitFoldingCube extends StatefulWidget {
   _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();
 }
 
-class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProviderStateMixin {
+  late final int delay;
+
+  late AnimationController _controller1;
+  late AnimationController _controller2;
+  late AnimationController _controller3;
+  late AnimationController _controller4;
   late Animation<double> _rotate1;
   late Animation<double> _rotate2;
   late Animation<double> _rotate3;
   late Animation<double> _rotate4;
 
+  late Timer _timer2;
+  late Timer _timer3;
+  late Timer _timer4;
+
   @override
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
-      ..repeat(reverse: true);
-    _rotate1 = Tween(begin: 0.0, end: 180.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.25, curve: Curves.easeIn)));
-    _rotate2 = Tween(begin: 0.0, end: 180.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.25, 0.5, curve: Curves.easeIn)));
-    _rotate3 = Tween(begin: 0.0, end: 180.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.5, 0.75, curve: Curves.easeIn)));
-    _rotate4 = Tween(begin: 0.0, end: 180.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.75, 1.0, curve: Curves.easeIn)));
+    delay = widget.duration.inMilliseconds ~/ 8;
+
+    _controller1 = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+      ..addListener(() => setState(() {}));
+    _controller2 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
+    _controller3 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
+    _controller4 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
+
+    final tweenSequence = TweenSequence<double>([
+      TweenSequenceItem(tween: ConstantTween<double>(-180.0).chain(CurveTween(curve: Curves.easeIn)), weight: 10.0),
+      TweenSequenceItem(tween: Tween<double>(begin: -180.0, end: 0.0), weight: 15.0),
+      TweenSequenceItem(tween: ConstantTween<double>(0.0), weight: 50.0),
+      TweenSequenceItem(
+          tween: Tween<double>(begin: 0.0, end: 180.0).chain(CurveTween(curve: Curves.easeIn)), weight: 15.0),
+      TweenSequenceItem(tween: ConstantTween(180.0), weight: 10),
+    ]);
+
+    _rotate1 = tweenSequence.animate(_controller1)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          startAnimation();
+        }
+      });
+    _rotate2 = tweenSequence.animate(_controller2);
+    _rotate3 = tweenSequence.animate(_controller3);
+    _rotate4 = tweenSequence.animate(_controller4);
+
+    startAnimation();
+  }
+
+  void startAnimation() {
+    if (mounted) {
+      _controller1.forward(from: 0.0);
+    }
+    _timer2 = Timer(Duration(milliseconds: delay), () {
+      if (mounted) {
+        _controller2.forward(from: 0.0);
+      }
+    });
+    _timer3 = Timer(Duration(milliseconds: delay * 2), () {
+      if (mounted) {
+        _controller3.forward(from: 0.0);
+      }
+    });
+    _timer4 = Timer(Duration(milliseconds: delay * 3), () {
+      if (mounted) {
+        _controller4.forward(from: 0.0);
+      }
+    });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _timer2.cancel();
+    _timer3.cancel();
+    _timer4.cancel();
+    _controller1.dispose();
+    _controller2.dispose();
+    _controller3.dispose();
+    _controller4.dispose();
+
     super.dispose();
   }
 
@@ -77,7 +132,12 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
   Widget _cube(int i, {required Animation<double> animation}) {
     final _size = widget.size * 0.5, _position = widget.size * .5;
 
-    final Matrix4 _tRotate = Matrix4.identity()..rotateY(animation.value * 0.0174533);
+    final Matrix4 _tRotate = Matrix4.identity();
+    if (animation.value <= 0) {
+      _tRotate.rotateX(animation.value * 0.0174533);
+    } else {
+      _tRotate.rotateY(animation.value * 0.0174533);
+    }
 
     return Positioned.fill(
       top: _position,
@@ -88,9 +148,9 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with SingleTick
           alignment: Alignment.center,
           child: Transform(
             transform: _tRotate,
-            alignment: Alignment.centerLeft,
+            alignment: animation.value <= 0 ? Alignment.topCenter : Alignment.centerLeft,
             child: Opacity(
-              opacity: 1.0 - (animation.value / 180.0),
+              opacity: 1.0 - (animation.value.abs() / 180.0),
               child: SizedBox.fromSize(
                 size: Size.square(_size),
                 child: _itemBuilder(i - 1),
