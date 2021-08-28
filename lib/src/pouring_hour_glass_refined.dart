@@ -9,12 +9,14 @@ class SpinKitPouringHourGlassRefined extends StatefulWidget {
     required this.color,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 2400),
+    this.strokeWidth,
     this.controller,
   }) : super(key: key);
 
   final double size;
   final Color color;
   final Duration duration;
+  final double? strokeWidth;
   final AnimationController? controller;
 
   @override
@@ -59,6 +61,7 @@ class _SpinKitPouringHourGlassRefinedState extends State<SpinKitPouringHourGlass
             painter: _HourGlassPaint(
               poured: _pouringAnimation.value,
               color: widget.color,
+              strokeWidth: widget.strokeWidth,
             ),
           ),
         ),
@@ -68,7 +71,7 @@ class _SpinKitPouringHourGlassRefinedState extends State<SpinKitPouringHourGlass
 }
 
 class _HourGlassPaint extends CustomPainter {
-  _HourGlassPaint({this.poured, required Color color})
+  _HourGlassPaint({this.strokeWidth, this.poured, required Color color})
       : _paint = Paint()
           ..style = PaintingStyle.stroke
           ..color = color,
@@ -76,6 +79,7 @@ class _HourGlassPaint extends CustomPainter {
           ..style = PaintingStyle.fill
           ..color = color;
 
+  final double? strokeWidth;
   final double? poured;
   final Paint _paint;
   final Paint _powderPaint;
@@ -89,7 +93,7 @@ class _HourGlassPaint extends CustomPainter {
     final yPadding = gapWidth / 2;
     final top = yPadding;
     final bottom = size.height - yPadding;
-    _paint.strokeWidth = gapWidth;
+    _paint.strokeWidth = strokeWidth ?? gapWidth;
 
     final hourglassPath = Path()
       ..moveTo(centerX - hourglassWidth + 2, top)
