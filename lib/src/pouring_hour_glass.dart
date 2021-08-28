@@ -3,8 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 
-class SpinKitPouringHourglass extends StatefulWidget {
-  const SpinKitPouringHourglass({
+class SpinKitPouringHourGlass extends StatefulWidget {
+  const SpinKitPouringHourGlass({
     Key? key,
     required this.color,
     this.size = 50.0,
@@ -18,10 +18,10 @@ class SpinKitPouringHourglass extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitPouringHourglassState createState() => _SpinKitPouringHourglassState();
+  _SpinKitPouringHourGlassState createState() => _SpinKitPouringHourGlassState();
 }
 
-class _SpinKitPouringHourglassState extends State<SpinKitPouringHourglass> with SingleTickerProviderStateMixin {
+class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _pouringAnimation;
   late Animation<double> _rotationAnimation;

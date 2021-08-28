@@ -22,7 +22,7 @@ void main() {
             SpinKitFadingGrid(color: Colors.white),
             SpinKitFoldingCube(color: Colors.white),
             SpinKitHourGlass(color: Colors.white),
-            SpinKitPouringHourglass(color: Colors.white),
+            SpinKitPouringHourGlass(color: Colors.white),
             SpinKitPulse(color: Colors.white),
             SpinKitPumpingHeart(color: Colors.white),
             SpinKitRing(color: Colors.white),
