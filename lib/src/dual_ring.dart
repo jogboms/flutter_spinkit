@@ -39,7 +39,9 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

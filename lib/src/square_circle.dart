@@ -43,7 +43,9 @@ class _SpinKitSquareCircleState extends State<SpinKitSquareCircle> with SingleTi
 
   @override
   void dispose() {
-    controller.dispose();
+    if (widget.controller == null) {
+      controller.dispose();
+    }
     super.dispose();
   }
 

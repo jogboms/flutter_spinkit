@@ -40,7 +40,9 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTi
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

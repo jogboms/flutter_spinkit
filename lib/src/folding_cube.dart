@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 
 class SpinKitFoldingCube extends StatefulWidget {
@@ -99,10 +100,12 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
     _timer2.cancel();
     _timer3.cancel();
     _timer4.cancel();
-    _controller1.dispose();
-    _controller2.dispose();
-    _controller3.dispose();
-    _controller4.dispose();
+    if (widget.controller == null) {
+      _controller1.dispose();
+      _controller2.dispose();
+      _controller3.dispose();
+      _controller4.dispose();
+    }
 
     super.dispose();
   }
