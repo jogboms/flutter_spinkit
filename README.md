@@ -185,6 +185,16 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       DualRing
     </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/piano-wave.gif" width="100px" height="100px">
+      <br />
+      PianoWave
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/dancing-square.gif" width="100px" height="100px">
+      <br />
+      DancingSquare
+    </td>
   </tr>
 </table>
 

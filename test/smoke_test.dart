@@ -33,6 +33,8 @@ void main() {
             SpinKitThreeBounce(color: Colors.white),
             SpinKitWanderingCubes(color: Colors.white),
             SpinKitWave(color: Colors.white),
+            SpinKitPianoWave(color: Colors.white),
+            SpinKitDancingSquare(color: Colors.white),
           ],
         ),
       ),
