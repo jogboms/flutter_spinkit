@@ -42,7 +42,9 @@ class _SpinKitPouringHourGlassRefinedState extends State<SpinKitPouringHourGlass
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

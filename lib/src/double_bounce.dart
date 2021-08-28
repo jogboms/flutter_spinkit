@@ -38,7 +38,9 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

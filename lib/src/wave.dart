@@ -42,7 +42,9 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

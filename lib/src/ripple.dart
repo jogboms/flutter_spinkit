@@ -44,7 +44,9 @@ class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProvider
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

@@ -68,8 +68,10 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
 
   @override
   void dispose() {
-    _controller?.dispose();
-    _controller = null;
+    if (widget.controller == null) {
+      _controller?.dispose();
+      _controller = null;
+    }
 
     _forwardTimer?.cancel();
 

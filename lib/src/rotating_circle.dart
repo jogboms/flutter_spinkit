@@ -42,7 +42,9 @@ class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle> with Sing
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

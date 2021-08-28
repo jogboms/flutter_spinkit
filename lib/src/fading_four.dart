@@ -38,7 +38,9 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

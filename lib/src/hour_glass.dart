@@ -37,7 +37,9 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

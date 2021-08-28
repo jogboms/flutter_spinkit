@@ -44,7 +44,9 @@ class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines> with Single
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

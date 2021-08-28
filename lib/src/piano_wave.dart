@@ -43,7 +43,9 @@ class _SpinKitPianoWaveState extends State<SpinKitPianoWave> with SingleTickerPr
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

@@ -35,7 +35,9 @@ class _SpinKitThreeBounceState extends State<SpinKitThreeBounce> with SingleTick
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
