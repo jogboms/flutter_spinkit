@@ -2,6 +2,18 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
+## 5.1.0
+
+- Renamed `SpinKitPouringHourglass` -> `SpinKitPouringHourGlass` for correctness
+- Fix `SpinKitFoldingCube` animation 
+- Fix disposing of non-local animation controllers
+- Introduced `strokeWidth` to pouring glass animation
+- Introduced `SpinKitPouringHourGlassRefined`
+- Introduced `SpinKitSpinningLines`
+- Introduced `SpinKitPianoWave`
+- Introduced `SpinKitDancingSquare`
+- Introduced `SpinKitThreeInOut`
+
 ## 5.0.0
 
 - Migrate to null safety
