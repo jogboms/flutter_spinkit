@@ -169,6 +169,11 @@ For more info, please, refer to the `showcase.dart` in the example.
       SpinningCircle
     </td>
     <td align="center">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/spinning-lines.gif" width="100px" height="100px">
+      <br />
+      SpinningLines
+    </td>
+    <td align="center">
       <img src="https://raw.githubusercontent.com/abhishek0706/flutter_spinkit/square_circle/screenshots/square_circle.gif" width="100px" height="100px">
       <br />
       SquareCircle

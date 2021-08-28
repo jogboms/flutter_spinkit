@@ -19,6 +19,7 @@ export 'src/ripple.dart';
 export 'src/rotating_circle.dart';
 export 'src/rotating_plain.dart';
 export 'src/spinning_circle.dart';
+export 'src/spinning_lines.dart';
 export 'src/square_circle.dart';
 export 'src/three_bounce.dart';
 export 'src/wandering_cubes.dart';
