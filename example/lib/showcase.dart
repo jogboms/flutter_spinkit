@@ -41,6 +41,7 @@ class ShowCase extends StatelessWidget {
     SpinKitPouringHourGlassRefined(color: Colors.white),
     SpinKitRipple(color: Colors.white),
     SpinKitDancingSquare(color: Colors.white),
+    SpinKitWaveSpinner(color: Colors.white),
   ];
 
   @override
