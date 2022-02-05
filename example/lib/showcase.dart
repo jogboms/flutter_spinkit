@@ -2,43 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ShowCase extends StatelessWidget {
-  late final kits = <Widget>[
-    const SpinKitRotatingCircle(color: Colors.white),
-    const SpinKitRotatingPlain(color: Colors.white),
-    const SpinKitChasingDots(color: Colors.white),
-    const SpinKitPumpingHeart(color: Colors.white),
-    const SpinKitPulse(color: Colors.white),
-    const SpinKitDoubleBounce(color: Colors.white),
-    const SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
-    const SpinKitWave(color: Colors.white, type: SpinKitWaveType.center),
-    const SpinKitWave(color: Colors.white, type: SpinKitWaveType.end),
-    const SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.start),
-    const SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.center),
-    const SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.end),
-    const SpinKitThreeBounce(color: Colors.white),
-    const SpinKitThreeInOut(color: Colors.white),
-    const SpinKitWanderingCubes(color: Colors.white),
-    const SpinKitWanderingCubes(color: Colors.white, shape: BoxShape.circle),
-    const SpinKitCircle(color: Colors.white),
-    const SpinKitFadingFour(color: Colors.white),
-    const SpinKitFadingFour(color: Colors.white, shape: BoxShape.rectangle),
-    const SpinKitFadingCube(color: Colors.white),
-    const SpinKitCubeGrid(size: 51.0, color: Colors.white),
-    const SpinKitFoldingCube(color: Colors.white),
-    const SpinKitRing(color: Colors.white),
-    const SpinKitDualRing(color: Colors.white),
-    const SpinKitSpinningLines(color: Colors.white),
-    const SpinKitFadingGrid(color: Colors.white),
-    const SpinKitFadingGrid(color: Colors.white, shape: BoxShape.rectangle),
-    const SpinKitSquareCircle(color: Colors.white),
-    const SpinKitSpinningCircle(color: Colors.white),
-    const SpinKitSpinningCircle(color: Colors.white, shape: BoxShape.rectangle),
-    const SpinKitFadingCircle(color: Colors.white),
-    const SpinKitHourGlass(color: Colors.white),
-    const SpinKitPouringHourGlass(color: Colors.white),
-    const SpinKitPouringHourGlassRefined(color: Colors.white),
-    const SpinKitRipple(color: Colors.white),
-    const SpinKitDancingSquare(color: Colors.white),
+  const ShowCase({Key? key}) : super(key: key);
+
+  static const kits = <Widget>[
+    SpinKitRotatingCircle(color: Colors.white),
+    SpinKitRotatingPlain(color: Colors.white),
+    SpinKitChasingDots(color: Colors.white),
+    SpinKitPumpingHeart(color: Colors.white),
+    SpinKitPulse(color: Colors.white),
+    SpinKitDoubleBounce(color: Colors.white),
+    SpinKitWave(color: Colors.white, type: SpinKitWaveType.start),
+    SpinKitWave(color: Colors.white, type: SpinKitWaveType.center),
+    SpinKitWave(color: Colors.white, type: SpinKitWaveType.end),
+    SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.start),
+    SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.center),
+    SpinKitPianoWave(color: Colors.white, type: SpinKitPianoWaveType.end),
+    SpinKitThreeBounce(color: Colors.white),
+    SpinKitThreeInOut(color: Colors.white),
+    SpinKitWanderingCubes(color: Colors.white),
+    SpinKitWanderingCubes(color: Colors.white, shape: BoxShape.circle),
+    SpinKitCircle(color: Colors.white),
+    SpinKitFadingFour(color: Colors.white),
+    SpinKitFadingFour(color: Colors.white, shape: BoxShape.rectangle),
+    SpinKitFadingCube(color: Colors.white),
+    SpinKitCubeGrid(size: 51.0, color: Colors.white),
+    SpinKitFoldingCube(color: Colors.white),
+    SpinKitRing(color: Colors.white),
+    SpinKitDualRing(color: Colors.white),
+    SpinKitSpinningLines(color: Colors.white),
+    SpinKitFadingGrid(color: Colors.white),
+    SpinKitFadingGrid(color: Colors.white, shape: BoxShape.rectangle),
+    SpinKitSquareCircle(color: Colors.white),
+    SpinKitSpinningCircle(color: Colors.white),
+    SpinKitSpinningCircle(color: Colors.white, shape: BoxShape.rectangle),
+    SpinKitFadingCircle(color: Colors.white),
+    SpinKitHourGlass(color: Colors.white),
+    SpinKitPouringHourGlass(color: Colors.white),
+    SpinKitPouringHourGlassRefined(color: Colors.white),
+    SpinKitRipple(color: Colors.white),
+    SpinKitDancingSquare(color: Colors.white),
   ];
 
   @override
@@ -47,18 +49,34 @@ class ShowCase extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        title: Text('SpinKit', style: TextStyle(fontSize: 24.0)),
+        title: const Text('SpinKit', style: TextStyle(fontSize: 24.0)),
       ),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
+          crossAxisCount: context.adaptiveCrossAxisCount,
           mainAxisSpacing: 46,
           childAspectRatio: 2,
         ),
-        padding: EdgeInsets.only(top: 32, bottom: 64),
+        padding: const EdgeInsets.only(top: 32, bottom: 64),
         itemCount: kits.length,
         itemBuilder: (context, index) => kits[index],
       ),
     );
+  }
+}
+
+extension on BuildContext {
+  int get adaptiveCrossAxisCount {
+    final width = MediaQuery.of(this).size.width;
+    if (width > 1024) {
+      return 8;
+    } else if (width > 720 && width < 1024) {
+      return 6;
+    } else if (width > 480) {
+      return 4;
+    } else if (width > 320) {
+      return 3;
+    }
+    return 1;
   }
 }
