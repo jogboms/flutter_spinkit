@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'helpers.dart';
 
 void main() {
-  group("DoubleBounce", () {
+  group('DoubleBounce', () {
     testWidgets('needs either color or itemBuilder', (WidgetTester tester) async {
       expect(() => SpinKitDoubleBounce(), throwsAssertionError);
       expect(() => SpinKitDoubleBounce(color: Colors.white, itemBuilder: fakeBoxBuilder), throwsAssertionError);
@@ -20,21 +20,21 @@ void main() {
     });
 
     testWidgets('works with color', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(SpinKitDoubleBounce(color: Colors.white)));
+      await tester.pumpWidget(createMaterialApp(const SpinKitDoubleBounce(color: Colors.white)));
       expect(find.byType(SpinKitDoubleBounce), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works with itemBuilder', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(SpinKitDoubleBounce(itemBuilder: fakeBoxBuilder)));
+      await tester.pumpWidget(createMaterialApp(const SpinKitDoubleBounce(itemBuilder: fakeBoxBuilder)));
       expect(find.byType(SpinKitDoubleBounce), findsOneWidget);
       expect(find.byType(FakeBox), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works without Material', (WidgetTester tester) async {
-      await tester.pumpWidget(createWidgetsApp(SpinKitDoubleBounce(color: Colors.white)));
+      await tester.pumpWidget(createWidgetsApp(const SpinKitDoubleBounce(color: Colors.white)));
       expect(find.byType(SpinKitDoubleBounce), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
       tester.verifyTickersWereDisposed();

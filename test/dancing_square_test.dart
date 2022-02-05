@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'helpers.dart';
 
 void main() {
-  group("DancingSquare", () {
+  group('DancingSquare', () {
     testWidgets('needs either color or itemBuilder', (WidgetTester tester) async {
       expect(() => SpinKitDancingSquare(), throwsAssertionError);
       expect(() => SpinKitDancingSquare(color: Colors.white, itemBuilder: fakeBoxBuilder), throwsAssertionError);
@@ -20,21 +20,21 @@ void main() {
     });
 
     testWidgets('works with color', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(SpinKitDancingSquare(color: Colors.white)));
+      await tester.pumpWidget(createMaterialApp(const SpinKitDancingSquare(color: Colors.white)));
       expect(find.byType(SpinKitDancingSquare), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works with itemBuilder', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(SpinKitDancingSquare(itemBuilder: fakeBoxBuilder)));
+      await tester.pumpWidget(createMaterialApp(const SpinKitDancingSquare(itemBuilder: fakeBoxBuilder)));
       expect(find.byType(SpinKitDancingSquare), findsOneWidget);
       expect(find.byType(FakeBox), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works without Material', (WidgetTester tester) async {
-      await tester.pumpWidget(createWidgetsApp(SpinKitDancingSquare(color: Colors.white)));
+      await tester.pumpWidget(createWidgetsApp(const SpinKitDancingSquare(color: Colors.white)));
       expect(find.byType(SpinKitDancingSquare), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
       tester.verifyTickersWereDisposed();

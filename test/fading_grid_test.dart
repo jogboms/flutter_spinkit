@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'helpers.dart';
 
 void main() {
-  group("FadingGrid", () {
+  group('FadingGrid', () {
     testWidgets('needs either color or itemBuilder', (WidgetTester tester) async {
       expect(() => SpinKitFadingGrid(), throwsAssertionError);
       expect(() => SpinKitFadingGrid(color: Colors.white, itemBuilder: fakeBoxBuilder), throwsAssertionError);
@@ -20,21 +20,21 @@ void main() {
     });
 
     testWidgets('works with color', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(SpinKitFadingGrid(color: Colors.white)));
+      await tester.pumpWidget(createMaterialApp(const SpinKitFadingGrid(color: Colors.white)));
       expect(find.byType(SpinKitFadingGrid), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works with itemBuilder', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(SpinKitFadingGrid(itemBuilder: fakeBoxBuilder)));
+      await tester.pumpWidget(createMaterialApp(const SpinKitFadingGrid(itemBuilder: fakeBoxBuilder)));
       expect(find.byType(SpinKitFadingGrid), findsOneWidget);
       expect(find.byType(FakeBox), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works without Material', (WidgetTester tester) async {
-      await tester.pumpWidget(createWidgetsApp(SpinKitFadingGrid(color: Colors.white)));
+      await tester.pumpWidget(createWidgetsApp(const SpinKitFadingGrid(color: Colors.white)));
       expect(find.byType(SpinKitFadingGrid), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
       tester.verifyTickersWereDisposed();

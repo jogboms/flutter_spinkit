@@ -47,7 +47,7 @@ class ShowCase extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        title: Text("SpinKit", style: TextStyle(fontSize: 24.0)),
+        title: Text('SpinKit', style: TextStyle(fontSize: 24.0)),
       ),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

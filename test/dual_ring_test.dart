@@ -5,16 +5,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'helpers.dart';
 
 void main() {
-  group("DualRing", () {
+  group('DualRing', () {
     testWidgets('works with color', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(SpinKitDualRing(color: Colors.white)));
+      await tester.pumpWidget(createMaterialApp(const SpinKitDualRing(color: Colors.white)));
       expect(find.byType(SpinKitDualRing), findsOneWidget);
       expect(find.byType(CustomPaint), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works without Material', (WidgetTester tester) async {
-      await tester.pumpWidget(createWidgetsApp(SpinKitDualRing(color: Colors.white)));
+      await tester.pumpWidget(createWidgetsApp(const SpinKitDualRing(color: Colors.white)));
       expect(find.byType(SpinKitDualRing), findsOneWidget);
       expect(find.byType(CustomPaint), findsWidgets);
       tester.verifyTickersWereDisposed();

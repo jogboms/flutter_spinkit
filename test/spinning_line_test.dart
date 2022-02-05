@@ -5,16 +5,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'helpers.dart';
 
 void main() {
-  group("SpinningLines", () {
+  group('SpinningLines', () {
     testWidgets('works with color', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(SpinKitSpinningLines(color: Colors.white)));
+      await tester.pumpWidget(createMaterialApp(const SpinKitSpinningLines(color: Colors.white)));
       expect(find.byType(SpinKitSpinningLines), findsOneWidget);
       expect(find.byType(CustomPaint), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works without Material', (WidgetTester tester) async {
-      await tester.pumpWidget(createWidgetsApp(SpinKitSpinningLines(color: Colors.white)));
+      await tester.pumpWidget(createWidgetsApp(const SpinKitSpinningLines(color: Colors.white)));
       expect(find.byType(SpinKitSpinningLines), findsOneWidget);
       expect(find.byType(CustomPaint), findsWidgets);
       tester.verifyTickersWereDisposed();

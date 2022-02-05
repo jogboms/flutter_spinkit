@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-class FakeBox extends SizedBox {}
+class FakeBox extends SizedBox {
+  const FakeBox({Key? key}) : super(key: key);
+}
 
-final fakeBoxBuilder = (BuildContext _, int index) => FakeBox();
+Widget fakeBoxBuilder(BuildContext _, int index) => const FakeBox();
 
 Widget createWidgetsApp(Widget widget) {
   return WidgetsApp(
