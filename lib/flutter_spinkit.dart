@@ -28,3 +28,4 @@ export 'src/three_bounce.dart';
 export 'src/three_in_out.dart';
 export 'src/wandering_cubes.dart';
 export 'src/wave.dart';
+export 'src/wave_spinner.dart';
