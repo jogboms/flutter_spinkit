@@ -51,7 +51,7 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
         alignment: FractionalOffset.center,
         child: CustomPaint(
           child: SizedBox.fromSize(size: Size.square(widget.size)),
-          painter: _HourGlassPainter(color: widget.color),
+          painter: _HourGlassPainter(weight: 90, color: widget.color),
         ),
       ),
     );
@@ -59,7 +59,7 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
 }
 
 class _HourGlassPainter extends CustomPainter {
-  _HourGlassPainter({this.weight = 90.0, required Color color})
+  _HourGlassPainter({required this.weight, required Color color})
       : _paint = Paint()
           ..color = color
           ..strokeWidth = 1.0;

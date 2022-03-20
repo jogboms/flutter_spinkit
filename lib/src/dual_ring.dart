@@ -53,7 +53,7 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
         alignment: FractionalOffset.center,
         child: CustomPaint(
           child: SizedBox.fromSize(size: Size.square(widget.size)),
-          painter: _DualRingPainter(paintWidth: widget.lineWidth, color: widget.color),
+          painter: _DualRingPainter(angle: 90, paintWidth: widget.lineWidth, color: widget.color),
         ),
       ),
     );
@@ -61,7 +61,7 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
 }
 
 class _DualRingPainter extends CustomPainter {
-  _DualRingPainter({this.angle = 90.0, required double paintWidth, required Color color})
+  _DualRingPainter({required this.angle, required double paintWidth, required Color color})
       : ringPaint = Paint()
           ..color = color
           ..strokeWidth = paintWidth
