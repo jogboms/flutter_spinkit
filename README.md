@@ -205,6 +205,11 @@ For more info, please, refer to the `showcase.dart` in the example.
       <br />
       WaveSpinner
     </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/jogboms/flutter_spinkit/master/screenshots/pulsing-grid.gif" width="100px" height="100px">
+      <br />
+      PulsingGrid
+    </td>
   </tr>
 </table>
 

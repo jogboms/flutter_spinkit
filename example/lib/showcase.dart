@@ -36,6 +36,8 @@ class ShowCase extends StatelessWidget {
     SpinKitSpinningCircle(color: Colors.white),
     SpinKitSpinningCircle(color: Colors.white, shape: BoxShape.rectangle),
     SpinKitFadingCircle(color: Colors.white),
+    SpinKitPulsingGrid(color: Colors.white),
+    SpinKitPulsingGrid(color: Colors.white, boxShape: BoxShape.rectangle),
     SpinKitHourGlass(color: Colors.white),
     SpinKitPouringHourGlass(color: Colors.white),
     SpinKitPouringHourGlassRefined(color: Colors.white),

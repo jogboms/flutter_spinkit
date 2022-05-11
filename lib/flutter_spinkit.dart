@@ -16,6 +16,7 @@ export 'src/piano_wave.dart';
 export 'src/pouring_hour_glass.dart';
 export 'src/pouring_hour_glass_refined.dart';
 export 'src/pulse.dart';
+export 'src/pulsing_grid.dart';
 export 'src/pumping_heart.dart';
 export 'src/ring.dart';
 export 'src/ripple.dart';
