@@ -1,5 +1,7 @@
+// ignore_for_file: unawaited_futures, always_put_control_body_on_new_line
+
 import 'package:flutter/widgets.dart';
-import 'package:flutter_spinkit/src/tweens/delay_tween.dart';
+// import 'package:flutter_spinkit/src/tweens/delay_tween.dart';
 
 class SpinKitPulsingGrid extends StatefulWidget {
   const SpinKitPulsingGrid({
@@ -8,7 +10,6 @@ class SpinKitPulsingGrid extends StatefulWidget {
     this.size = 50.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
-    this.controller,
     this.boxShape,
   })  : assert(
             !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
@@ -20,7 +21,6 @@ class SpinKitPulsingGrid extends StatefulWidget {
   final double size;
   final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
-  final AnimationController? controller;
   final BoxShape? boxShape;
 
   @override
@@ -28,25 +28,48 @@ class SpinKitPulsingGrid extends StatefulWidget {
 }
 
 class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   final List<double> delays = [1, 2, 3];
-  int grid = 3;
-  late AnimationController _controller;
+  final _grid = 3;
+  late AnimationController _controller1;
+  late AnimationController _controller2;
+  late AnimationController _controller3;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _controller1 =
+        AnimationController(vsync: this, duration: widget.duration * 0.5);
+    _controller2 =
+        AnimationController(vsync: this, duration: widget.duration * 0.5);
+    _controller3 =
+        AnimationController(vsync: this, duration: widget.duration * 0.5);
+    _animate();
+  }
+
+  Future<void> _animate() async {
+    const _delay = Duration(milliseconds: 250);
+    _animateController(_controller1);
+    await Future<void>.delayed(_delay);
+    _animateController(_controller2);
+    await Future<void>.delayed(_delay);
+    _animateController(_controller3).then((value) => _animate());
+  }
+
+  Future<void> _animateController(AnimationController controller) async {
+    if (!mounted) return;
+    await controller.forward().then((value) async {
+      if (!mounted) return;
+      await controller.reverse();
+    });
   }
 
   @override
   void dispose() {
-    if (widget.controller == null) {
-      _controller.dispose();
-    }
+    _controller1.dispose();
+    _controller2.dispose();
+    _controller3.dispose();
     super.dispose();
   }
 
@@ -56,26 +79,24 @@ class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid>
       child: SizedBox.fromSize(
         size: Size.square(widget.size),
         child: Stack(
-          children: List.generate(grid * grid, (i) {
-            final row = (i / grid).floor();
-            final column = i % grid;
-            final mid = i == (grid * grid - 1) / 2;
+          children: List.generate(_grid * _grid, (i) {
+            final _row = (i / _grid).floor();
+            final _column = i % _grid;
+            final _mid = i == (_grid * _grid - 1) / 2;
             final _position = widget.size * .7;
             return Positioned.fill(
-              left: _position * (-1 + column),
-              top: _position * (-1 + row),
+              left: _position * (-1 + _column),
+              top: _position * (-1 + _row),
               child: Align(
                 alignment: Alignment.center,
                 child: ScaleTransition(
-                  scale: DelayTween(
-                          begin: 0,
-                          end: 1.0,
-                          delay: mid
-                              ? 0
-                              : i.isEven
-                                  ? 0.4
-                                  : 0.2)
-                      .animate(_controller),
+                  scale: CurvedAnimation(
+                      parent: _mid
+                          ? _controller1
+                          : i.isOdd
+                              ? _controller2
+                              : _controller3,
+                      curve: Curves.easeOut),
                   child: SizedBox.fromSize(
                       size: Size.square(widget.size / 4),
                       child: _itemBuilder(i)),
