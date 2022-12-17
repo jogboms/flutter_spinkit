@@ -8,7 +8,9 @@ class SpinKitPulse extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(seconds: 1),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         super(key: key);
 
@@ -31,7 +33,11 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat();
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller);
   }

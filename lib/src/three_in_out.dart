@@ -55,7 +55,9 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
 
     _controller!.addListener(() {
       if (_lastAnim > _controller!.value) {
-        setState(() => _widgets.insert(0, _widgets.removeLast()));
+        if(mounted) {
+          setState(() => _widgets.insert(0, _widgets.removeLast()));
+        }
       }
 
       _lastAnim = _controller!.value;

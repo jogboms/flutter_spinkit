@@ -11,7 +11,9 @@ class SpinKitSpinningCircle extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+  })  : assert(
+            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+                !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         super(key: key);
 
@@ -26,7 +28,8 @@ class SpinKitSpinningCircle extends StatefulWidget {
   _SpinKitSpinningCircleState createState() => _SpinKitSpinningCircleState();
 }
 
-class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle> with SingleTickerProviderStateMixin {
+class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -35,10 +38,14 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle> with Sing
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat();
-    _animation = Tween(begin: 0.0, end: 7.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: Curves.easeOut)));
+    _animation = Tween(begin: 0.0, end: 7.0).animate(CurvedAnimation(
+        parent: _controller, curve: const Interval(0.0, 1.0, curve: Curves.easeOut)));
   }
 
   @override

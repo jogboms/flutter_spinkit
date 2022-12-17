@@ -22,7 +22,8 @@ class SpinKitPouringHourGlass extends StatefulWidget {
   _SpinKitPouringHourGlassState createState() => _SpinKitPouringHourGlassState();
 }
 
-class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass> with SingleTickerProviderStateMixin {
+class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _pouringAnimation;
   late Animation<double> _rotationAnimation;
@@ -32,12 +33,16 @@ class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass> with 
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat();
     _pouringAnimation = CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.9))
       ..addListener(() => setState(() {}));
-    _rotationAnimation = Tween(begin: 0.0, end: 0.5)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.9, 1.0, curve: Curves.fastOutSlowIn)));
+    _rotationAnimation = Tween(begin: 0.0, end: 0.5).animate(CurvedAnimation(
+        parent: _controller, curve: const Interval(0.9, 1.0, curve: Curves.fastOutSlowIn)));
   }
 
   @override

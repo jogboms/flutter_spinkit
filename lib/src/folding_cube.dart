@@ -47,7 +47,11 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
     delay = widget.duration.inMilliseconds ~/ 8;
 
     _controller1 = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}));
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      });
     _controller2 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
     _controller3 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
     _controller4 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);

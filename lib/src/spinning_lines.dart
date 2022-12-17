@@ -27,7 +27,8 @@ class SpinKitSpinningLines extends StatefulWidget {
   _SpinKitSpinningLinesState createState() => _SpinKitSpinningLinesState();
 }
 
-class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines> with SingleTickerProviderStateMixin {
+class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -36,7 +37,11 @@ class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines> with Single
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat();
 
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
