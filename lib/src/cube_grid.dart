@@ -19,7 +19,7 @@ class SpinKitCubeGrid extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitCubeGridState createState() => _SpinKitCubeGridState();
+  State<SpinKitCubeGrid> createState() => _SpinKitCubeGridState();
 }
 
 class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProviderStateMixin {

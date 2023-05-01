@@ -22,11 +22,11 @@ class SpinKitFadingFour extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitFadingFourState createState() => _SpinKitFadingFourState();
+  State<SpinKitFadingFour> createState() => _SpinKitFadingFourState();
 }
 
 class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTickerProviderStateMixin {
-  final List<double> delays = [.0, -0.9, -0.6, -0.3];
+  static const List<double> _delays = [.0, -0.9, -0.6, -0.3];
   late AnimationController _controller;
 
   @override
@@ -51,16 +51,16 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
         size: Size.square(widget.size),
         child: Stack(
           children: List.generate(4, (i) {
-            final _position = widget.size * .5;
+            final position = widget.size * .5;
             return Positioned.fill(
-              left: _position,
-              top: _position,
+              left: position,
+              top: position,
               child: Transform(
                 transform: Matrix4.rotationZ(30.0 * (i * 3) * 0.0174533),
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
-                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: delays[i]).animate(_controller),
+                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: _delays[i]).animate(_controller),
                     child: SizedBox.fromSize(size: Size.square(widget.size * 0.25), child: _itemBuilder(i)),
                   ),
                 ),

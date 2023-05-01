@@ -19,7 +19,7 @@ class SpinKitRing extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitRingState createState() => _SpinKitRingState();
+  State<SpinKitRing> createState() => _SpinKitRingState();
 }
 
 class _SpinKitRingState extends State<SpinKitRing> with SingleTickerProviderStateMixin {

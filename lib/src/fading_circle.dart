@@ -20,10 +20,12 @@ class SpinKitFadingCircle extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitFadingCircleState createState() => _SpinKitFadingCircleState();
+  State<SpinKitFadingCircle> createState() => _SpinKitFadingCircleState();
 }
 
 class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTickerProviderStateMixin {
+  static const _itemCount = 12;
+
   late AnimationController _controller;
 
   @override
@@ -47,17 +49,17 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
       child: SizedBox.fromSize(
         size: Size.square(widget.size),
         child: Stack(
-          children: List.generate(12, (i) {
-            final _position = widget.size * .5;
+          children: List.generate(_itemCount, (i) {
+            final position = widget.size * .5;
             return Positioned.fill(
-              left: _position,
-              top: _position,
+              left: position,
+              top: position,
               child: Transform(
                 transform: Matrix4.rotationZ(30.0 * i * 0.0174533),
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
-                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: i / 12).animate(_controller),
+                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: i / _itemCount).animate(_controller),
                     child: SizedBox.fromSize(size: Size.square(widget.size * 0.15), child: _itemBuilder(i)),
                   ),
                 ),

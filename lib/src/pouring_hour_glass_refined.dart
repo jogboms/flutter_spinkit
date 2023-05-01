@@ -19,7 +19,7 @@ class SpinKitPouringHourGlassRefined extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitPouringHourGlassRefinedState createState() => _SpinKitPouringHourGlassRefinedState();
+  State<SpinKitPouringHourGlassRefined> createState() => _SpinKitPouringHourGlassRefinedState();
 }
 
 class _SpinKitPouringHourGlassRefinedState extends State<SpinKitPouringHourGlassRefined>

@@ -25,6 +25,7 @@ void main() {
             SpinKitPouringHourGlass(color: Colors.white),
             SpinKitPouringHourGlassRefined(color: Colors.white),
             SpinKitPulse(color: Colors.white),
+            SpinKitPulsingGrid(color: Colors.white),
             SpinKitPumpingHeart(color: Colors.white),
             SpinKitRing(color: Colors.white),
             SpinKitRipple(color: Colors.white),

@@ -19,7 +19,7 @@ class SpinKitDoubleBounce extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitDoubleBounceState createState() => _SpinKitDoubleBounceState();
+  State<SpinKitDoubleBounce> createState() => _SpinKitDoubleBounceState();
 }
 
 class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTickerProviderStateMixin {

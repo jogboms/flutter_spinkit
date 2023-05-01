@@ -1,9 +1,6 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
   errors:
     missing_required_param: error
     missing_return: error
@@ -41,3 +38,4 @@ linter:
     - use_late_for_private_fields_and_variables
     - use_named_constants
     - use_raw_strings
+    - use_super_parameters

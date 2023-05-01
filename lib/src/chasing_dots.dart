@@ -17,7 +17,7 @@ class SpinKitChasingDots extends StatefulWidget {
   final Duration duration;
 
   @override
-  _SpinKitChasingDotsState createState() => _SpinKitChasingDotsState();
+  State<SpinKitChasingDots> createState() => _SpinKitChasingDotsState();
 }
 
 class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProviderStateMixin {

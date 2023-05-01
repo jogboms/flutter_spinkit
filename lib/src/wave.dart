@@ -27,7 +27,7 @@ class SpinKitWave extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitWaveState createState() => _SpinKitWaveState();
+  State<SpinKitWave> createState() => _SpinKitWaveState();
 }
 
 class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStateMixin {
@@ -50,15 +50,15 @@ class _SpinKitWaveState extends State<SpinKitWave> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    final List<double> _bars = getAnimationDelay(widget.itemCount);
+    final List<double> bars = getAnimationDelay(widget.itemCount);
     return Center(
       child: SizedBox.fromSize(
         size: Size(widget.size * 1.25, widget.size),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(_bars.length, (i) {
+          children: List.generate(bars.length, (i) {
             return ScaleYWidget(
-              scaleY: DelayTween(begin: .4, end: 1.0, delay: _bars[i]).animate(_controller),
+              scaleY: DelayTween(begin: .4, end: 1.0, delay: bars[i]).animate(_controller),
               child: SizedBox.fromSize(size: Size(widget.size / widget.itemCount, widget.size), child: _itemBuilder(i)),
             );
           }),

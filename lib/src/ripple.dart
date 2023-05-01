@@ -21,7 +21,7 @@ class SpinKitRipple extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitRippleState createState() => _SpinKitRippleState();
+  State<SpinKitRipple> createState() => _SpinKitRippleState();
 }
 
 class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProviderStateMixin {

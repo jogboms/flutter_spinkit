@@ -25,7 +25,7 @@ class SpinKitWaveSpinner extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitWaveSpinnerState createState() => _SpinKitWaveSpinnerState();
+  State<SpinKitWaveSpinner> createState() => _SpinKitWaveSpinnerState();
 }
 
 class _SpinKitWaveSpinnerState extends State<SpinKitWaveSpinner> with SingleTickerProviderStateMixin {

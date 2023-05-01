@@ -19,7 +19,7 @@ class SpinKitRotatingCircle extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitRotatingCircleState createState() => _SpinKitRotatingCircleState();
+  State<SpinKitRotatingCircle> createState() => _SpinKitRotatingCircleState();
 }
 
 class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle> with SingleTickerProviderStateMixin {

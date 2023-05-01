@@ -24,7 +24,7 @@ class SpinKitThreeInOut extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitThreeInOutState createState() => _SpinKitThreeInOutState();
+  State<SpinKitThreeInOut> createState() => _SpinKitThreeInOutState();
 }
 
 class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTickerProviderStateMixin {
@@ -122,7 +122,7 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
           final value = inverse ? 1 - _controller!.value : _controller!.value;
           return SizedBox.fromSize(
             size: Size.square(widget.size * 0.5 * value),
-            child: Opacity(child: inn, opacity: value),
+            child: Opacity(opacity: value, child: inn),
           );
         },
       );

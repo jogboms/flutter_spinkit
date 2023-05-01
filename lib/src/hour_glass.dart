@@ -17,7 +17,7 @@ class SpinKitHourGlass extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitHourGlassState createState() => _SpinKitHourGlassState();
+  State<SpinKitHourGlass> createState() => _SpinKitHourGlassState();
 }
 
 class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerProviderStateMixin {
@@ -54,8 +54,8 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
         transform: Matrix4.identity()..rotateZ((_animation.value) * math.pi),
         alignment: FractionalOffset.center,
         child: CustomPaint(
-          child: SizedBox.fromSize(size: Size.square(widget.size)),
           painter: _HourGlassPainter(weight: 90, color: widget.color),
+          child: SizedBox.fromSize(size: Size.square(widget.size)),
         ),
       ),
     );

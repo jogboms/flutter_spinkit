@@ -19,7 +19,7 @@ class SpinKitPouringHourGlass extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitPouringHourGlassState createState() => _SpinKitPouringHourGlassState();
+  State<SpinKitPouringHourGlass> createState() => _SpinKitPouringHourGlassState();
 }
 
 class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass> with SingleTickerProviderStateMixin {

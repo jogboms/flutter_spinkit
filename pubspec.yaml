@@ -1,6 +1,6 @@
 name: flutter_spinkit
 description: A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
-version: 5.1.0
+version: 5.2.0
 homepage: https://github.com/jogboms/flutter_spinkit
 
 environment:
@@ -14,4 +14,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1

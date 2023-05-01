@@ -21,11 +21,11 @@ class SpinKitFoldingCube extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitFoldingCubeState createState() => _SpinKitFoldingCubeState();
+  State<SpinKitFoldingCube> createState() => _SpinKitFoldingCubeState();
 }
 
 class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProviderStateMixin {
-  late final int delay;
+  late final int _delay;
 
   late AnimationController _controller1;
   late AnimationController _controller2;
@@ -44,7 +44,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
   void initState() {
     super.initState();
 
-    delay = widget.duration.inMilliseconds ~/ 8;
+    _delay = widget.duration.inMilliseconds ~/ 8;
 
     _controller1 = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
@@ -82,17 +82,17 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
     if (mounted) {
       _controller1.forward(from: 0.0);
     }
-    _timer2 = Timer(Duration(milliseconds: delay), () {
+    _timer2 = Timer(Duration(milliseconds: _delay), () {
       if (mounted) {
         _controller2.forward(from: 0.0);
       }
     });
-    _timer3 = Timer(Duration(milliseconds: delay * 2), () {
+    _timer3 = Timer(Duration(milliseconds: _delay * 2), () {
       if (mounted) {
         _controller3.forward(from: 0.0);
       }
     });
-    _timer4 = Timer(Duration(milliseconds: delay * 3), () {
+    _timer4 = Timer(Duration(milliseconds: _delay * 3), () {
       if (mounted) {
         _controller4.forward(from: 0.0);
       }
@@ -137,29 +137,29 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
   }
 
   Widget _cube(int i, {required Animation<double> animation}) {
-    final _size = widget.size * 0.5, _position = widget.size * .5;
+    final size = widget.size * 0.5, position = widget.size * .5;
 
-    final Matrix4 _tRotate = Matrix4.identity();
+    final Matrix4 tRotate = Matrix4.identity();
     if (animation.value <= 0) {
-      _tRotate.rotateX(animation.value * 0.0174533);
+      tRotate.rotateX(animation.value * 0.0174533);
     } else {
-      _tRotate.rotateY(animation.value * 0.0174533);
+      tRotate.rotateY(animation.value * 0.0174533);
     }
 
     return Positioned.fill(
-      top: _position,
-      left: _position,
+      top: position,
+      left: position,
       child: Transform(
         transform: Matrix4.rotationZ(90.0 * (i - 1) * 0.0174533),
         child: Align(
           alignment: Alignment.center,
           child: Transform(
-            transform: _tRotate,
+            transform: tRotate,
             alignment: animation.value <= 0 ? Alignment.topCenter : Alignment.centerLeft,
             child: Opacity(
               opacity: 1.0 - (animation.value.abs() / 180.0),
               child: SizedBox.fromSize(
-                size: Size.square(_size),
+                size: Size.square(size),
                 child: _itemBuilder(i - 1),
               ),
             ),

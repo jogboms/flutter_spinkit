@@ -21,48 +21,48 @@ class SpinKitSquareCircle extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitSquareCircleState createState() => _SpinKitSquareCircleState();
+  State<SpinKitSquareCircle> createState() => _SpinKitSquareCircleState();
 }
 
 class _SpinKitSquareCircleState extends State<SpinKitSquareCircle> with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> animationCurve;
-  late Animation<double> animationSize;
+  late AnimationController _controller;
+  late Animation<double> _animationCurve;
+  late Animation<double> _animationSize;
 
   @override
   void initState() {
     super.initState();
 
-    controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});
         }
       })
       ..repeat(reverse: true);
-    final animation = CurvedAnimation(parent: controller, curve: Curves.easeInOutCubic);
-    animationCurve = Tween(begin: 1.0, end: 0.0).animate(animation);
-    animationSize = Tween(begin: 0.5, end: 1.0).animate(animation);
+    final animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic);
+    _animationCurve = Tween(begin: 1.0, end: 0.0).animate(animation);
+    _animationSize = Tween(begin: 0.5, end: 1.0).animate(animation);
   }
 
   @override
   void dispose() {
     if (widget.controller == null) {
-      controller.dispose();
+      _controller.dispose();
     }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final sizeValue = widget.size * animationSize.value;
+    final sizeValue = widget.size * _animationSize.value;
     return Center(
       child: Transform(
-        transform: Matrix4.identity()..rotateZ(animationCurve.value * math.pi),
+        transform: Matrix4.identity()..rotateZ(_animationCurve.value * math.pi),
         alignment: FractionalOffset.center,
         child: SizedBox.fromSize(
           size: Size.square(sizeValue),
-          child: _itemBuilder(0, 0.5 * sizeValue * animationCurve.value),
+          child: _itemBuilder(0, 0.5 * sizeValue * _animationCurve.value),
         ),
       ),
     );

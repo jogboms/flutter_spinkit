@@ -20,7 +20,7 @@ class SpinKitFadingCube extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitFadingCubeState createState() => _SpinKitFadingCubeState();
+  State<SpinKitFadingCube> createState() => _SpinKitFadingCubeState();
 }
 
 class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with SingleTickerProviderStateMixin {
@@ -51,20 +51,20 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with SingleTicker
             angle: -45.0 * 0.0174533,
             child: Stack(
               children: List.generate(4, (i) {
-                final _size = widget.size * 0.5, _position = widget.size * .5;
+                final size = widget.size * 0.5, position = widget.size * .5;
                 return Positioned.fill(
-                  top: _position,
-                  left: _position,
+                  top: position,
+                  left: position,
                   child: Transform.scale(
                     scale: 1.1,
-                    origin: Offset(-_size * .5, -_size * .5),
+                    origin: Offset(-size * .5, -size * .5),
                     child: Transform(
                       transform: Matrix4.rotationZ(90.0 * i * 0.0174533),
                       child: Align(
                         alignment: Alignment.center,
                         child: FadeTransition(
                           opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * i).animate(_controller),
-                          child: SizedBox.fromSize(size: Size.square(_size), child: _itemBuilder(i)),
+                          child: SizedBox.fromSize(size: Size.square(size), child: _itemBuilder(i)),
                         ),
                       ),
                     ),

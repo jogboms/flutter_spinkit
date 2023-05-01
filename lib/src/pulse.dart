@@ -19,7 +19,7 @@ class SpinKitPulse extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitPulseState createState() => _SpinKitPulseState();
+  State<SpinKitPulse> createState() => _SpinKitPulseState();
 }
 
 class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderStateMixin {
