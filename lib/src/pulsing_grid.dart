@@ -10,6 +10,7 @@ class SpinKitPulsingGrid extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1500),
     this.boxShape,
+    this.controller,
   })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         super(key: key);
@@ -19,6 +20,7 @@ class SpinKitPulsingGrid extends StatefulWidget {
   final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
   final BoxShape? boxShape;
+  final AnimationController? controller;
 
   @override
   State<SpinKitPulsingGrid> createState() => _SpinKitPulsingGridState();
@@ -33,12 +35,14 @@ class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid> with SingleTick
   void initState() {
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: widget.duration)..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
