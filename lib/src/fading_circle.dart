@@ -57,7 +57,7 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
-                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: i/12).animate(_controller),
+                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: i / 12).animate(_controller),
                     child: SizedBox.fromSize(size: Size.square(widget.size * 0.15), child: _itemBuilder(i)),
                   ),
                 ),
