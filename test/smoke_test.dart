@@ -6,9 +6,9 @@ void main() {
   testWidgets('Smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
       theme: ThemeData.dark(),
-      home: SingleChildScrollView(
+      home: const SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             SpinKitChasingDots(color: Colors.white),
             SpinKitCircle(color: Colors.white),
             SpinKitSquareCircle(color: Colors.white),

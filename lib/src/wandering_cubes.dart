@@ -21,7 +21,7 @@ class SpinKitWanderingCubes extends StatefulWidget {
   final Duration duration;
 
   @override
-  _SpinKitWanderingCubesState createState() => _SpinKitWanderingCubesState();
+  State<SpinKitWanderingCubes> createState() => _SpinKitWanderingCubesState();
 }
 
 class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with SingleTickerProviderStateMixin {
@@ -89,15 +89,15 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Sing
   }
 
   Widget _cube(int index, [bool offset = false]) {
-    Matrix4 _tTranslate;
+    Matrix4 tTranslate;
     if (offset == true) {
-      _tTranslate = Matrix4.identity()
+      tTranslate = Matrix4.identity()
         ..translate(_translate3.value, 0.0)
         ..translate(0.0, _translate2.value)
         ..translate(0.0, _translate4.value)
         ..translate(_translate1.value, 0.0);
     } else {
-      _tTranslate = Matrix4.identity()
+      tTranslate = Matrix4.identity()
         ..translate(0.0, _translate3.value)
         ..translate(-_translate2.value, 0.0)
         ..translate(-_translate4.value, 0.0)
@@ -108,7 +108,7 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Sing
       top: 0.0,
       left: offset == true ? 0.0 : widget.offset,
       child: Transform(
-        transform: _tTranslate,
+        transform: tTranslate,
         child: Transform.rotate(
           angle: _rotate.value * 0.0174533,
           child: Transform(

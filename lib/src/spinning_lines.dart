@@ -24,7 +24,7 @@ class SpinKitSpinningLines extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitSpinningLinesState createState() => _SpinKitSpinningLinesState();
+  State<SpinKitSpinningLines> createState() => _SpinKitSpinningLinesState();
 }
 
 class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines> with SingleTickerProviderStateMixin {
@@ -60,13 +60,13 @@ class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines> with Single
       child: AnimatedBuilder(
         builder: (BuildContext context, Widget? child) {
           return CustomPaint(
-            child: SizedBox.fromSize(size: Size.square(widget.size)),
             painter: SpinningLinesPainter(
               _animation.value,
               lineWidth: widget.lineWidth,
               color: widget.color,
               itemCount: widget.itemCount,
             ),
+            child: SizedBox.fromSize(size: Size.square(widget.size)),
           );
         },
         animation: _animation,

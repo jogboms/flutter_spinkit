@@ -21,11 +21,12 @@ class SpinKitDancingSquare extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitDancingSquareState createState() => _SpinKitDancingSquareState();
+  State<SpinKitDancingSquare> createState() => _SpinKitDancingSquareState();
 }
 
 class _SpinKitDancingSquareState extends State<SpinKitDancingSquare> with SingleTickerProviderStateMixin {
-  final List<double> delays = [.0, -1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1];
+  static const _itemCount = 12;
+
   late AnimationController _controller;
 
   @override
@@ -49,19 +50,20 @@ class _SpinKitDancingSquareState extends State<SpinKitDancingSquare> with Single
       child: SizedBox.fromSize(
         size: Size.square(widget.size),
         child: Stack(
-          children: List.generate(delays.length, (index) {
-            final _position = widget.size * .5;
+          children: List.generate(_itemCount, (index) {
+            final position = widget.size * .5;
+            final delay = index / _itemCount;
             return Stack(
               children: [
                 Positioned.fill(
-                  left: _position,
-                  top: _position,
+                  left: position,
+                  top: position,
                   child: Transform(
                     transform: Matrix4.rotationX(30.0 * index * 0.0174533),
                     child: Align(
                       alignment: Alignment.center,
                       child: ScaleTransition(
-                        scale: DelayTween(begin: 0.0, end: 1.0, delay: delays[index]).animate(_controller),
+                        scale: DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
                         child: SizedBox.fromSize(
                           size: Size.square(widget.size * 0.15),
                           child: _itemBuilder(index),
@@ -71,14 +73,14 @@ class _SpinKitDancingSquareState extends State<SpinKitDancingSquare> with Single
                   ),
                 ),
                 Positioned.fill(
-                  left: _position,
-                  top: -1 * _position,
+                  left: position,
+                  top: -1 * position,
                   child: Transform(
                     transform: Matrix4.rotationY(30.0 * index * 0.0174533),
                     child: Align(
                       alignment: Alignment.center,
                       child: ScaleTransition(
-                        scale: DelayTween(begin: 0.0, end: 1.0, delay: delays[index]).animate(_controller),
+                        scale: DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
                         child: SizedBox.fromSize(
                           size: Size.square(widget.size * 0.15),
                           child: _itemBuilder(index),
@@ -88,14 +90,14 @@ class _SpinKitDancingSquareState extends State<SpinKitDancingSquare> with Single
                   ),
                 ),
                 Positioned.fill(
-                  left: -1 * _position,
-                  top: _position,
+                  left: -1 * position,
+                  top: position,
                   child: Transform(
                     transform: Matrix4.rotationX(30.0 * index * 0.0174533),
                     child: Align(
                       alignment: Alignment.center,
                       child: ScaleTransition(
-                        scale: DelayTween(begin: 0.0, end: 1.0, delay: delays[index]).animate(_controller),
+                        scale: DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
                         child: SizedBox.fromSize(
                           size: Size.square(widget.size * 0.15),
                           child: _itemBuilder(index),
@@ -105,14 +107,14 @@ class _SpinKitDancingSquareState extends State<SpinKitDancingSquare> with Single
                   ),
                 ),
                 Positioned.fill(
-                  left: _position,
-                  top: _position,
+                  left: position,
+                  top: position,
                   child: Transform(
                     transform: Matrix4.rotationY(30.0 * index * 0.0174533),
                     child: Align(
                       alignment: Alignment.center,
                       child: ScaleTransition(
-                        scale: DelayTween(begin: 0.0, end: 1.0, delay: delays[index]).animate(_controller),
+                        scale: DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
                         child: SizedBox.fromSize(
                           size: Size.square(widget.size * 0.15),
                           child: _itemBuilder(index),

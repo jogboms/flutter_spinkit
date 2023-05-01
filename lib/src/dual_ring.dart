@@ -19,7 +19,7 @@ class SpinKitDualRing extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitDualRingState createState() => _SpinKitDualRingState();
+  State<SpinKitDualRing> createState() => _SpinKitDualRingState();
 }
 
 class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProviderStateMixin {
@@ -56,8 +56,8 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
         transform: Matrix4.identity()..rotateZ((_animation.value) * math.pi * 2),
         alignment: FractionalOffset.center,
         child: CustomPaint(
-          child: SizedBox.fromSize(size: Size.square(widget.size)),
           painter: _DualRingPainter(angle: 90, paintWidth: widget.lineWidth, color: widget.color),
+          child: SizedBox.fromSize(size: Size.square(widget.size)),
         ),
       ),
     );

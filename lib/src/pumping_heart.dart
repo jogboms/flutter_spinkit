@@ -22,7 +22,7 @@ class SpinKitPumpingHeart extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitPumpingHeartState createState() => _SpinKitPumpingHeartState();
+  State<SpinKitPumpingHeart> createState() => _SpinKitPumpingHeartState();
 }
 
 class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTickerProviderStateMixin {

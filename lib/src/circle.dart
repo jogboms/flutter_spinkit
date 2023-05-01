@@ -20,11 +20,12 @@ class SpinKitCircle extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitCircleState createState() => _SpinKitCircleState();
+  State<SpinKitCircle> createState() => _SpinKitCircleState();
 }
 
 class _SpinKitCircleState extends State<SpinKitCircle> with SingleTickerProviderStateMixin {
-  final List<double> delays = [.0, -1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1];
+  static const _itemCount = 12;
+
   late AnimationController _controller;
 
   @override
@@ -48,17 +49,17 @@ class _SpinKitCircleState extends State<SpinKitCircle> with SingleTickerProvider
       child: SizedBox.fromSize(
         size: Size.square(widget.size),
         child: Stack(
-          children: List.generate(delays.length, (index) {
-            final _position = widget.size * .5;
+          children: List.generate(_itemCount, (index) {
+            final position = widget.size * .5;
             return Positioned.fill(
-              left: _position,
-              top: _position,
+              left: position,
+              top: position,
               child: Transform(
                 transform: Matrix4.rotationZ(30.0 * index * 0.0174533),
                 child: Align(
                   alignment: Alignment.center,
                   child: ScaleTransition(
-                    scale: DelayTween(begin: 0.0, end: 1.0, delay: delays[index]).animate(_controller),
+                    scale: DelayTween(begin: 0.0, end: 1.0, delay: index / _itemCount).animate(_controller),
                     child: SizedBox.fromSize(size: Size.square(widget.size * 0.15), child: _itemBuilder(index)),
                   ),
                 ),

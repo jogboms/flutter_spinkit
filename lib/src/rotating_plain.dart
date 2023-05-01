@@ -19,7 +19,7 @@ class SpinKitRotatingPlain extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitRotatingPlainState createState() => _SpinKitRotatingPlainState();
+  State<SpinKitRotatingPlain> createState() => _SpinKitRotatingPlainState();
 }
 
 class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain> with SingleTickerProviderStateMixin {

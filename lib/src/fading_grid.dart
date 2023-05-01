@@ -22,7 +22,7 @@ class SpinKitFadingGrid extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  _SpinKitFadingGridState createState() => _SpinKitFadingGridState();
+  State<SpinKitFadingGrid> createState() => _SpinKitFadingGridState();
 }
 
 class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTickerProviderStateMixin {
