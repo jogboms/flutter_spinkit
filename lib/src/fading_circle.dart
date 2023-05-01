@@ -24,7 +24,6 @@ class SpinKitFadingCircle extends StatefulWidget {
 }
 
 class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTickerProviderStateMixin {
-  final List<double> delays = [.0, -1.1, -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1];
   late AnimationController _controller;
 
   @override
@@ -58,7 +57,7 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
-                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: delays[i]).animate(_controller),
+                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: i / 12).animate(_controller),
                     child: SizedBox.fromSize(size: Size.square(widget.size * 0.15), child: _itemBuilder(i)),
                   ),
                 ),
