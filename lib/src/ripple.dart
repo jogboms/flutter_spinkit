@@ -9,9 +9,7 @@ class SpinKitRipple extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1800),
     this.controller,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         super(key: key);
 
@@ -42,10 +40,10 @@ class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProvider
         }
       })
       ..repeat();
-    _animation1 = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-        parent: _controller, curve: const Interval(0.0, 0.75, curve: Curves.linear)));
-    _animation2 = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-        parent: _controller, curve: const Interval(0.25, 1.0, curve: Curves.linear)));
+    _animation1 = Tween(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.75, curve: Curves.linear)));
+    _animation2 = Tween(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.25, 1.0, curve: Curves.linear)));
   }
 
   @override

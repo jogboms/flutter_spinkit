@@ -41,8 +41,8 @@ class _SpinKitPouringHourGlassRefinedState extends State<SpinKitPouringHourGlass
       ..repeat();
     _pouringAnimation = CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.9))
       ..addListener(() => setState(() {}));
-    _rotationAnimation = Tween(begin: 0.0, end: 0.5).animate(CurvedAnimation(
-        parent: _controller, curve: const Interval(0.9, 1.0, curve: Curves.fastOutSlowIn)));
+    _rotationAnimation = Tween(begin: 0.0, end: 0.5)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.9, 1.0, curve: Curves.fastOutSlowIn)));
   }
 
   @override
@@ -107,10 +107,9 @@ class _HourGlassPaint extends CustomPainter {
         clockwise: true,
       )
       ..lineTo(centerX + hourglassWidth - 2, top + 8)
+      ..quadraticBezierTo(centerX + hourglassWidth - 2, (top + halfHeight) / 2 + 2, centerX + gapWidth, halfHeight)
       ..quadraticBezierTo(
-          centerX + hourglassWidth - 2, (top + halfHeight) / 2 + 2, centerX + gapWidth, halfHeight)
-      ..quadraticBezierTo(centerX + hourglassWidth - 2, (bottom + halfHeight) / 2,
-          centerX + hourglassWidth - 2, bottom - 7)
+          centerX + hourglassWidth - 2, (bottom + halfHeight) / 2, centerX + hourglassWidth - 2, bottom - 7)
       ..arcToPoint(
         Offset(centerX + hourglassWidth, bottom),
         radius: const Radius.circular(4),
@@ -123,10 +122,9 @@ class _HourGlassPaint extends CustomPainter {
         clockwise: true,
       )
       ..lineTo(centerX - hourglassWidth + 2, bottom - 7)
+      ..quadraticBezierTo(centerX - hourglassWidth + 2, (bottom + halfHeight) / 2, centerX - gapWidth, halfHeight)
       ..quadraticBezierTo(
-          centerX - hourglassWidth + 2, (bottom + halfHeight) / 2, centerX - gapWidth, halfHeight)
-      ..quadraticBezierTo(centerX - hourglassWidth + 2, (top + halfHeight) / 2 + 2,
-          centerX - hourglassWidth + 2, top + 7)
+          centerX - hourglassWidth + 2, (top + halfHeight) / 2 + 2, centerX - hourglassWidth + 2, top + 7)
       ..arcToPoint(
         Offset(centerX - hourglassWidth, top),
         radius: const Radius.circular(4),

@@ -27,8 +27,7 @@ class SpinKitSpinningLines extends StatefulWidget {
   _SpinKitSpinningLinesState createState() => _SpinKitSpinningLinesState();
 }
 
-class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines>
-    with SingleTickerProviderStateMixin {
+class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 

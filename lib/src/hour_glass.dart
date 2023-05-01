@@ -35,8 +35,8 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
         }
       })
       ..repeat();
-    _animation = Tween(begin: 0.0, end: 8.0).animate(CurvedAnimation(
-        parent: _controller, curve: const Interval(0.0, 1.0, curve: Curves.easeOut)));
+    _animation = Tween(begin: 0.0, end: 8.0)
+        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: Curves.easeOut)));
   }
 
   @override
