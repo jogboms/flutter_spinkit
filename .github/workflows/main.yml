@@ -20,9 +20,11 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v2
         with:
-          channel: "dev"
+          cache: true
+          channel: 'stable'
+      - run: flutter doctor
       - run: flutter pub get
       - run: flutter format --set-exit-if-changed -l 120 lib -l 120 example
       - run: flutter analyze lib example
