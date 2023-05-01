@@ -2,6 +2,13 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
+## 5.2.0
+
+- Fix `SpinKitCircle`, `SpinKitFadingCircle`, `SpinKitDancingSquare` animation 
+- Fix calling `setState` on unmounted states
+- Introduced [SpinKitWaveSpinner] 
+- Introduced [SpinKitPulsingGrid]
+
 ## 5.1.0
 
 - Renamed `SpinKitPouringHourglass` -> `SpinKitPouringHourGlass` for correctness
