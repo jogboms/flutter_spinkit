@@ -11,9 +11,7 @@ class SpinKitPulsingGrid extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.boxShape,
-  })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
+  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
             'You should specify either a itemBuilder or a color'),
         super(key: key);
 
@@ -27,8 +25,7 @@ class SpinKitPulsingGrid extends StatefulWidget {
   _SpinKitPulsingGridState createState() => _SpinKitPulsingGridState();
 }
 
-class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid>
-    with TickerProviderStateMixin {
+class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid> with TickerProviderStateMixin {
   final List<double> delays = [1, 2, 3];
   final _grid = 3;
   late AnimationController _controller1;
@@ -39,12 +36,9 @@ class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid>
   void initState() {
     super.initState();
 
-    _controller1 =
-        AnimationController(vsync: this, duration: widget.duration * 0.5);
-    _controller2 =
-        AnimationController(vsync: this, duration: widget.duration * 0.5);
-    _controller3 =
-        AnimationController(vsync: this, duration: widget.duration * 0.5);
+    _controller1 = AnimationController(vsync: this, duration: widget.duration * 0.5);
+    _controller2 = AnimationController(vsync: this, duration: widget.duration * 0.5);
+    _controller3 = AnimationController(vsync: this, duration: widget.duration * 0.5);
     _animate();
   }
 
@@ -97,9 +91,7 @@ class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid>
                               ? _controller2
                               : _controller3,
                       curve: Curves.easeOut),
-                  child: SizedBox.fromSize(
-                      size: Size.square(widget.size / 4),
-                      child: _itemBuilder(i)),
+                  child: SizedBox.fromSize(size: Size.square(widget.size / 4), child: _itemBuilder(i)),
                 ),
               ),
             );
@@ -111,7 +103,5 @@ class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid>
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(
-          decoration: BoxDecoration(
-              color: widget.color, shape: widget.boxShape ?? BoxShape.circle));
+      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.boxShape ?? BoxShape.circle));
 }
