@@ -32,7 +32,11 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain> with Single
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat();
     _animation1 = Tween(begin: 0.0, end: 180.0)
         .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5, curve: Curves.easeIn)));

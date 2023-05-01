@@ -41,7 +41,11 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Sing
     super.initState();
 
     _controller = AnimationController(vsync: this, duration: widget.duration)
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat();
 
     final animation1 = CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.25, curve: Curves.easeInOut));

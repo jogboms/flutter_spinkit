@@ -32,7 +32,11 @@ class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass> with 
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat();
     _pouringAnimation = CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.9))
       ..addListener(() => setState(() {}));

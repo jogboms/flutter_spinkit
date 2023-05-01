@@ -31,7 +31,11 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat();
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller);
   }

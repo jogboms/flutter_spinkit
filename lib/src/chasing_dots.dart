@@ -31,7 +31,11 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
     super.initState();
 
     _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
-      ..addListener(() => setState(() {}))
+      ..addListener(() {
+        if (mounted) {
+          setState(() {});
+        }
+      })
       ..repeat(reverse: true);
     _scale = Tween(begin: -1.0, end: 1.0).animate(CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut));
 
