@@ -23,8 +23,12 @@ class App extends StatelessWidget {
                   builder: (context) => IconButton(
                     icon: const Icon(Icons.play_circle_filled),
                     iconSize: 50.0,
-                    onPressed: () => Navigator.of(context)
-                        .push(MaterialPageRoute<void>(builder: (_) => const ShowCase(), fullscreenDialog: true)),
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const ShowCase(),
+                        fullscreenDialog: true,
+                      ),
+                    ),
                   ),
                 ),
                 alignment: Alignment.bottomCenter,

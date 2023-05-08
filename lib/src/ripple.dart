@@ -9,8 +9,11 @@ class SpinKitRipple extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1800),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+              !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -24,7 +27,8 @@ class SpinKitRipple extends StatefulWidget {
   State<SpinKitRipple> createState() => _SpinKitRippleState();
 }
 
-class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProviderStateMixin {
+class _SpinKitRippleState extends State<SpinKitRipple>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation1;
   late Animation<double> _animation2;
@@ -33,17 +37,26 @@ class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProvider
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});
         }
       })
       ..repeat();
-    _animation1 = Tween(begin: 0.0, end: 1.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.75, curve: Curves.linear)));
-    _animation2 = Tween(begin: 0.0, end: 1.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.25, 1.0, curve: Curves.linear)));
+    _animation1 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.75, curve: Curves.linear),
+      ),
+    );
+    _animation2 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.25, 1.0, curve: Curves.linear),
+      ),
+    );
   }
 
   @override
@@ -61,11 +74,17 @@ class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProvider
         children: <Widget>[
           Opacity(
             opacity: 1.0 - _animation1.value,
-            child: Transform.scale(scale: _animation1.value, child: _itemBuilder(0)),
+            child: Transform.scale(
+              scale: _animation1.value,
+              child: _itemBuilder(0),
+            ),
           ),
           Opacity(
             opacity: 1.0 - _animation2.value,
-            child: Transform.scale(scale: _animation2.value, child: _itemBuilder(1)),
+            child: Transform.scale(
+              scale: _animation2.value,
+              child: _itemBuilder(1),
+            ),
           ),
         ],
       ),
@@ -80,7 +99,10 @@ class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProvider
           : DecoratedBox(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: widget.color!, width: widget.borderWidth),
+                border: Border.all(
+                  color: widget.color!,
+                  width: widget.borderWidth,
+                ),
               ),
             ),
     );

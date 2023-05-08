@@ -8,8 +8,11 @@ class SpinKitRotatingPlain extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+              !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -22,7 +25,8 @@ class SpinKitRotatingPlain extends StatefulWidget {
   State<SpinKitRotatingPlain> createState() => _SpinKitRotatingPlainState();
 }
 
-class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain> with SingleTickerProviderStateMixin {
+class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation1;
   late Animation<double> _animation2;
@@ -31,17 +35,26 @@ class _SpinKitRotatingPlainState extends State<SpinKitRotatingPlain> with Single
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});
         }
       })
       ..repeat();
-    _animation1 = Tween(begin: 0.0, end: 180.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5, curve: Curves.easeIn)));
-    _animation2 = Tween(begin: 0.0, end: 180.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.5, 1.0, curve: Curves.easeOut)));
+    _animation1 = Tween(begin: 0.0, end: 180.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
+      ),
+    );
+    _animation2 = Tween(begin: 0.0, end: 180.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+      ),
+    );
   }
 
   @override

@@ -11,8 +11,11 @@ class SpinKitPulsingGrid extends StatefulWidget {
     this.duration = const Duration(milliseconds: 1500),
     this.boxShape,
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+              !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -26,7 +29,8 @@ class SpinKitPulsingGrid extends StatefulWidget {
   State<SpinKitPulsingGrid> createState() => _SpinKitPulsingGridState();
 }
 
-class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid> with SingleTickerProviderStateMixin {
+class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid>
+    with SingleTickerProviderStateMixin {
   static const _gridCount = 3;
 
   late AnimationController _controller;
@@ -35,7 +39,9 @@ class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid> with SingleTick
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
+      ..repeat();
   }
 
   @override
@@ -70,10 +76,17 @@ class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid> with SingleTick
                 alignment: Alignment.center,
                 child: ScaleTransition(
                   scale: CurvedAnimation(
-                    parent: DelayTween(begin: 0.0, end: 1.0, delay: delay).animate(_controller),
+                    parent: DelayTween(
+                      begin: 0.0,
+                      end: 1.0,
+                      delay: delay,
+                    ).animate(_controller),
                     curve: Curves.easeOut,
                   ),
-                  child: SizedBox.fromSize(size: Size.square(widget.size / 4), child: _itemBuilder(i)),
+                  child: SizedBox.fromSize(
+                    size: Size.square(widget.size / 4),
+                    child: _itemBuilder(i),
+                  ),
                 ),
               ),
             );
@@ -85,5 +98,10 @@ class _SpinKitPulsingGridState extends State<SpinKitPulsingGrid> with SingleTick
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.boxShape ?? BoxShape.circle));
+      : DecoratedBox(
+          decoration: BoxDecoration(
+            color: widget.color,
+            shape: widget.boxShape ?? BoxShape.circle,
+          ),
+        );
 }

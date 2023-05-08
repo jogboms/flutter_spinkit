@@ -12,8 +12,11 @@ class SpinKitThreeInOut extends StatefulWidget {
     this.duration = const Duration(milliseconds: 500),
     this.delay = const Duration(milliseconds: 50),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+              !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -27,7 +30,8 @@ class SpinKitThreeInOut extends StatefulWidget {
   State<SpinKitThreeInOut> createState() => _SpinKitThreeInOutState();
 }
 
-class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTickerProviderStateMixin {
+class _SpinKitThreeInOutState extends State<SpinKitThreeInOut>
+    with SingleTickerProviderStateMixin {
   late AnimationController? _controller;
 
   late List<Widget> _widgets;
@@ -49,7 +53,8 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
       ),
     );
 
-    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration);
 
     _controller!.forward();
 
@@ -63,7 +68,10 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
       _lastAnim = _controller!.value;
 
       if (_controller!.isCompleted) {
-        _forwardTimer = Timer(widget.delay, () => _controller?.forward(from: 0));
+        _forwardTimer = Timer(
+          widget.delay,
+          () => _controller?.forward(from: 0),
+        );
       }
     });
   }
@@ -114,20 +122,26 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTicker
   AnimatedBuilder _wrapInAnimatedBuilder(
     Widget innerWidget, {
     bool inverse = false,
-  }) =>
-      AnimatedBuilder(
-        animation: _controller!,
-        child: innerWidget,
-        builder: (context, inn) {
-          final value = inverse ? 1 - _controller!.value : _controller!.value;
-          return SizedBox.fromSize(
-            size: Size.square(widget.size * 0.5 * value),
-            child: Opacity(opacity: value, child: inn),
-          );
-        },
-      );
+  }) {
+    return AnimatedBuilder(
+      animation: _controller!,
+      child: innerWidget,
+      builder: (context, inn) {
+        final value = inverse ? 1 - _controller!.value : _controller!.value;
+        return SizedBox.fromSize(
+          size: Size.square(widget.size * 0.5 * value),
+          child: Opacity(opacity: value, child: inn),
+        );
+      },
+    );
+  }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: BoxShape.circle));
+      : DecoratedBox(
+          decoration: BoxDecoration(
+            color: widget.color,
+            shape: BoxShape.circle,
+          ),
+        );
 }

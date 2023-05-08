@@ -4,45 +4,47 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('Smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      theme: ThemeData.dark(),
-      home: SingleChildScrollView(
-        child: Column(
-          children: const [
-            SpinKitChasingDots(color: Colors.white),
-            SpinKitCircle(color: Colors.white),
-            SpinKitSquareCircle(color: Colors.white),
-            SpinKitDoubleBounce(color: Colors.white),
-            SpinKitCubeGrid(color: Colors.white),
-            SpinKitDoubleBounce(color: Colors.white),
-            SpinKitDualRing(color: Colors.white),
-            SpinKitFadingCircle(color: Colors.white),
-            SpinKitFadingCube(color: Colors.white),
-            SpinKitFadingFour(color: Colors.white),
-            SpinKitFadingGrid(color: Colors.white),
-            SpinKitFoldingCube(color: Colors.white),
-            SpinKitHourGlass(color: Colors.white),
-            SpinKitPouringHourGlass(color: Colors.white),
-            SpinKitPouringHourGlassRefined(color: Colors.white),
-            SpinKitPulse(color: Colors.white),
-            SpinKitPulsingGrid(color: Colors.white),
-            SpinKitPumpingHeart(color: Colors.white),
-            SpinKitRing(color: Colors.white),
-            SpinKitRipple(color: Colors.white),
-            SpinKitRotatingCircle(color: Colors.white),
-            SpinKitRotatingPlain(color: Colors.white),
-            SpinKitSpinningCircle(color: Colors.white),
-            SpinKitSpinningLines(color: Colors.white),
-            SpinKitThreeBounce(color: Colors.white),
-            SpinKitThreeInOut(color: Colors.white),
-            SpinKitWanderingCubes(color: Colors.white),
-            SpinKitWave(color: Colors.white),
-            SpinKitPianoWave(color: Colors.white),
-            SpinKitDancingSquare(color: Colors.white),
-          ],
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData.dark(),
+        home: SingleChildScrollView(
+          child: Column(
+            children: const [
+              SpinKitChasingDots(color: Colors.white),
+              SpinKitCircle(color: Colors.white),
+              SpinKitSquareCircle(color: Colors.white),
+              SpinKitDoubleBounce(color: Colors.white),
+              SpinKitCubeGrid(color: Colors.white),
+              SpinKitDoubleBounce(color: Colors.white),
+              SpinKitDualRing(color: Colors.white),
+              SpinKitFadingCircle(color: Colors.white),
+              SpinKitFadingCube(color: Colors.white),
+              SpinKitFadingFour(color: Colors.white),
+              SpinKitFadingGrid(color: Colors.white),
+              SpinKitFoldingCube(color: Colors.white),
+              SpinKitHourGlass(color: Colors.white),
+              SpinKitPouringHourGlass(color: Colors.white),
+              SpinKitPouringHourGlassRefined(color: Colors.white),
+              SpinKitPulse(color: Colors.white),
+              SpinKitPulsingGrid(color: Colors.white),
+              SpinKitPumpingHeart(color: Colors.white),
+              SpinKitRing(color: Colors.white),
+              SpinKitRipple(color: Colors.white),
+              SpinKitRotatingCircle(color: Colors.white),
+              SpinKitRotatingPlain(color: Colors.white),
+              SpinKitSpinningCircle(color: Colors.white),
+              SpinKitSpinningLines(color: Colors.white),
+              SpinKitThreeBounce(color: Colors.white),
+              SpinKitThreeInOut(color: Colors.white),
+              SpinKitWanderingCubes(color: Colors.white),
+              SpinKitWave(color: Colors.white),
+              SpinKitPianoWave(color: Colors.white),
+              SpinKitDancingSquare(color: Colors.white),
+            ],
+          ),
         ),
       ),
-    ));
+    );
 
     await tester.pump();
   });

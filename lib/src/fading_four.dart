@@ -10,8 +10,11 @@ class SpinKitFadingFour extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+              !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -25,7 +28,8 @@ class SpinKitFadingFour extends StatefulWidget {
   State<SpinKitFadingFour> createState() => _SpinKitFadingFourState();
 }
 
-class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTickerProviderStateMixin {
+class _SpinKitFadingFourState extends State<SpinKitFadingFour>
+    with SingleTickerProviderStateMixin {
   static const List<double> _delays = [.0, -0.9, -0.6, -0.3];
   late AnimationController _controller;
 
@@ -33,7 +37,9 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
+      ..repeat();
   }
 
   @override
@@ -60,8 +66,15 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
-                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: _delays[i]).animate(_controller),
-                    child: SizedBox.fromSize(size: Size.square(widget.size * 0.25), child: _itemBuilder(i)),
+                    opacity: DelayTween(
+                      begin: 0.0,
+                      end: 1.0,
+                      delay: _delays[i],
+                    ).animate(_controller),
+                    child: SizedBox.fromSize(
+                      size: Size.square(widget.size * 0.25),
+                      child: _itemBuilder(i),
+                    ),
                   ),
                 ),
               ),
@@ -74,5 +87,7 @@ class _SpinKitFadingFourState extends State<SpinKitFadingFour> with SingleTicker
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.shape));
+      : DecoratedBox(
+          decoration: BoxDecoration(color: widget.color, shape: widget.shape),
+        );
 }

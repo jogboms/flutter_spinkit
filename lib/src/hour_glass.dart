@@ -20,7 +20,8 @@ class SpinKitHourGlass extends StatefulWidget {
   State<SpinKitHourGlass> createState() => _SpinKitHourGlassState();
 }
 
-class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerProviderStateMixin {
+class _SpinKitHourGlassState extends State<SpinKitHourGlass>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -28,15 +29,20 @@ class _SpinKitHourGlassState extends State<SpinKitHourGlass> with SingleTickerPr
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ??
+        AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});
         }
       })
       ..repeat();
-    _animation = Tween(begin: 0.0, end: 8.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: Curves.easeOut)));
+    _animation = Tween(begin: 0.0, end: 8.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 1.0, curve: Curves.easeOut),
+      ),
+    );
   }
 
   @override

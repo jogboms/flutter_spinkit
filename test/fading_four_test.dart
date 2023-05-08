@@ -6,35 +6,58 @@ import 'helpers.dart';
 
 void main() {
   group('FadingFour', () {
-    testWidgets('needs either color or itemBuilder', (WidgetTester tester) async {
-      expect(() => SpinKitFadingFour(), throwsAssertionError);
-      expect(() => SpinKitFadingFour(color: Colors.white, itemBuilder: fakeBoxBuilder), throwsAssertionError);
-    });
+    testWidgets(
+      'needs either color or itemBuilder',
+      (WidgetTester tester) async {
+        expect(() => SpinKitFadingFour(), throwsAssertionError);
+        expect(
+          () => SpinKitFadingFour(
+            color: Colors.white,
+            itemBuilder: fakeBoxBuilder,
+          ),
+          throwsAssertionError,
+        );
+      },
+    );
 
     testWidgets('needs color to be non-null', (WidgetTester tester) async {
       expect(() => SpinKitFadingFour(color: null), throwsAssertionError);
     });
 
-    testWidgets('needs itemBuilder to be non-null', (WidgetTester tester) async {
-      expect(() => SpinKitFadingFour(itemBuilder: null), throwsAssertionError);
-    });
+    testWidgets(
+      'needs itemBuilder to be non-null',
+      (WidgetTester tester) async {
+        expect(
+          () => SpinKitFadingFour(itemBuilder: null),
+          throwsAssertionError,
+        );
+      },
+    );
 
     testWidgets('works with color', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(const SpinKitFadingFour(color: Colors.white)));
+      await tester.pumpWidget(
+        createMaterialApp(const SpinKitFadingFour(color: Colors.white)),
+      );
       expect(find.byType(SpinKitFadingFour), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works with itemBuilder', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(const SpinKitFadingFour(itemBuilder: fakeBoxBuilder)));
+      await tester.pumpWidget(
+        createMaterialApp(
+          const SpinKitFadingFour(itemBuilder: fakeBoxBuilder),
+        ),
+      );
       expect(find.byType(SpinKitFadingFour), findsOneWidget);
       expect(find.byType(FakeBox), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works without Material', (WidgetTester tester) async {
-      await tester.pumpWidget(createWidgetsApp(const SpinKitFadingFour(color: Colors.white)));
+      await tester.pumpWidget(
+        createWidgetsApp(const SpinKitFadingFour(color: Colors.white)),
+      );
       expect(find.byType(SpinKitFadingFour), findsOneWidget);
       expect(find.byType(DecoratedBox), findsWidgets);
       tester.verifyTickersWereDisposed();
