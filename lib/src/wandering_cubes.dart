@@ -9,8 +9,7 @@ class SpinKitWanderingCubes extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1800),
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         offset = size * 0.75,
@@ -27,8 +26,7 @@ class SpinKitWanderingCubes extends StatefulWidget {
   State<SpinKitWanderingCubes> createState() => _SpinKitWanderingCubesState();
 }
 
-class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes>
-    with SingleTickerProviderStateMixin {
+class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scale1;
   late Animation<double> _scale2;

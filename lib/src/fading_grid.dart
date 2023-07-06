@@ -11,8 +11,7 @@ class SpinKitFadingGrid extends StatefulWidget {
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -28,17 +27,14 @@ class SpinKitFadingGrid extends StatefulWidget {
   State<SpinKitFadingGrid> createState() => _SpinKitFadingGridState();
 }
 
-class _SpinKitFadingGridState extends State<SpinKitFadingGrid>
-    with SingleTickerProviderStateMixin {
+class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override

@@ -11,8 +11,7 @@ class SpinKitFoldingCube extends StatefulWidget {
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -27,8 +26,7 @@ class SpinKitFoldingCube extends StatefulWidget {
   State<SpinKitFoldingCube> createState() => _SpinKitFoldingCubeState();
 }
 
-class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
-    with TickerProviderStateMixin {
+class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProviderStateMixin {
   late final int _delay;
 
   late AnimationController _controller1;
@@ -50,19 +48,15 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
 
     _delay = widget.duration.inMilliseconds ~/ 8;
 
-    _controller1 = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
+    _controller1 = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});
         }
       });
-    _controller2 = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
-    _controller3 = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
-    _controller4 = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller2 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
+    _controller3 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
+    _controller4 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
 
     final tweenSequence = TweenSequence<double>([
       TweenSequenceItem(
@@ -175,9 +169,7 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube>
           alignment: Alignment.center,
           child: Transform(
             transform: tRotate,
-            alignment: animation.value <= 0
-                ? Alignment.topCenter
-                : Alignment.centerLeft,
+            alignment: animation.value <= 0 ? Alignment.topCenter : Alignment.centerLeft,
             child: Opacity(
               opacity: 1.0 - (animation.value.abs() / 180.0),
               child: SizedBox.fromSize(

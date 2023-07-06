@@ -22,8 +22,7 @@ class SpinKitRing extends StatefulWidget {
   State<SpinKitRing> createState() => _SpinKitRingState();
 }
 
-class _SpinKitRingState extends State<SpinKitRing>
-    with SingleTickerProviderStateMixin {
+class _SpinKitRingState extends State<SpinKitRing> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation1;
   late Animation<double> _animation2;
@@ -33,8 +32,7 @@ class _SpinKitRingState extends State<SpinKitRing>
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});
@@ -73,8 +71,7 @@ class _SpinKitRingState extends State<SpinKitRing>
   Widget build(BuildContext context) {
     return Center(
       child: Transform(
-        transform: Matrix4.identity()
-          ..rotateZ((_animation1.value) * 5 * pi / 6),
+        transform: Matrix4.identity()..rotateZ((_animation1.value) * 5 * pi / 6),
         alignment: FractionalOffset.center,
         child: SizedBox.fromSize(
           size: Size.square(widget.size),

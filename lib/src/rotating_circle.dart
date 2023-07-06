@@ -9,8 +9,7 @@ class SpinKitRotatingCircle extends StatefulWidget {
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -25,8 +24,7 @@ class SpinKitRotatingCircle extends StatefulWidget {
   State<SpinKitRotatingCircle> createState() => _SpinKitRotatingCircleState();
 }
 
-class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle>
-    with SingleTickerProviderStateMixin {
+class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation1;
   late Animation<double> _animation2;
@@ -35,8 +33,7 @@ class _SpinKitRotatingCircleState extends State<SpinKitRotatingCircle>
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});

@@ -12,8 +12,7 @@ class SpinKitPumpingHeart extends StatefulWidget {
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -28,8 +27,7 @@ class SpinKitPumpingHeart extends StatefulWidget {
   State<SpinKitPumpingHeart> createState() => _SpinKitPumpingHeartState();
 }
 
-class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
-    with SingleTickerProviderStateMixin {
+class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -37,9 +35,7 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart>
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
     _animation = Tween(begin: 1.0, end: 1.25).animate(
       CurvedAnimation(
         parent: _controller,

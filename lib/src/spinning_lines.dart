@@ -27,8 +27,7 @@ class SpinKitSpinningLines extends StatefulWidget {
   State<SpinKitSpinningLines> createState() => _SpinKitSpinningLinesState();
 }
 
-class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines>
-    with SingleTickerProviderStateMixin {
+class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -36,8 +35,7 @@ class _SpinKitSpinningLinesState extends State<SpinKitSpinningLines>
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});
@@ -149,8 +147,7 @@ class SpinningLinesPainter extends CustomPainter {
   /// I use the following resource to calculate rotation of the canvas
   /// https://stackoverflow.com/a/54336099/9689717
   void _rotateCanvas(Canvas canvas, Size size, double angle) {
-    final double r =
-        sqrt(size.width * size.width + size.height * size.height) / 2;
+    final double r = sqrt(size.width * size.width + size.height * size.height) / 2;
     final alpha = atan(size.height / size.width);
     final beta = alpha + angle;
     final shiftY = r * sin(beta);

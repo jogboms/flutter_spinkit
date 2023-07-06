@@ -13,8 +13,7 @@ class SpinKitThreeInOut extends StatefulWidget {
     this.delay = const Duration(milliseconds: 50),
     this.controller,
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -30,8 +29,7 @@ class SpinKitThreeInOut extends StatefulWidget {
   State<SpinKitThreeInOut> createState() => _SpinKitThreeInOutState();
 }
 
-class _SpinKitThreeInOutState extends State<SpinKitThreeInOut>
-    with SingleTickerProviderStateMixin {
+class _SpinKitThreeInOutState extends State<SpinKitThreeInOut> with SingleTickerProviderStateMixin {
   late AnimationController? _controller;
 
   late List<Widget> _widgets;
@@ -53,8 +51,7 @@ class _SpinKitThreeInOutState extends State<SpinKitThreeInOut>
       ),
     );
 
-    _controller = widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration);
+    _controller = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
 
     _controller!.forward();
 

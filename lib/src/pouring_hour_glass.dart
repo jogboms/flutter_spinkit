@@ -19,12 +19,10 @@ class SpinKitPouringHourGlass extends StatefulWidget {
   final AnimationController? controller;
 
   @override
-  State<SpinKitPouringHourGlass> createState() =>
-      _SpinKitPouringHourGlassState();
+  State<SpinKitPouringHourGlass> createState() => _SpinKitPouringHourGlassState();
 }
 
-class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass>
-    with SingleTickerProviderStateMixin {
+class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _pouringAnimation;
   late Animation<double> _rotationAnimation;
@@ -33,8 +31,7 @@ class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass>
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});

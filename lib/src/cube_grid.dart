@@ -9,8 +9,7 @@ class SpinKitCubeGrid extends StatefulWidget {
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -25,8 +24,7 @@ class SpinKitCubeGrid extends StatefulWidget {
   State<SpinKitCubeGrid> createState() => _SpinKitCubeGridState();
 }
 
-class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
-    with SingleTickerProviderStateMixin {
+class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _anim1;
   late Animation<double> _anim2;
@@ -38,8 +36,7 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid>
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..repeat(reverse: true);
     _anim1 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(

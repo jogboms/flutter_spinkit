@@ -28,17 +28,14 @@ class SpinKitWaveSpinner extends StatefulWidget {
   State<SpinKitWaveSpinner> createState() => _SpinKitWaveSpinnerState();
 }
 
-class _SpinKitWaveSpinnerState extends State<SpinKitWaveSpinner>
-    with SingleTickerProviderStateMixin {
+class _SpinKitWaveSpinnerState extends State<SpinKitWaveSpinner> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(duration: widget.duration, vsync: this))
-      ..repeat();
+    _controller = (widget.controller ?? AnimationController(duration: widget.duration, vsync: this))..repeat();
   }
 
   @override

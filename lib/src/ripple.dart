@@ -10,8 +10,7 @@ class SpinKitRipple extends StatefulWidget {
     this.duration = const Duration(milliseconds: 1800),
     this.controller,
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -27,8 +26,7 @@ class SpinKitRipple extends StatefulWidget {
   State<SpinKitRipple> createState() => _SpinKitRippleState();
 }
 
-class _SpinKitRippleState extends State<SpinKitRipple>
-    with SingleTickerProviderStateMixin {
+class _SpinKitRippleState extends State<SpinKitRipple> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation1;
   late Animation<double> _animation2;
@@ -37,8 +35,7 @@ class _SpinKitRippleState extends State<SpinKitRipple>
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
       ..addListener(() {
         if (mounted) {
           setState(() {});

@@ -10,8 +10,7 @@ class SpinKitThreeBounce extends StatefulWidget {
     this.duration = const Duration(milliseconds: 1400),
     this.controller,
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -26,17 +25,14 @@ class SpinKitThreeBounce extends StatefulWidget {
   State<SpinKitThreeBounce> createState() => _SpinKitThreeBounceState();
 }
 
-class _SpinKitThreeBounceState extends State<SpinKitThreeBounce>
-    with SingleTickerProviderStateMixin {
+class _SpinKitThreeBounceState extends State<SpinKitThreeBounce> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ??
-        AnimationController(vsync: this, duration: widget.duration))
-      ..repeat();
+    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
   }
 
   @override

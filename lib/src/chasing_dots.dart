@@ -8,8 +8,7 @@ class SpinKitChasingDots extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2000),
   })  : assert(
-          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-              !(itemBuilder == null && color == null),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
           'You should specify either a itemBuilder or a color',
         ),
         super(key: key);
@@ -23,8 +22,7 @@ class SpinKitChasingDots extends StatefulWidget {
   State<SpinKitChasingDots> createState() => _SpinKitChasingDotsState();
 }
 
-class _SpinKitChasingDotsState extends State<SpinKitChasingDots>
-    with TickerProviderStateMixin {
+class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProviderStateMixin {
   late AnimationController _scaleCtrl;
   late AnimationController _rotateCtrl;
   late Animation<double> _scale;
