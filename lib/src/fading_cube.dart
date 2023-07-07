@@ -9,8 +9,10 @@ class SpinKitFadingCube extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -63,8 +65,15 @@ class _SpinKitFadingCubeState extends State<SpinKitFadingCube> with SingleTicker
                       child: Align(
                         alignment: Alignment.center,
                         child: FadeTransition(
-                          opacity: DelayTween(begin: 0.0, end: 1.0, delay: 0.3 * i).animate(_controller),
-                          child: SizedBox.fromSize(size: Size.square(size), child: _itemBuilder(i)),
+                          opacity: DelayTween(
+                            begin: 0.0,
+                            end: 1.0,
+                            delay: 0.3 * i,
+                          ).animate(_controller),
+                          child: SizedBox.fromSize(
+                            size: Size.square(size),
+                            child: _itemBuilder(i),
+                          ),
                         ),
                       ),
                     ),

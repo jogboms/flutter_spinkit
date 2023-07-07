@@ -161,9 +161,10 @@ class SpinningLinesPainter extends CustomPainter {
   double _getRadian(double angle) => math.pi / 180 * angle;
 
   @override
-  bool shouldRepaint(SpinningLinesPainter oldDelegate) =>
-      oldDelegate.rotateValue != rotateValue ||
-      oldDelegate.lineWidth != lineWidth ||
-      oldDelegate.itemCount != itemCount ||
-      oldDelegate._linePaint != _linePaint;
+  bool shouldRepaint(SpinningLinesPainter oldDelegate) {
+    return oldDelegate.rotateValue != rotateValue ||
+        oldDelegate.lineWidth != lineWidth ||
+        oldDelegate.itemCount != itemCount ||
+        oldDelegate._linePaint != _linePaint;
+  }
 }

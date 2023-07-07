@@ -11,8 +11,10 @@ class SpinKitPumpingHeart extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -34,8 +36,12 @@ class _SpinKitPumpingHeartState extends State<SpinKitPumpingHeart> with SingleTi
     super.initState();
 
     _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))..repeat();
-    _animation = Tween(begin: 1.0, end: 1.25)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: SpinKitPumpCurve())));
+    _animation = Tween(begin: 1.0, end: 1.25).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 1.0, curve: SpinKitPumpCurve()),
+      ),
+    );
   }
 
   @override

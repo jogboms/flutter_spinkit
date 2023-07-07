@@ -9,8 +9,10 @@ class SpinKitFadingCircle extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -59,8 +61,15 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
-                    opacity: DelayTween(begin: 0.0, end: 1.0, delay: i / _itemCount).animate(_controller),
-                    child: SizedBox.fromSize(size: Size.square(widget.size * 0.15), child: _itemBuilder(i)),
+                    opacity: DelayTween(
+                      begin: 0.0,
+                      end: 1.0,
+                      delay: i / _itemCount,
+                    ).animate(_controller),
+                    child: SizedBox.fromSize(
+                      size: Size.square(widget.size * 0.15),
+                      child: _itemBuilder(i),
+                    ),
                   ),
                 ),
               ),
@@ -73,5 +82,10 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: BoxShape.circle));
+      : DecoratedBox(
+          decoration: BoxDecoration(
+            color: widget.color,
+            shape: BoxShape.circle,
+          ),
+        );
 }

@@ -8,8 +8,10 @@ class SpinKitPulse extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(seconds: 1),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -66,5 +68,10 @@ class _SpinKitPulseState extends State<SpinKitPulse> with SingleTickerProviderSt
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color));
+      : DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: widget.color,
+          ),
+        );
 }

@@ -38,10 +38,16 @@ class _SpinKitPouringHourGlassState extends State<SpinKitPouringHourGlass> with 
         }
       })
       ..repeat();
-    _pouringAnimation = CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.9))
-      ..addListener(() => setState(() {}));
-    _rotationAnimation = Tween(begin: 0.0, end: 0.5)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.9, 1.0, curve: Curves.fastOutSlowIn)));
+    _pouringAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.0, 0.9),
+    )..addListener(() => setState(() {}));
+    _rotationAnimation = Tween(begin: 0.0, end: 0.5).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.9, 1.0, curve: Curves.fastOutSlowIn),
+      ),
+    );
   }
 
   @override
@@ -109,8 +115,13 @@ class _HourGlassPaint extends CustomPainter {
 
     final upperPart = Path()
       ..moveTo(0.0, top)
-      ..addRect(Rect.fromLTRB(0.0, halfHeight * poured!, size.width, halfHeight));
-    canvas.drawPath(Path.combine(PathOperation.intersect, hourglassPath, upperPart), _powderPaint);
+      ..addRect(
+        Rect.fromLTRB(0.0, halfHeight * poured!, size.width, halfHeight),
+      );
+    canvas.drawPath(
+      Path.combine(PathOperation.intersect, hourglassPath, upperPart),
+      _powderPaint,
+    );
 
     final lowerPartPath = Path()
       ..moveTo(centerX, bottom)
@@ -125,7 +136,11 @@ class _HourGlassPaint extends CustomPainter {
     );
     canvas.drawPath(lowerPart, _powderPaint);
 
-    canvas.drawLine(Offset(centerX, halfHeight), Offset(centerX, bottom), _paint);
+    canvas.drawLine(
+      Offset(centerX, halfHeight),
+      Offset(centerX, bottom),
+      _paint,
+    );
   }
 
   @override

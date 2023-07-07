@@ -10,8 +10,10 @@ class SpinKitFadingGrid extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -105,7 +107,11 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
 
   Widget _circle(int index, int i) {
     return FadeTransition(
-      opacity: DelayTween(begin: 0.4, end: 0.9, delay: 0.3 * (i - 1)).animate(_controller),
+      opacity: DelayTween(
+        begin: 0.4,
+        end: 0.9,
+        delay: 0.3 * (i - 1),
+      ).animate(_controller),
       child: SizedBox.fromSize(
         size: Size.square(widget.size / 4),
         child: _itemBuilder(index),
@@ -115,5 +121,7 @@ class _SpinKitFadingGridState extends State<SpinKitFadingGrid> with SingleTicker
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.shape));
+      : DecoratedBox(
+          decoration: BoxDecoration(color: widget.color, shape: widget.shape),
+        );
 }

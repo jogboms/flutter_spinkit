@@ -11,8 +11,10 @@ class SpinKitSpinningCircle extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -41,8 +43,12 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle> with Sing
         }
       })
       ..repeat();
-    _animation = Tween(begin: 0.0, end: 7.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: Curves.easeOut)));
+    _animation = Tween(begin: 0.0, end: 7.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 1.0, curve: Curves.easeOut),
+      ),
+    );
   }
 
   @override
@@ -69,5 +75,7 @@ class _SpinKitSpinningCircleState extends State<SpinKitSpinningCircle> with Sing
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: widget.shape));
+      : DecoratedBox(
+          decoration: BoxDecoration(color: widget.color, shape: widget.shape),
+        );
 }

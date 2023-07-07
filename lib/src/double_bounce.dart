@@ -8,8 +8,10 @@ class SpinKitDoubleBounce extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2000),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -37,7 +39,9 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
         }
       })
       ..repeat(reverse: true);
-    _animation = Tween(begin: -1.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _animation = Tween(begin: -1.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
   }
 
   @override
@@ -55,7 +59,10 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
         children: List.generate(2, (i) {
           return Transform.scale(
             scale: (1.0 - i - _animation.value.abs()).abs(),
-            child: SizedBox.fromSize(size: Size.square(widget.size), child: _itemBuilder(i)),
+            child: SizedBox.fromSize(
+              size: Size.square(widget.size),
+              child: _itemBuilder(i),
+            ),
           );
         }),
       ),
@@ -64,5 +71,10 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
       ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color!.withOpacity(0.6)));
+      : DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: widget.color!.withOpacity(0.6),
+          ),
+        );
 }

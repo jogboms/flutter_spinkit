@@ -10,8 +10,10 @@ class SpinKitFoldingCube extends StatefulWidget {
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,
-  })  : assert(!(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+  })  : assert(
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) && !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
   final Color? color;
@@ -57,11 +59,23 @@ class _SpinKitFoldingCubeState extends State<SpinKitFoldingCube> with TickerProv
     _controller4 = widget.controller ?? AnimationController(vsync: this, duration: widget.duration);
 
     final tweenSequence = TweenSequence<double>([
-      TweenSequenceItem(tween: ConstantTween<double>(-180.0).chain(CurveTween(curve: Curves.easeIn)), weight: 10.0),
-      TweenSequenceItem(tween: Tween<double>(begin: -180.0, end: 0.0), weight: 15.0),
+      TweenSequenceItem(
+        tween: ConstantTween<double>(-180.0).chain(
+          CurveTween(curve: Curves.easeIn),
+        ),
+        weight: 10.0,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: -180.0, end: 0.0),
+        weight: 15.0,
+      ),
       TweenSequenceItem(tween: ConstantTween<double>(0.0), weight: 50.0),
       TweenSequenceItem(
-          tween: Tween<double>(begin: 0.0, end: 180.0).chain(CurveTween(curve: Curves.easeIn)), weight: 15.0),
+        tween: Tween<double>(begin: 0.0, end: 180.0).chain(
+          CurveTween(curve: Curves.easeIn),
+        ),
+        weight: 15.0,
+      ),
       TweenSequenceItem(tween: ConstantTween(180.0), weight: 10),
     ]);
 

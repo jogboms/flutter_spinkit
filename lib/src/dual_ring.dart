@@ -37,8 +37,12 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
         }
       })
       ..repeat();
-    _animation = Tween(begin: 0.0, end: 1.0)
-        .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0, curve: Curves.linear)));
+    _animation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 1.0, curve: Curves.linear),
+      ),
+    );
   }
 
   @override
@@ -56,7 +60,11 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
         transform: Matrix4.identity()..rotateZ((_animation.value) * math.pi * 2),
         alignment: FractionalOffset.center,
         child: CustomPaint(
-          painter: _DualRingPainter(angle: 90, paintWidth: widget.lineWidth, color: widget.color),
+          painter: _DualRingPainter(
+            angle: 90,
+            paintWidth: widget.lineWidth,
+            color: widget.color,
+          ),
           child: SizedBox.fromSize(size: Size.square(widget.size)),
         ),
       ),
@@ -65,8 +73,11 @@ class _SpinKitDualRingState extends State<SpinKitDualRing> with SingleTickerProv
 }
 
 class _DualRingPainter extends CustomPainter {
-  _DualRingPainter({required this.angle, required double paintWidth, required Color color})
-      : ringPaint = Paint()
+  _DualRingPainter({
+    required this.angle,
+    required double paintWidth,
+    required Color color,
+  }) : ringPaint = Paint()
           ..color = color
           ..strokeWidth = paintWidth
           ..style = PaintingStyle.stroke;

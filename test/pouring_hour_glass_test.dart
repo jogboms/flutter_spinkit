@@ -7,14 +7,20 @@ import 'helpers.dart';
 void main() {
   group('PouringHourglass', () {
     testWidgets('works with color', (WidgetTester tester) async {
-      await tester.pumpWidget(createMaterialApp(const SpinKitPouringHourGlass(color: Colors.white)));
+      await tester.pumpWidget(
+        createMaterialApp(
+          const SpinKitPouringHourGlass(color: Colors.white),
+        ),
+      );
       expect(find.byType(SpinKitPouringHourGlass), findsOneWidget);
       expect(find.byType(CustomPaint), findsWidgets);
       tester.verifyTickersWereDisposed();
     });
 
     testWidgets('works without Material', (WidgetTester tester) async {
-      await tester.pumpWidget(createWidgetsApp(const SpinKitPouringHourGlass(color: Colors.white)));
+      await tester.pumpWidget(
+        createWidgetsApp(const SpinKitPouringHourGlass(color: Colors.white)),
+      );
       expect(find.byType(SpinKitPouringHourGlass), findsOneWidget);
       expect(find.byType(CustomPaint), findsWidgets);
       tester.verifyTickersWereDisposed();
