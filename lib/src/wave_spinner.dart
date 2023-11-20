@@ -80,7 +80,7 @@ class _SpinKitWaveSpinnerState extends State<SpinKitWaveSpinner> with SingleTick
                     constraints: BoxConstraints.tight(childMaxSize),
                     child: widget.child,
                   ),
-                )
+                ),
             ],
           ),
         );
