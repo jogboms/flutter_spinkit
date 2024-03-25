@@ -8,7 +8,7 @@ A collection of loading indicators animated with flutter. Heavily inspired by [@
 
 ```yaml
 dependencies:
-  flutter_spinkit: ^5.2.0
+  flutter_spinkit: ^5.2.1
 ```
 
 ### ⚡️ Import
