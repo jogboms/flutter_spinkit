@@ -84,8 +84,7 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
     return AnimatedBuilder(
       animation: _controller,
       builder: (BuildContext context, Widget? child) {
-        final double angle =
-        _controller.status == AnimationStatus.forward ? 0 : math.pi;
+        final double angle = _controller.status == AnimationStatus.forward ? 0 : math.pi;
         // Just rotate it 180 degrees to display it as showcased
         return Transform.rotate(
           angle: angle,
