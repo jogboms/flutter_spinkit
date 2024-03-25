@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'dart:math' as math;
 
 class SpinKitCubeGrid extends StatefulWidget {
   const SpinKitCubeGrid({
@@ -80,40 +81,52 @@ class _SpinKitCubeGridState extends State<SpinKitCubeGrid> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.fromSize(
-      size: Size.square(widget.size),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _square(_anim3, 0),
-              _square(_anim4, 1),
-              _square(_anim5, 2),
-            ],
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _square(_anim2, 3),
-              _square(_anim3, 4),
-              _square(_anim4, 5),
-            ],
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _square(_anim1, 6),
-              _square(_anim2, 7),
-              _square(_anim3, 8),
-            ],
-          ),
-        ],
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (BuildContext context, Widget? child) {
+        final double angle =
+        _controller.status == AnimationStatus.forward ? 0 : math.pi;
+        // Just rotate it 180 degrees to display it as showcased
+        return Transform.rotate(
+          angle: angle,
+          child: child,
+        );
+      },
+      child: SizedBox.fromSize(
+        size: Size.square(widget.size),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _square(_anim3, 0),
+                _square(_anim4, 1),
+                _square(_anim5, 2),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _square(_anim2, 3),
+                _square(_anim3, 4),
+                _square(_anim4, 5),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _square(_anim1, 6),
+                _square(_anim2, 7),
+                _square(_anim3, 8),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
