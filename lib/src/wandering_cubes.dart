@@ -108,20 +108,20 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Sing
     Matrix4 tTranslate;
     if (offset == true) {
       tTranslate = Matrix4.identity()
-        ..translate(_translate3.value, 0.0)
-        ..translate(0.0, _translate2.value)
-        ..translate(0.0, _translate4.value)
-        ..translate(_translate1.value, 0.0);
+        ..translate(0.0, -_translate1.value)
+        ..translate(_translate2.value, 0.0)
+        ..translate(0.0, -_translate3.value)
+        ..translate(_translate4.value, 0.0);
     } else {
       tTranslate = Matrix4.identity()
-        ..translate(0.0, _translate3.value)
+        ..translate(0.0, _translate1.value)
         ..translate(-_translate2.value, 0.0)
-        ..translate(-_translate4.value, 0.0)
-        ..translate(0.0, _translate1.value);
+        ..translate(0.0, _translate3.value)
+        ..translate(-_translate4.value, 0.0);
     }
 
     return Positioned(
-      top: 0.0,
+      top: offset == true ? widget.offset : 0.0,
       left: offset == true ? 0.0 : widget.offset,
       child: Transform(
         transform: tTranslate,
