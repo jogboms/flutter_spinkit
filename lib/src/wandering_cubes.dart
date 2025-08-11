@@ -110,6 +110,9 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Sing
       tTranslate = Matrix4.identity()
         ..translate(0.0, -_translate1.value)
         ..translate(_translate2.value, 0.0)
+        // The negative value for _translate3.value reverses the direction of movement
+        // to create the wandering effect for the second cube. This ensures the animation
+        // path mirrors the first cube's movement, resulting in the desired visual behavior.
         ..translate(0.0, -_translate3.value)
         ..translate(_translate4.value, 0.0);
     } else {
