@@ -6,6 +6,8 @@ class SpinKitFadingCircle extends StatefulWidget {
     Key? key,
     this.color,
     this.size = 50.0,
+    this.itemSize,
+    this.itemCount,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1200),
     this.controller,
@@ -17,6 +19,8 @@ class SpinKitFadingCircle extends StatefulWidget {
 
   final Color? color;
   final double size;
+  final double? itemSize;
+  final int? itemCount;
   final IndexedWidgetBuilder? itemBuilder;
   final Duration duration;
   final AnimationController? controller;
@@ -26,8 +30,6 @@ class SpinKitFadingCircle extends StatefulWidget {
 }
 
 class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTickerProviderStateMixin {
-  static const _itemCount = 12;
-
   late AnimationController _controller;
 
   @override
@@ -47,27 +49,30 @@ class _SpinKitFadingCircleState extends State<SpinKitFadingCircle> with SingleTi
 
   @override
   Widget build(BuildContext context) {
+    final itemSize = widget.itemSize ?? widget.size * 0.15;
+    final itemCount = widget.itemCount ?? 12;
+
     return Center(
       child: SizedBox.fromSize(
         size: Size.square(widget.size),
         child: Stack(
-          children: List.generate(_itemCount, (i) {
+          children: List.generate(itemCount, (i) {
             final position = widget.size * .5;
             return Positioned.fill(
               left: position,
               top: position,
               child: Transform(
-                transform: Matrix4.rotationZ(30.0 * i * 0.0174533),
+                transform: Matrix4.rotationZ((360 / itemCount) * i * 0.0174533),
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
                     opacity: DelayTween(
                       begin: 0.0,
                       end: 1.0,
-                      delay: i / _itemCount,
+                      delay: i / itemCount,
                     ).animate(_controller),
                     child: SizedBox.fromSize(
-                      size: Size.square(widget.size * 0.15),
+                      size: Size.square(itemSize),
                       child: _itemBuilder(i),
                     ),
                   ),
