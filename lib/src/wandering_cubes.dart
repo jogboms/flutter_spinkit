@@ -108,6 +108,8 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Sing
     Matrix4 tTranslate;
     if (offset == true) {
       tTranslate = Matrix4.identity()
+        // The negative value reverses the animation direction for the second cube,
+        // creating a mirrored movement effect compared to the first cube.
         ..translate(0.0, -_translate1.value)
         ..translate(_translate2.value, 0.0)
         // The negative value for _translate3.value reverses the direction of movement
