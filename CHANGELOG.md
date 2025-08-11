@@ -2,6 +2,10 @@
 
 A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
 
+## 5.2.2
+
+- Fix `SpinKitWanderingCubes` not working as showcased
+
 ## 5.2.1
 
 - Fix `SpinKitCubeGrid` not working as showcased

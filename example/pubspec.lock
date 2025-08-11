@@ -68,7 +68,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "5.2.1"
+    version: "5.2.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
