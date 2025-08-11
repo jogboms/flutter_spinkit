@@ -19,6 +19,7 @@ class App extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Align(
+                alignment: Alignment.bottomCenter,
                 child: Builder(
                   builder: (context) => IconButton(
                     icon: const Icon(Icons.play_circle_filled),
@@ -31,7 +32,6 @@ class App extends StatelessWidget {
                     ),
                   ),
                 ),
-                alignment: Alignment.bottomCenter,
               ),
               const Positioned.fill(child: Center(child: WorkSpace())),
             ],
