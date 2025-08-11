@@ -108,20 +108,25 @@ class _SpinKitWanderingCubesState extends State<SpinKitWanderingCubes> with Sing
     Matrix4 tTranslate;
     if (offset == true) {
       tTranslate = Matrix4.identity()
-        ..translate(_translate3.value, 0.0)
-        ..translate(0.0, _translate2.value)
-        ..translate(0.0, _translate4.value)
-        ..translate(_translate1.value, 0.0);
+        // The negative value reverses the animation direction for the second cube,
+        // creating a mirrored movement effect compared to the first cube.
+        ..translate(0.0, -_translate1.value)
+        ..translate(_translate2.value, 0.0)
+        // The negative value for _translate3.value reverses the direction of movement
+        // to create the wandering effect for the second cube. This ensures the animation
+        // path mirrors the first cube's movement, resulting in the desired visual behavior.
+        ..translate(0.0, -_translate3.value)
+        ..translate(_translate4.value, 0.0);
     } else {
       tTranslate = Matrix4.identity()
-        ..translate(0.0, _translate3.value)
+        ..translate(0.0, _translate1.value)
         ..translate(-_translate2.value, 0.0)
-        ..translate(-_translate4.value, 0.0)
-        ..translate(0.0, _translate1.value);
+        ..translate(0.0, _translate3.value)
+        ..translate(-_translate4.value, 0.0);
     }
 
     return Positioned(
-      top: 0.0,
+      top: offset == true ? widget.offset : 0.0,
       left: offset == true ? 0.0 : widget.offset,
       child: Transform(
         transform: tTranslate,
