@@ -26,20 +26,24 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
   late AnimationController _scaleCtrl;
   late AnimationController _rotateCtrl;
   late Animation<double> _scale;
+  late Animation<double> _scale2;
   late Animation<double> _rotate;
 
   @override
   void initState() {
     super.initState();
 
-    _scaleCtrl = AnimationController(vsync: this, duration: widget.duration)
+    _scaleCtrl = AnimationController(vsync: this, duration: Duration(milliseconds: widget.duration.inMilliseconds ~/ 2))
       ..addListener(() {
         if (mounted) {
           setState(() {});
         }
       })
       ..repeat(reverse: true);
-    _scale = Tween(begin: -1.0, end: 1.0).animate(
+    _scale = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
+    );
+    _scale2 = Tween(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(parent: _scaleCtrl, curve: Curves.easeInOut),
     );
 
@@ -67,8 +71,8 @@ class _SpinKitChasingDotsState extends State<SpinKitChasingDots> with TickerProv
           angle: _rotate.value * 0.0174533,
           child: Stack(
             children: <Widget>[
-              Positioned(top: 0.0, child: _circle(1.0 - _scale.value.abs(), 0)),
-              Positioned(bottom: 0.0, child: _circle(_scale.value.abs(), 1)),
+              Positioned(top: 0.0, child: _circle(_scale.value.abs(), 0)),
+              Positioned(bottom: 0.0, child: _circle(_scale2.value.abs(), 1)),
             ],
           ),
         ),
