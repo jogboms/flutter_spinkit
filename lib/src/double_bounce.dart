@@ -74,7 +74,7 @@ class _SpinKitDoubleBounceState extends State<SpinKitDoubleBounce> with SingleTi
       : DecoratedBox(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: widget.color!.withValues(alpha: 0.6),
+            color: widget.color!.withOpacity(0.6),
           ),
         );
 }
