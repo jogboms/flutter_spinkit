@@ -17,7 +17,7 @@ dependencies:
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 ```
 
-## 🎮 How To Use
+## 🎓 How To Use
 
 ```dart
 const spinkit = SpinKitRotatingCircle(
