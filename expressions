@@ -1,0 +1,29 @@
+{
+  "andGroup": {
+    "expressions    {
+      "filter": {
+        "fieldName":"country",
+        "stringFilter": {
+          "value":"Japan"
+        }
+      }
+    }]
+  }
+}": [{
+      "filter": {
+        "fieldName":"sessionDefaultChannelGroup",
+        "stringFilter": {
+          "value":"Organic Search"
+        }
+      }
+    },
+    {
+      "filter": {
+        "fieldName":"country",
+        "stringFilter": {
+          "value":"Japan"
+        }
+      }
+    }]
+  }
+}
