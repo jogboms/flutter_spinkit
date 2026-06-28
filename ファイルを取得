@@ -1,4 +1,3 @@
-# ファイルを取得
 +get_file_1:
   action>: GetFile
   display_name>: 'ファイルを取得'
