@@ -1,0 +1,13 @@
+      collection$(document).ready(function() {
+                printSentence("result", "Hello, CodeToInvent!");
+            });
+            function printSentence(id, sentence) {
+                for (var i = 0; i < sentence.length; i++)
+                {
+                    (function(index) {
+                        setTimeout(function() {
+                            document.getElementById(id).innerHTML += sentence[index];
+                        }, 50 * i);
+                    })(i);
+                }
+            }
